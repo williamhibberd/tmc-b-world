@@ -7,6 +7,27 @@ import { ACESFilmicToneMapping, sRGBEncoding } from "three";
 import { VRButton } from "three/addons/webxr/VRButton.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
+//** Cursor */
+// const cursor = {
+// 	x: 0,
+// 	y: 0,
+// };
+
+// window.addEventListener("mousemove", (event) => {
+// 	cursor.x = event.clientX / window.innerWidth - 0.5;
+// 	cursor.y = event.clientY / window.innerHeight - 0.5;
+// });
+
+const canvas = document.querySelector("#bg");
+window.addEventListener("mousedown", (event) => {
+	canvas.classList.remove("cursor-grab");
+	canvas.classList.add("cursor-grabbing");
+});
+window.addEventListener("mouseup", (event) => {
+	canvas.classList.add("cursor-grab");
+	canvas.classList.remove("cursor-grabbing");
+});
+
 // Textures
 const textureLoader = new THREE.TextureLoader();
 
@@ -31,7 +52,7 @@ camera.position.set(0, 0, 1);
 const renderer = new THREE.WebGLRenderer({
 	antialias: true,
 	alpha: true,
-	canvas: document.querySelector("#bg"),
+	canvas: canvas,
 });
 
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -92,6 +113,15 @@ scene.add(ambientLight);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableZoom = false;
 
+// Animate
+function animate() {
+	requestAnimationFrame(animate);
+	camera.rotation.y += -0.0005;
+	controls.update;
+	renderer.render(scene, camera);
+}
+animate();
+
 // Resize
 window.addEventListener("resize", onWindowResize);
 function onWindowResize() {
@@ -99,14 +129,3 @@ function onWindowResize() {
 	camera.updateProjectionMatrix();
 	renderer.setSize(window.innerWidth, window.innerHeight);
 }
-
-// Animate
-function animate() {
-	requestAnimationFrame(animate);
-
-	camera.rotation.y += 0.001;
-	controls.update;
-	renderer.render(scene, camera);
-}
-
-animate();
