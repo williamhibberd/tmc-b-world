@@ -1,0 +1,25 @@
+{
+  "src/js/app.js": {
+    "file": "assets/app.0686426f.js",
+    "src": "src/js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/app.ecc6a0b2.css"
+    ],
+    "integrity": "sha384-8GVLbWITg/jIitkWaXz/r6Rp5fmoEwmotUQrOKIQkbicH02nk713+KBHgQuU+NH9"
+  },
+  "index.html": {
+    "file": "assets/main.bd6e7b77.js",
+    "src": "index.html",
+    "isEntry": true,
+    "imports": [
+      "src/js/app.js"
+    ],
+    "integrity": "sha384-Fy5VzbSQ1Pn1yFZsDJsNE8YJOy5yZW4zzCd6dmadXZT+4fY8li9pkqSIqVVwMN8X"
+  },
+  "src/js/app.css": {
+    "file": "assets/app.ecc6a0b2.css",
+    "src": "src/js/app.css",
+    "integrity": "sha384-EUF1RFSMlOtkclQdO8YReaaDoQj5aUsAC5bH+zuqYBr4Hxl9Ekuh7YZibrcTOSQu"
+  }
+}
