@@ -10,7 +10,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 // Textures
 const textureLoader = new THREE.TextureLoader();
 
-const background = textureLoader.load("./images/test.jpg");
+const background = textureLoader.load("./images/lib.png");
 background.mapping = THREE.EquirectangularReflectionMapping;
 background.encoding = THREE.sRGBEncoding;
 
