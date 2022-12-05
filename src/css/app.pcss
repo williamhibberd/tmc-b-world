@@ -1,12 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* VR Button added by THREE: https://threejs.org/docs/#manual/en/introduction/How-to-create-VR-content
+	#VRButton {
+		@apply hidden;
+	} 
+*/
+
 @layer base {
-	body {
-		@apply bg-yellow;
-	}
-	canvas {
-		@apply fixed top-0 left-0;
+	.r-h1 {
+		font-size: responsive 32px 58px; /* min-size, max-size */
+		font-range: 640px 1440px;
+		line-height: responsive 28px 51px;
+		line-height-range: 640px 1440px;
+		letter-spacing: 0.06em;
 	}
 }

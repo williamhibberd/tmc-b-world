@@ -1,4 +1,5 @@
 import "./utils/vh-screen";
+import "./utils/loader";
 import "../css/app.pcss";
 
 import * as THREE from "three";
@@ -60,10 +61,12 @@ scene.add(sphere);
 */
 
 // Create video and play
-let textureVid = document.createElement("video");
+const textureVid = document.createElement("video");
 textureVid.src = `./videos/placeholder.mp4`;
 textureVid.crossOrigin = "anonymous";
 textureVid.loop = true;
+textureVid.muted = true;
+textureVid.autoplay = true;
 textureVid.play();
 // document.body.appendChild(textureVid); //** test video */
 
