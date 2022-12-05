@@ -112,11 +112,12 @@ scene.add(ambientLight);
 // controls
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableZoom = false;
+controls.enableDamping = true;
 
 // Animate
 function animate() {
 	requestAnimationFrame(animate);
-	camera.rotation.y += -0.0005;
+	// camera.rotation.y += -0.0005;
 	controls.update;
 	renderer.render(scene, camera);
 }
