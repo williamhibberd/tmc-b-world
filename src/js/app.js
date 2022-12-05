@@ -24,7 +24,7 @@ const camera = new THREE.PerspectiveCamera(
 	0.1,
 	1000
 );
-camera.position.set(0, 0, 1000);
+camera.position.set(0, 0, 1);
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -42,20 +42,44 @@ renderer.outputEncoding = sRGBEncoding;
 
 renderer.render(scene, camera);
 
-// testing sphere
-// const texture = new THREE.TextureLoader().load("./images/test.jpg");
-// const sphere = new THREE.Mesh(
-// 	new THREE.SphereGeometry(3, 32, 32),
-// 	new THREE.MeshStandardMaterial({
-// 		side: THREE.BackSide,
-// 		map: texture,
-// 	})
-// );
-
-// scene.add(sphere);
-
-document.body.appendChild(VRButton.createButton(renderer));
+//** VR
 renderer.xr.enabled = true;
+document.body.appendChild(VRButton.createButton(renderer));
+
+//** testing sphere
+/* 
+const texture = new THREE.TextureLoader().load("./images/test.jpg");
+const sphere = new THREE.Mesh(
+	new THREE.SphereGeometry(3, 32, 32),
+	new THREE.MeshStandardMaterial({
+		side: THREE.BackSide,
+		map: texture,
+	})
+);
+scene.add(sphere);
+*/
+
+// Create video and play
+let textureVid = document.createElement("video");
+textureVid.src = `./videos/placeholder.mp4`;
+textureVid.crossOrigin = "anonymous";
+textureVid.loop = true;
+textureVid.play();
+// document.body.appendChild(textureVid); //** test video */
+
+// Load video texture
+const videoTexture = new THREE.VideoTexture(textureVid);
+videoTexture.generateMipmaps = false;
+
+// create video and add to scene
+const video = new THREE.Mesh(
+	new THREE.PlaneGeometry(16, 9),
+	new THREE.MeshBasicMaterial({
+		map: videoTexture,
+	})
+);
+video.position.set(-0.4, 8, -50);
+scene.add(video);
 
 // Lighting
 const ambientLight = new THREE.AmbientLight(0xffffff);
@@ -63,6 +87,7 @@ scene.add(ambientLight);
 
 // controls
 const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableZoom = false;
 
 // Resize
 window.addEventListener("resize", onWindowResize);
@@ -76,7 +101,7 @@ function onWindowResize() {
 function animate() {
 	requestAnimationFrame(animate);
 
-	camera.rotation.y += -0.001;
+	camera.rotation.y += 0.001;
 	controls.update;
 	renderer.render(scene, camera);
 }
