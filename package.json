@@ -8,6 +8,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@unseenco/taxi": "^1.2.2",
 		"alpinejs": "^3.2.3",
 		"lazysizes": "^5",
 		"three": "^0.146.0"

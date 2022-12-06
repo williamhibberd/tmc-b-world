@@ -5,14 +5,29 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Bauhaus World</title>
-		<style type="text/css">
-			[x-cloak] {
-				display: none;
-			}
-		</style>
+		<!--! turn on to use alpine 
+			<style type="text/css">
+				[x-cloak] {
+					display: none;
+				}
+			</style> 
+		-->
 	</head>
 	<body>
-		<canvas id="bg" class="fixed top-0 left-0 cursor-grab"></canvas>
+		<main data-taxi>
+			<article data-taxi-view class="relative isolate w-screen h-screen">
+				<canvas id="bg" class="fixed top-0 left-0 cursor-grab"></canvas>
+				<!-- !! not yet working to nav away
+				<div class="absolute inset-x-0 bottom-0 z-50">
+					<a class="bg-black text-white block" href="/this/"
+						>navigate away</a
+					>
+				</div> 
+				-->
+			</article>
+		</main>
+
+		<!--* Loader -->
 		<div id="loader" class="fixed inset-0 bg-white isolate">
 			<div
 				class="absolute bg-blue rounded-full w-[70vw] h-[70vw] md:w-[38vw] md:h-[38vw] left-12 top-[6vh] mix-blend-multiply"
@@ -42,6 +57,8 @@
 				</div>
 			</div>
 		</div>
+
+		<!--* Toggle Scene Button -->
 		<div class="absolute top-12 right-12">
 			<button
 				id="toggleScene"
@@ -50,6 +67,8 @@
 				Toggle Scene
 			</button>
 		</div>
+
+		<!--* Header -->
 		<header class="fixed top-12 left-12">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

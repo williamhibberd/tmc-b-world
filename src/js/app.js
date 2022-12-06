@@ -2,10 +2,13 @@ import "./utils/vh-screen";
 import "./utils/loader";
 import "../css/app.pcss";
 
+import { Core } from "@unseenco/taxi";
 import * as THREE from "three";
 import { ACESFilmicToneMapping, sRGBEncoding } from "three";
 import { VRButton } from "three/addons/webxr/VRButton.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+
+const taxi = new Core();
 
 //** Cursor */
 // const cursor = {
@@ -31,11 +34,11 @@ window.addEventListener("mouseup", (event) => {
 // Textures
 const textureLoader = new THREE.TextureLoader();
 
-const libBg = textureLoader.load("./images/lib.png");
+const libBg = textureLoader.load("/images/lib.png");
 libBg.mapping = THREE.EquirectangularReflectionMapping;
 libBg.encoding = THREE.sRGBEncoding;
 
-const testBg = textureLoader.load("./images/test.png");
+const testBg = textureLoader.load("/images/test.png");
 testBg.mapping = THREE.EquirectangularReflectionMapping;
 testBg.encoding = THREE.sRGBEncoding;
 

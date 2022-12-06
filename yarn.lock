@@ -33,6 +33,20 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@unseenco/e@^2.2.1":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@unseenco/e/-/e-2.2.3.tgz#ca31b196398ccdb1001b8c0a66cca3922c31b2bd"
+  integrity sha512-ntxSrExl+KRWjbD3D4U2AnDZAwD0BZyhowQ6y+bbPqvvEkKfFdTlGNUa/xCwezHvZe+YowJ+mHAGjxtvMtK73Q==
+  dependencies:
+    selector-set "^1.1.5"
+
+"@unseenco/taxi@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@unseenco/taxi/-/taxi-1.2.2.tgz#a401ee199d283fa836622b19f502d230ad1bece8"
+  integrity sha512-dnbFai8n8872yxG8rqAOfhqTJ/98a24x9U9t1NAkzWFgyJ/Mr5MYZ8BdsNui7I7V6rp6+yQ8TQ/9xWPbZP6vqQ==
+  dependencies:
+    "@unseenco/e" "^2.2.1"
+
 "@vue/reactivity@~3.1.1":
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/@vue/reactivity/-/reactivity-3.1.5.tgz#dbec4d9557f7c8f25c2635db1e23a78a729eb991"
@@ -714,6 +728,11 @@ sass@^1.53.0:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
     source-map-js ">=0.6.2 <2.0.0"
+
+selector-set@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/selector-set/-/selector-set-1.1.5.tgz#60c135aea482b6f46a2d95ad72058927690a8634"
+  integrity sha512-6SQw6yMew5iOZ8/cDHDEnJWRM4ot2mxP6szZyF5ptrBogw4AcS4EXRj/8BUfgAMwVfdL84qpModlBMOl2NVrsQ==
 
 "source-map-js@>=0.6.2 <2.0.0", source-map-js@^1.0.2:
   version "1.0.2"

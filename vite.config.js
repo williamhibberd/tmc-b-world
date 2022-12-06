@@ -1,6 +1,6 @@
+import { resolve } from "path";
 import { defineConfig } from "vite";
 import manifestSRI from "vite-plugin-manifest-sri";
-import path from "path";
 import viteCompression from "vite-plugin-compression";
 
 // https://vitejs.dev/config/
@@ -13,8 +13,10 @@ export default defineConfig(({ command }) => ({
 		outDir: "web/",
 		rollupOptions: {
 			input: {
-				app: "src/js/app.js",
-				main: "index.html",
+				app: resolve(__dirname, "src/js/app.js"),
+				main: resolve(__dirname, "index.html"),
+				this: resolve(__dirname, "this/index.html"),
+				that: resolve(__dirname, "that/index.html"),
 			},
 			output: {
 				sourcemap: true,
