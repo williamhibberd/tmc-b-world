@@ -5,22 +5,11 @@ import "../css/app.pcss";
 import { Core } from "@unseenco/taxi";
 import * as THREE from "three";
 import { ACESFilmicToneMapping, sRGBEncoding } from "three";
-import { VRButton } from "three/addons/webxr/VRButton.js";
+// import { VRButton } from "three/addons/webxr/VRButton.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import gsap from "gsap";
 
 const taxi = new Core();
-
-//** Cursor */
-// const cursor = {
-// 	x: 0,
-// 	y: 0,
-// };
-
-// window.addEventListener("mousemove", (event) => {
-// 	cursor.x = event.clientX / window.innerWidth - 0.5;
-// 	cursor.y = event.clientY / window.innerHeight - 0.5;
-// });
 
 const canvas = document.querySelector("#bg");
 window.addEventListener("mousedown", (event) => {
@@ -76,28 +65,6 @@ renderer.render(scene, camera);
 // renderer.xr.enabled = true;
 // document.body.appendChild(VRButton.createButton(renderer));
 
-//** testing spher
-// const bgVid = document.createElement("video");
-// bgVid.src = `/videos/scene-video.mp4`;
-// bgVid.crossOrigin = "anonymous";
-// bgVid.loop = true;
-// bgVid.muted = true;
-// bgVid.autoplay = true;
-// bgVid.play();
-// document.body.appendChild(bgVid); //** test video */
-
-// const videoBackground = new THREE.VideoTexture(bgVid);
-// videoBackground.generateMipmaps = false;
-
-// const sphere = new THREE.Mesh(
-// 	new THREE.SphereGeometry(3, 32, 32),
-// 	new THREE.MeshStandardMaterial({
-// 		side: THREE.BackSide,
-// 		map: videoBackground,
-// 	})
-// );
-// scene.add(sphere);
-
 // Create video and play
 const textureVid = document.createElement("video");
 textureVid.src = `/videos/new-scene-re.mp4#t=0.001`;
@@ -114,17 +81,37 @@ textureVid.setAttribute("loop", "");
 // Load video texture
 const videoTexture = new THREE.VideoTexture(textureVid);
 videoTexture.generateMipmaps = false;
+videoTexture.encoding = sRGBEncoding;
 
 // create video and add to scene
-const video = new THREE.Mesh(
+const lobby = new THREE.Mesh(
 	new THREE.SphereGeometry(3, 32, 32),
 	new THREE.MeshBasicMaterial({
 		side: THREE.BackSide,
 		map: videoTexture,
 	})
 );
-// video.position.set(-0.4, 8, -50);
-scene.add(video);
+scene.add(lobby);
+
+const library = new THREE.Mesh(
+	new THREE.SphereGeometry(3, 32, 32),
+	new THREE.MeshBasicMaterial({
+		side: THREE.BackSide,
+		map: libBg,
+	})
+);
+library.position.set(50, 0, 0);
+scene.add(library);
+
+const outside = new THREE.Mesh(
+	new THREE.SphereGeometry(3, 32, 32),
+	new THREE.MeshBasicMaterial({
+		side: THREE.BackSide,
+		map: testBg,
+	})
+);
+outside.position.set(-50, 0, 0);
+scene.add(outside);
 
 // Lighting
 const ambientLight = new THREE.AmbientLight(0xffffff);
@@ -132,7 +119,7 @@ scene.add(ambientLight);
 
 // controls
 const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableZoom = false;
+// controls.enableZoom = false;
 controls.enableDamping = true;
 
 // reverse orbit controls
@@ -149,6 +136,7 @@ function animate() {
 animate();
 
 // Start animation
+const toggleButton = document.querySelector("#toggleScene");
 const startButton = document.querySelector("#startButton");
 const loader = document.querySelector("#loader");
 startButton.addEventListener("click", () => {
@@ -191,6 +179,9 @@ startButton.addEventListener("click", () => {
 	startTl.set(loader, {
 		display: "none",
 	});
+	// startTl.set(toggleButton, {
+	// 	display: "block",
+	// });
 });
 
 function videoPlay() {
@@ -207,13 +198,13 @@ function onWindowResize() {
 }
 
 // Change Scene
-const toggleButton = document.querySelector("#toggleScene");
 toggleButton.addEventListener("click", () => {
-	if (
-		scene.background.source.data.currentSrc === libBg.source.data.currentSrc
-	) {
-		scene.background = testBg;
-	} else {
-		scene.background = libBg;
-	}
+	camera.position.set(-49, 0, 0);
+	// if (
+	// 	scene.background.source.data.currentSrc === libBg.source.data.currentSrc
+	// ) {
+	// 	scene.background = testBg;
+	// } else {
+	// 	scene.background = libBg;
+	// }
 });
