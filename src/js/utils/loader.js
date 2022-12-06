@@ -1,7 +1,6 @@
 import { DefaultLoadingManager } from "three";
 
-const loader = document.querySelector("#loader");
-const toggleButton = document.querySelector("#toggleScene");
+const startButton = document.querySelector("#startButton");
 const progressIndicator = document.querySelector("#progressIndicator");
 const count = document.querySelector("#count");
 let loaderValue = 0;
@@ -25,9 +24,8 @@ DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
 DefaultLoadingManager.onLoad = function () {
 	console.log("Loading Complete!");
 	setTimeout(() => {
-		loader.style.display = "none";
-		toggleButton.style.display = "block";
-	}, 2000);
+		startButton.style.display = "block";
+	}, 1000);
 };
 
 // How long you want the animation to take, in ms

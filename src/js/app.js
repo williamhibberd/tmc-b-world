@@ -7,6 +7,7 @@ import * as THREE from "three";
 import { ACESFilmicToneMapping, sRGBEncoding } from "three";
 import { VRButton } from "three/addons/webxr/VRButton.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import gsap from "gsap";
 
 const taxi = new Core();
 
@@ -99,7 +100,7 @@ renderer.render(scene, camera);
 
 // Create video and play
 const textureVid = document.createElement("video");
-textureVid.src = `${window.location.href}videos/placeholder.mp4`;
+textureVid.src = `/videos/new-scene.mp4#t=0.001`;
 textureVid.setAttribute("crossOrigin", "anonymous");
 textureVid.setAttribute("type", "video/mp4");
 textureVid.setAttribute("webkit-playsinline", "");
@@ -107,11 +108,7 @@ textureVid.setAttribute("playsinline", "");
 textureVid.setAttribute("muted", "");
 textureVid.setAttribute("autoplay", "");
 textureVid.setAttribute("loop", "");
-// textureVid.setAttribute("controls", "");
 
-// setTimeout(() => {
-// 	textureVid.play();
-// }, 1000);
 // document.body.appendChild(textureVid); //** test video */
 
 // Load video texture
@@ -146,6 +143,56 @@ function animate() {
 	renderer.render(scene, camera);
 }
 animate();
+
+// Start animation
+const startButton = document.querySelector("#startButton");
+const loader = document.querySelector("#loader");
+startButton.addEventListener("click", () => {
+	// console.log("ive been clicked");
+	const startTl = gsap.timeline({
+		onComplete: () => videoPlay(),
+		defaults: { duration: 0.5, ease: "power4.out" },
+	});
+	startTl.to("#loaderTri", {
+		opacity: 0,
+	});
+	startTl.to(
+		"#loaderCircle",
+		{
+			opacity: 0,
+		},
+		">-0.25"
+	);
+	startTl.to(
+		"#loaderSquare",
+		{
+			opacity: 0,
+		},
+		">-0.25"
+	);
+	startTl.to("#loaderTitle", {
+		duration: 1,
+		scale: 50,
+	});
+	startTl.to(
+		loader,
+		{
+			backgroundColor: "#000",
+		},
+		"<"
+	);
+	startTl.to(loader, {
+		opacity: 0,
+	});
+	startTl.set(loader, {
+		display: "none",
+	});
+});
+
+function videoPlay() {
+	// console.log("video playing");
+	textureVid.play();
+}
 
 // Resize
 window.addEventListener("resize", onWindowResize);
