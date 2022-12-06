@@ -99,12 +99,19 @@ renderer.render(scene, camera);
 
 // Create video and play
 const textureVid = document.createElement("video");
-textureVid.src = "./videos/scene-video.mp4";
-textureVid.crossOrigin = "anonymous";
-textureVid.loop = true;
-textureVid.muted = true;
-textureVid.autoplay = true;
-textureVid.play();
+textureVid.src = `${window.location.href}videos/placeholder.mp4`;
+textureVid.setAttribute("crossOrigin", "anonymous");
+textureVid.setAttribute("type", "video/mp4");
+textureVid.setAttribute("webkit-playsinline", "");
+textureVid.setAttribute("playsinline", "");
+textureVid.setAttribute("muted", "");
+textureVid.setAttribute("autoplay", "");
+textureVid.setAttribute("loop", "");
+// textureVid.setAttribute("controls", "");
+
+// setTimeout(() => {
+// 	textureVid.play();
+// }, 1000);
 // document.body.appendChild(textureVid); //** test video */
 
 // Load video texture
