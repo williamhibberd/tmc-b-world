@@ -100,7 +100,7 @@ renderer.render(scene, camera);
 
 // Create video and play
 const textureVid = document.createElement("video");
-textureVid.src = `/videos/new-scene.mp4#t=0.001`;
+textureVid.src = `/videos/new-scene-re.mp4#t=0.001`;
 textureVid.setAttribute("crossOrigin", "anonymous");
 textureVid.setAttribute("type", "video/mp4");
 textureVid.setAttribute("webkit-playsinline", "");
