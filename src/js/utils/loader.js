@@ -1,6 +1,7 @@
 import { DefaultLoadingManager } from "three";
 
 const loader = document.querySelector("#loader");
+const toggleButton = document.querySelector("#toggleScene");
 const progressIndicator = document.querySelector("#progressIndicator");
 const count = document.querySelector("#count");
 let loaderValue = 0;
@@ -17,14 +18,15 @@ DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
 	console.log(`${(itemsLoaded / itemsTotal) * 100}% loaded`);
 	loaderValue = (itemsLoaded / itemsTotal) * 100;
 	console.log(loaderValue);
-	progressIndicator.style.transform = `translateX(${loaderValue}%)`;
-	animateCountUp(count);
+
+	animateCountUp(count, 0, loaderValue);
 };
 
 DefaultLoadingManager.onLoad = function () {
 	console.log("Loading Complete!");
 	setTimeout(() => {
 		loader.style.display = "none";
+		toggleButton.style.display = "block";
 	}, 2000);
 };
 
@@ -38,9 +40,11 @@ const totalFrames = Math.round(animationDuration / frameDuration);
 const easeOutQuad = (t) => t * (2 - t);
 
 // The animation function, which takes an Element
-const animateCountUp = (el) => {
-	let frame = 0;
-	const countTo = parseInt(el.innerHTML, 10);
+const animateCountUp = (el, startNum, endNum) => {
+	let frame = startNum;
+	const countTo = endNum;
+	// Animate bar
+	progressIndicator.style.transform = `translateX(${endNum}%)`;
 	// Start the animation running 60 times per second
 	const counter = setInterval(() => {
 		frame++;

@@ -31,13 +31,17 @@ window.addEventListener("mouseup", (event) => {
 // Textures
 const textureLoader = new THREE.TextureLoader();
 
-const background = textureLoader.load("./images/lib.png");
-background.mapping = THREE.EquirectangularReflectionMapping;
-background.encoding = THREE.sRGBEncoding;
+const libBg = textureLoader.load("./images/lib.png");
+libBg.mapping = THREE.EquirectangularReflectionMapping;
+libBg.encoding = THREE.sRGBEncoding;
+
+const testBg = textureLoader.load("./images/test.png");
+testBg.mapping = THREE.EquirectangularReflectionMapping;
+testBg.encoding = THREE.sRGBEncoding;
 
 // Scene
 const scene = new THREE.Scene();
-scene.background = background;
+scene.background = libBg;
 
 // Camera
 const camera = new THREE.PerspectiveCamera(
@@ -130,3 +134,15 @@ function onWindowResize() {
 	camera.updateProjectionMatrix();
 	renderer.setSize(window.innerWidth, window.innerHeight);
 }
+
+// Change Scene
+const toggleButton = document.querySelector("#toggleScene");
+toggleButton.addEventListener("click", () => {
+	if (
+		scene.background.source.data.currentSrc === libBg.source.data.currentSrc
+	) {
+		scene.background = testBg;
+	} else {
+		scene.background = libBg;
+	}
+});
