@@ -72,8 +72,8 @@ renderer.outputEncoding = sRGBEncoding;
 renderer.render(scene, camera);
 
 //** VR
-renderer.xr.enabled = true;
-document.body.appendChild(VRButton.createButton(renderer));
+// renderer.xr.enabled = true;
+// document.body.appendChild(VRButton.createButton(renderer));
 
 //** testing sphere
 /* 
