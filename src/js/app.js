@@ -44,7 +44,7 @@ testBg.encoding = THREE.sRGBEncoding;
 
 // Scene
 const scene = new THREE.Scene();
-scene.background = libBg;
+// scene.background = videoBackground;
 
 // Camera
 const camera = new THREE.PerspectiveCamera(
@@ -75,22 +75,31 @@ renderer.render(scene, camera);
 // renderer.xr.enabled = true;
 // document.body.appendChild(VRButton.createButton(renderer));
 
-//** testing sphere
-/* 
-const texture = new THREE.TextureLoader().load("./images/test.jpg");
-const sphere = new THREE.Mesh(
-	new THREE.SphereGeometry(3, 32, 32),
-	new THREE.MeshStandardMaterial({
-		side: THREE.BackSide,
-		map: texture,
-	})
-);
-scene.add(sphere);
-*/
+//** testing spher
+// const bgVid = document.createElement("video");
+// bgVid.src = `/videos/scene-video.mp4`;
+// bgVid.crossOrigin = "anonymous";
+// bgVid.loop = true;
+// bgVid.muted = true;
+// bgVid.autoplay = true;
+// bgVid.play();
+// document.body.appendChild(bgVid); //** test video */
+
+// const videoBackground = new THREE.VideoTexture(bgVid);
+// videoBackground.generateMipmaps = false;
+
+// const sphere = new THREE.Mesh(
+// 	new THREE.SphereGeometry(3, 32, 32),
+// 	new THREE.MeshStandardMaterial({
+// 		side: THREE.BackSide,
+// 		map: videoBackground,
+// 	})
+// );
+// scene.add(sphere);
 
 // Create video and play
 const textureVid = document.createElement("video");
-textureVid.src = `./videos/placeholder.mp4`;
+textureVid.src = "./videos/scene-video.mp4";
 textureVid.crossOrigin = "anonymous";
 textureVid.loop = true;
 textureVid.muted = true;
@@ -104,12 +113,13 @@ videoTexture.generateMipmaps = false;
 
 // create video and add to scene
 const video = new THREE.Mesh(
-	new THREE.PlaneGeometry(16, 9),
+	new THREE.SphereGeometry(3, 32, 32),
 	new THREE.MeshBasicMaterial({
+		side: THREE.BackSide,
 		map: videoTexture,
 	})
 );
-video.position.set(-0.4, 8, -50);
+// video.position.set(-0.4, 8, -50);
 scene.add(video);
 
 // Lighting
