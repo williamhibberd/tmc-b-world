@@ -4,7 +4,7 @@ import gsap from "gsap";
 const startButton = document.querySelector("#startButton");
 const progressIndicator = document.querySelector("#progressIndicator");
 
-/* On Start 
+/* On Start
 DefaultLoadingManager.onStart = function (url, itemsLoaded, itemsTotal) {
 	console.log(
 		`Started loading file: ${url}.\n${itemsLoaded} of ${itemsTotal} files`
@@ -15,6 +15,7 @@ DefaultLoadingManager.onStart = function (url, itemsLoaded, itemsTotal) {
 
 let loaderValue = 0;
 DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
+	console.log(`loading file: ${url}.\n${itemsLoaded} of ${itemsTotal} files`);
 	loaderValue = (itemsLoaded / itemsTotal) * 100;
 	progressIndicator.style.transform = `translateX(${loaderValue}%)`;
 };

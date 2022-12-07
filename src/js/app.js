@@ -16,13 +16,23 @@ import "./utils/vh-screen";
 /* Loader */
 import "./utils/loader";
 
+import Lobby from "./renderers/Lobby";
+import Outside from "./renderers/Outside";
+import Library from "./renderers/Library";
+
 /* Place alpine on the window to get Alpine dev tools working */
 window.Alpine = Alpine;
 
 /* Alpine data */
 
 /* Start Taxi */
-const taxi = new Core();
+// const taxi = new Core({
+// 	renderers: {
+// 		lobby: Lobby,
+// 		outside: Outside,
+// 		library: Library,
+// 	},
+// });
 
 /* Start Alpine */
 Alpine.start();
@@ -32,13 +42,20 @@ Alpine.start();
 */
 const textureLoader = new THREE.TextureLoader();
 
-const libBg = textureLoader.load("/images/lib.png");
-libBg.mapping = THREE.EquirectangularReflectionMapping;
-libBg.encoding = THREE.sRGBEncoding;
+const lobbyTexture = textureLoader.load("/images/lobby/lobby.jpg");
+lobbyTexture.mapping = THREE.EquirectangularReflectionMapping;
+lobbyTexture.encoding = THREE.sRGBEncoding;
 
-const testBg = textureLoader.load("/images/test.png");
-testBg.mapping = THREE.EquirectangularReflectionMapping;
-testBg.encoding = THREE.sRGBEncoding;
+const libraryTexture = textureLoader.load("/images/library/library.jpg");
+libraryTexture.mapping = THREE.EquirectangularReflectionMapping;
+libraryTexture.encoding = THREE.sRGBEncoding;
+
+const outsideTexture = textureLoader.load("/images/outside/outside.jpg");
+outsideTexture.mapping = THREE.EquirectangularReflectionMapping;
+outsideTexture.encoding = THREE.sRGBEncoding;
+
+const asterixTexture = textureLoader.load("/images/asterix.svg");
+asterixTexture.encoding = THREE.sRGBEncoding;
 
 const textureVid = document.createElement("video");
 textureVid.src = `/videos/new-scene-re.mp4#t=0.001`;
@@ -104,7 +121,7 @@ const lobby = new THREE.Mesh(
 	new THREE.SphereGeometry(3, 32, 32),
 	new THREE.MeshBasicMaterial({
 		side: THREE.BackSide,
-		map: videoTexture,
+		map: lobbyTexture,
 		// wireframe: true,
 	})
 );
@@ -114,7 +131,7 @@ const library = new THREE.Mesh(
 	new THREE.SphereGeometry(3, 32, 32),
 	new THREE.MeshBasicMaterial({
 		side: THREE.BackSide,
-		map: libBg,
+		map: libraryTexture,
 	})
 );
 library.position.set(50, 0, 0);
@@ -124,7 +141,7 @@ const outside = new THREE.Mesh(
 	new THREE.SphereGeometry(3, 32, 32),
 	new THREE.MeshBasicMaterial({
 		side: THREE.BackSide,
-		map: testBg,
+		map: outsideTexture,
 	})
 );
 outside.position.set(-50, 0, 0);
@@ -133,7 +150,6 @@ scene.add(outside);
 /* 
 	! Asterix 
 */
-const asterixTexture = textureLoader.load("/images/button.svg");
 const breuerChairButton = document.querySelector("#breuerChairButton");
 const breuerChairMesh = new THREE.Mesh(
 	// new THREE.SphereGeometry(0.125, 32, 32),
@@ -144,7 +160,6 @@ const breuerChairMesh = new THREE.Mesh(
 );
 breuerChairMesh.position.set(-2.7, -0.4, 0.7);
 breuerChairMesh.rotation.y = Math.PI * 0.6;
-breuerChairMesh.encoding = THREE.sRGBEncoding;
 breuerChairMesh.scale.set(0, 0, 0);
 scene.add(breuerChairMesh);
 
@@ -161,6 +176,8 @@ blueButton.position.set(0, 0.2, -2.9);
 blueButton.scale.set(0, 0, 0);
 // blueButton.rotation.y = Math.PI * 0.5;
 scene.add(blueButton);
+
+const objectsToScale = [blueButton, breuerChairMesh];
 
 /* 
 	! Grid helper 
@@ -196,6 +213,15 @@ const mouse = new THREE.Vector2();
 window.addEventListener("mousemove", (event) => {
 	mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
 	mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+	if (currentIntersect) {
+		// console.log("im intersecting");
+		// gsap.to(currentIntersect.object.scale, {
+		// 	x: 0.5,
+		// 	z: 0.5,
+		// 	y: 0.5,
+		// 	repeat: -1,
+		// });
+	}
 });
 
 window.addEventListener("click", () => {
@@ -272,6 +298,7 @@ const tick = () => {
 
 	// Set currentIntersect object
 	if (intersects.length) {
+		// console.log("im intersecting");
 		currentIntersect = intersects[0];
 	} else {
 		currentIntersect = null;
@@ -306,8 +333,9 @@ startButton.addEventListener("click", () => {
 
 const init = () => {
 	textureVid.play();
-	gsap.to(blueButton.scale, { x: 1, y: 1, z: 1 });
-	gsap.to(breuerChairMesh.scale, { x: 1, y: 1, z: 1 });
+	for (const object of objectsToScale) {
+		gsap.to(object.scale, { x: 1, y: 1, z: 1 });
+	}
 };
 
 /* 
