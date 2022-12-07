@@ -15,8 +15,8 @@ export default defineConfig(({ command }) => ({
 			input: {
 				app: resolve(__dirname, "src/js/app.js"),
 				main: resolve(__dirname, "index.html"),
-				this: resolve(__dirname, "this/index.html"),
-				that: resolve(__dirname, "that/index.html"),
+				outside: resolve(__dirname, "outside/index.html"),
+				library: resolve(__dirname, "library/index.html"),
 			},
 			output: {
 				sourcemap: true,

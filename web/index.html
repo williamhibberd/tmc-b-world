@@ -13,8 +13,8 @@
 			</style> 
 		-->
 		<script type="module" crossorigin src="/assets/modulepreload-polyfill.c7c6310f.js"></script>
-		<script type="module" crossorigin src="/assets/app.e189a5ce.js"></script>
-		<link rel="stylesheet" href="/assets/app.7d4fc193.css">
+		<script type="module" crossorigin src="/assets/app.ec486772.js"></script>
+		<link rel="stylesheet" href="/assets/app.52c3a516.css">
 	</head>
 	<body class="bg-black">
 		<main data-taxi>
@@ -128,14 +128,12 @@
 			class="fixed inset-0 bg-white isolate flex items-center justify-center"
 		>
 			<div
-				id="loaderCircle"
-				class="absolute bg-blue rounded-full w-[70vw] h-[70vw] md:w-[38vw] md:h-[38vw] left-12 top-[6vh] mix-blend-multiply"
+				class="loader-shape absolute bg-blue rounded-full w-[70vw] h-[70vw] md:w-[38vw] md:h-[38vw] left-12 top-[6vh] mix-blend-multiply"
 			></div>
 			<div class="absolute bottom-0 inset-x-0 mix-blend-multiply">
 				<svg
-					id="loaderTri"
 					xmlns="http://www.w3.org/2000/svg"
-					class="w-full md:w-[51vw] mx-auto fill-red"
+					class="loader-shape w-full md:w-[51vw] mx-auto fill-red"
 					fill="currentColor"
 					viewBox="0 0 745 645"
 				>
@@ -148,8 +146,7 @@
 				</div>
 			</div>
 			<div
-				id="loaderSquare"
-				class="absolute bg-yellow w-[46vw] h-[46vw] md:w-[36vw] md:h-[36vw] right-0 top-[37vh] md:top-[13vh] mix-blend-multiply"
+				class="loader-shape absolute bg-yellow w-[46vw] h-[46vw] md:w-[36vw] md:h-[36vw] right-0 top-[37vh] md:top-[13vh] mix-blend-multiply"
 			></div>
 			<div
 				id="progress"
@@ -157,12 +154,13 @@
 			>
 				<div
 					id="progressIndicator"
-					class="absolute inset-y-0 bg-grey/10 h-full w-full -left-full transition-transform duration-1000 ease-in flex justify-end py-42 px-28 font-bold"
-				>
-					<span id="count">100</span><span>%</span>
-				</div>
+					class="absolute inset-y-0 bg-grey/10 h-full w-full -left-full transition-transform ease-in flex justify-end py-42 px-28 font-bold"
+				></div>
 			</div>
-			<button id="startButton" class="hidden relative font-bold">
+			<button
+				id="startButton"
+				class="hidden relative font-bold bg-white px-30 py-12 rounded-full"
+			>
 				Open World
 			</button>
 		</div>

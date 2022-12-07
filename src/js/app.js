@@ -28,6 +28,26 @@ const taxi = new Core();
 Alpine.start();
 
 /* 
+	! Intro / Splash 
+*/
+const startButton = document.querySelector("#startButton");
+const loadingEl = document.querySelector("#loader");
+startButton.addEventListener("click", () => {
+	const loadInTl = gsap.timeline({
+		onComplete: () => init(), //! only needed if using textureVid
+		defaults: { duration: 0.5, ease: "power4.out" },
+	});
+	loadInTl.to(".loader-shape", { opacity: 0 });
+	loadInTl.to(startButton, { scale: 0, opacity: 0 }, "<");
+	loadInTl.to("#loaderTitle", { scale: 0, opacity: 0 }, "<");
+	loadInTl.to(loadingEl, { backgroundColor: "#000" }, "<");
+	loadInTl.to(loadingEl, { opacity: 0 });
+	loadInTl.set(loadingEl, { display: "none", duration: 0 }, "<");
+	loadInTl.set("#scene", { display: "block", duration: 0 }, "<");
+	loadInTl.to("#scene", { opacity: 1 }, "<");
+});
+
+/* 
 	! Textures 
 */
 const textureLoader = new THREE.TextureLoader();
@@ -118,7 +138,7 @@ const library = new THREE.Mesh(
 	})
 );
 library.position.set(50, 0, 0);
-scene.add(library);
+// scene.add(library);
 
 const outside = new THREE.Mesh(
 	new THREE.SphereGeometry(3, 32, 32),
@@ -128,7 +148,7 @@ const outside = new THREE.Mesh(
 	})
 );
 outside.position.set(-50, 0, 0);
-scene.add(outside);
+// scene.add(outside);
 
 /* 
 	! Asterix 
@@ -145,7 +165,6 @@ const breuerChairMesh = new THREE.Mesh(
 breuerChairMesh.position.set(-2.7, -0.4, 0.7);
 breuerChairMesh.rotation.y = Math.PI * 0.6;
 breuerChairMesh.encoding = THREE.sRGBEncoding;
-scene.add(breuerChairMesh);
 
 /* 
 	! Blue Button 
@@ -158,7 +177,6 @@ const blueButton = new THREE.Mesh(
 );
 blueButton.position.set(0, 0.2, -2.9);
 // blueButton.rotation.y = Math.PI * 0.5;
-scene.add(blueButton);
 
 /* 
 	! Grid helper 
@@ -236,9 +254,17 @@ toggleButton.addEventListener("click", () => {
 });
 
 /* 
+	! Init 
+*/
+const init = () => {
+	textureVid.play();
+	scene.add(breuerChairMesh, blueButton);
+	tick();
+};
+
+/* 
 	! Tick 
 */
-
 // Clock
 const clock = new THREE.Clock();
 
@@ -279,77 +305,6 @@ const tick = () => {
 	renderer.render(scene, camera);
 	window.requestAnimationFrame(tick);
 };
-
-tick();
-
-/* 
-	! Intro / Splash 
-*/
-const startButton = document.querySelector("#startButton");
-const loader = document.querySelector("#loader");
-startButton.addEventListener("click", () => {
-	// console.log("ive been clicked");
-	const startTl = gsap.timeline({
-		onComplete: () => videoPlay(),
-		defaults: { duration: 0.5, ease: "power4.out" },
-	});
-	startTl.to(startButton, {
-		opacity: 0,
-	});
-	startTl.to(
-		"#loaderTri",
-		{
-			opacity: 0,
-		},
-		"<"
-	);
-	startTl.to(
-		"#loaderCircle",
-		{
-			opacity: 0,
-		},
-		">-0.25"
-	);
-	startTl.to(
-		"#loaderSquare",
-		{
-			opacity: 0,
-		},
-		">-0.25"
-	);
-	startTl.to("#loaderTitle", {
-		duration: 1,
-		scale: 50,
-	});
-	startTl.to(
-		loader,
-		{
-			backgroundColor: "#000",
-		},
-		"<"
-	);
-	startTl.to(loader, {
-		opacity: 0,
-	});
-	startTl.set(loader, {
-		display: "none",
-	});
-	startTl.set("#scene", {
-		display: "block",
-	});
-	startTl.to(
-		"#scene",
-		{
-			opacity: 1,
-		},
-		"<"
-	);
-});
-
-function videoPlay() {
-	// console.log("video playing");
-	textureVid.play();
-}
 
 /* 
 	! Resize 
