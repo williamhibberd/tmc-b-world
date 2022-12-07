@@ -1,7 +1,5 @@
-import "./utils/vh-screen";
-import "./utils/loader";
-import "../css/app.pcss";
-
+/* Packages */
+import Alpine from "alpinejs";
 import { Core } from "@unseenco/taxi";
 import * as THREE from "three";
 import { ACESFilmicToneMapping, sRGBEncoding } from "three";
@@ -9,19 +7,29 @@ import { ACESFilmicToneMapping, sRGBEncoding } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import gsap from "gsap";
 
+/* CSS imported here */
+import "../css/app.pcss";
+
+/* Components */
+import "./utils/vh-screen";
+
+/* Loader */
+import "./utils/loader";
+
+/* Place alpine on the window to get Alpine dev tools working */
+window.Alpine = Alpine;
+
+/* Alpine data */
+
+/* Start Taxi */
 const taxi = new Core();
 
-const canvas = document.querySelector("#bg");
-window.addEventListener("mousedown", (event) => {
-	canvas.classList.remove("cursor-grab");
-	canvas.classList.add("cursor-grabbing");
-});
-window.addEventListener("mouseup", (event) => {
-	canvas.classList.add("cursor-grab");
-	canvas.classList.remove("cursor-grabbing");
-});
+/* Start Alpine */
+Alpine.start();
 
-// Textures
+/* 
+	! Textures 
+*/
 const textureLoader = new THREE.TextureLoader();
 
 const libBg = textureLoader.load("/images/lib.png");
@@ -32,40 +40,6 @@ const testBg = textureLoader.load("/images/test.png");
 testBg.mapping = THREE.EquirectangularReflectionMapping;
 testBg.encoding = THREE.sRGBEncoding;
 
-// Scene
-const scene = new THREE.Scene();
-// scene.background = videoBackground;
-
-// Camera
-const camera = new THREE.PerspectiveCamera(
-	70,
-	window.innerWidth / window.innerHeight,
-	0.1,
-	1000
-);
-camera.position.set(0, 0, 1);
-
-// Renderer
-const renderer = new THREE.WebGLRenderer({
-	antialias: true,
-	alpha: true,
-	canvas: canvas,
-});
-
-renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(window.innerWidth, window.innerHeight);
-
-//** react-three-fiber defaults
-renderer.toneMapping = ACESFilmicToneMapping;
-renderer.outputEncoding = sRGBEncoding;
-
-renderer.render(scene, camera);
-
-//** VR
-// renderer.xr.enabled = true;
-// document.body.appendChild(VRButton.createButton(renderer));
-
-// Create video and play
 const textureVid = document.createElement("video");
 textureVid.src = `/videos/new-scene-re.mp4#t=0.001`;
 textureVid.setAttribute("crossOrigin", "anonymous");
@@ -75,20 +49,63 @@ textureVid.setAttribute("playsinline", "");
 textureVid.setAttribute("muted", "");
 textureVid.setAttribute("autoplay", "");
 textureVid.setAttribute("loop", "");
+// document.body.appendChild(textureVid); //** test video
 
-// document.body.appendChild(textureVid); //** test video */
-
-// Load video texture
 const videoTexture = new THREE.VideoTexture(textureVid);
 videoTexture.generateMipmaps = false;
 videoTexture.encoding = sRGBEncoding;
 
-// create video and add to scene
+/* 
+	! Scene 
+*/
+const scene = new THREE.Scene();
+// scene.background = videoBackground; //* add background to scene
+
+/* 
+	! Camera 
+*/
+const camera = new THREE.PerspectiveCamera(
+	70,
+	window.innerWidth / window.innerHeight,
+	0.1,
+	1000
+);
+camera.position.set(0, 0, 1);
+
+/* 
+	! Renderer 
+*/
+const canvas = document.querySelector("#bg");
+const renderer = new THREE.WebGLRenderer({
+	antialias: true,
+	alpha: true,
+	canvas: canvas,
+});
+
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+//* react-three-fiber defaults
+renderer.toneMapping = ACESFilmicToneMapping;
+renderer.outputEncoding = sRGBEncoding;
+
+renderer.render(scene, camera);
+
+/* 
+	! VR 
+*/
+// renderer.xr.enabled = true;
+// document.body.appendChild(VRButton.createButton(renderer));
+
+/* 
+	! Spheres 
+*/
 const lobby = new THREE.Mesh(
 	new THREE.SphereGeometry(3, 32, 32),
 	new THREE.MeshBasicMaterial({
 		side: THREE.BackSide,
 		map: videoTexture,
+		// wireframe: true,
 	})
 );
 scene.add(lobby);
@@ -113,30 +130,140 @@ const outside = new THREE.Mesh(
 outside.position.set(-50, 0, 0);
 scene.add(outside);
 
-// Lighting
+/* 
+	! Asterix 
+*/
+const asterixTexture = textureLoader.load("/images/button.svg");
+const asterixButton = new THREE.Mesh(
+	// new THREE.SphereGeometry(0.125, 32, 32),
+	new THREE.CircleGeometry(0.125, 32),
+	new THREE.MeshBasicMaterial({
+		map: asterixTexture,
+	})
+);
+asterixButton.position.set(-2.7, -0.4, 0.7);
+asterixButton.rotation.y = Math.PI * 0.6;
+asterixButton.encoding = THREE.sRGBEncoding;
+scene.add(asterixButton);
+
+/* 
+	! Blue Button 
+*/
+const blueButton = new THREE.Mesh(
+	new THREE.CircleGeometry(0.5, 32),
+	new THREE.MeshBasicMaterial({
+		color: "blue",
+	})
+);
+blueButton.position.set(0, 0.2, -2.9);
+// blueButton.rotation.y = Math.PI * 0.5;
+scene.add(blueButton);
+
+/* 
+	! Grid helper 
+	const size = 10;
+	const divisions = 10;
+	const gridHelper = new THREE.GridHelper(size, divisions);
+	scene.add(gridHelper);
+*/
+
+/* 
+	! Lighting 
+*/
 const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(ambientLight);
 
-// controls
+/* 
+	! Controls 
+*/
 const controls = new OrbitControls(camera, renderer.domElement);
 // controls.enableZoom = false;
 controls.enableDamping = true;
 
-// reverse orbit controls
+/* 
+	! reverse orbit controls 
+*/
 const controlsrotatespeed = -1;
 controls.rotateSpeed = controlsrotatespeed;
 
-// Animate
-function animate() {
-	requestAnimationFrame(animate);
-	// camera.rotation.y += -0.0005;
+/*
+	!  Cursor
+*/
+const mouse = new THREE.Vector2();
+window.addEventListener("mousemove", (event) => {
+	mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+	mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+});
+
+window.addEventListener("click", () => {
+	if (currentIntersect) {
+		switch (currentIntersect.object) {
+			case blueButton:
+				console.log("click on a blue button");
+				break;
+			case asterixButton:
+				console.log("click on asterix button");
+				break;
+		}
+	}
+});
+
+let currentScene = lobby;
+const toggleButton = document.querySelector("#toggleScene");
+toggleButton.addEventListener("click", () => {
+	if (currentScene === lobby) {
+		currentScene = outside;
+		outside.position.set(0, 0, 0);
+		lobby.position.set(50, 0, 0);
+	} else {
+		currentScene = lobby;
+		outside.position.set(50, 0, 0);
+		lobby.position.set(0, 0, 0);
+	}
+});
+
+/* 
+	! Tick 
+*/
+
+// Clock
+const clock = new THREE.Clock();
+
+// Raycaster
+const raycaster = new THREE.Raycaster();
+let currentIntersect = null;
+
+const tick = () => {
+	// Cast a ray
+	raycaster.setFromCamera(mouse, camera);
+
+	const objectsToTest = [blueButton, asterixButton];
+	const intersects = raycaster.intersectObjects(objectsToTest);
+
+	for (const object of objectsToTest) {
+		object.material.color.set("blue");
+	}
+
+	for (const intersect of intersects) {
+		intersect.object.material.color.set("red");
+	}
+
+	if (intersects.length) {
+		currentIntersect = intersects[0];
+	} else {
+		currentIntersect = null;
+	}
+
 	controls.update;
 	renderer.render(scene, camera);
-}
-animate();
+	window.requestAnimationFrame(tick);
+};
 
-// Start animation
-const toggleButton = document.querySelector("#toggleScene");
+tick();
+
+/* 
+	! Intro / Splash 
+*/
 const startButton = document.querySelector("#startButton");
 const loader = document.querySelector("#loader");
 startButton.addEventListener("click", () => {
@@ -179,9 +306,9 @@ startButton.addEventListener("click", () => {
 	startTl.set(loader, {
 		display: "none",
 	});
-	// startTl.set(toggleButton, {
-	// 	display: "block",
-	// });
+	startTl.set(toggleButton, {
+		display: "block",
+	});
 });
 
 function videoPlay() {
@@ -189,22 +316,12 @@ function videoPlay() {
 	textureVid.play();
 }
 
-// Resize
+/* 
+	! Resize 
+*/
 window.addEventListener("resize", onWindowResize);
 function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
 	renderer.setSize(window.innerWidth, window.innerHeight);
 }
-
-// Change Scene
-toggleButton.addEventListener("click", () => {
-	camera.position.set(-49, 0, 0);
-	// if (
-	// 	scene.background.source.data.currentSrc === libBg.source.data.currentSrc
-	// ) {
-	// 	scene.background = testBg;
-	// } else {
-	// 	scene.background = libBg;
-	// }
-});

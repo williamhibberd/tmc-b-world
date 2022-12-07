@@ -17,7 +17,14 @@
 		<main data-taxi>
 			<!-- w-screen h-screen -->
 			<article data-taxi-view class="relative isolate">
-				<canvas id="bg" class="fixed top-0 left-0 cursor-grab"></canvas>
+				<canvas
+					id="bg"
+					x-data="{ dragging: false }"
+					@mouseup="dragging = false"
+					@mousedown="dragging = true"
+					class="fixed top-0 left-0"
+					:class="dragging ? 'cursor-grabbing':'cursor-grab'"
+				></canvas>
 				<!-- !! not yet working to nav away
 				<div class="absolute inset-x-0 bottom-0 z-50">
 					<a class="bg-black text-white block" href="/this/"
@@ -29,6 +36,7 @@
 		</main>
 
 		<!--* Loader -->
+		<!-- <div class="hidden"> -->
 		<div
 			id="loader"
 			class="fixed inset-0 bg-white isolate flex items-center justify-center"
@@ -72,6 +80,7 @@
 				Open World
 			</button>
 		</div>
+		<!-- </div> -->
 
 		<!--* Toggle Scene Button -->
 		<div class="absolute top-12 right-12">
