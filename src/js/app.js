@@ -211,16 +211,25 @@ window.addEventListener("click", () => {
 });
 
 let currentScene = lobby;
+
+// GSAP animations
+const lobbyToOutside = gsap.timeline({
+	paused: true,
+	defaults: { duration: 1 },
+});
+lobbyToOutside.to(camera.position, { z: 50 });
+lobbyToOutside.to(currentScene.position, { x: 50 });
+lobbyToOutside.to(outside.position, { x: 0 }, "<");
+lobbyToOutside.to(camera.position, { z: 0 });
+
 const toggleButton = document.querySelector("#toggleScene");
 toggleButton.addEventListener("click", () => {
 	if (currentScene === lobby) {
+		lobbyToOutside.play();
 		currentScene = outside;
-		outside.position.set(0, 0, 0);
-		lobby.position.set(50, 0, 0);
 	} else {
+		lobbyToOutside.reverse();
 		currentScene = lobby;
-		outside.position.set(50, 0, 0);
-		lobby.position.set(0, 0, 0);
 	}
 });
 
@@ -236,6 +245,13 @@ const raycaster = new THREE.Raycaster();
 let currentIntersect = null;
 
 const tick = () => {
+	// Set elapsedTime
+	const elapsedTime = clock.getElapsedTime();
+
+	// rotate currentScene
+	// PI * 2 is one revloution per second
+	currentScene.rotation.y = elapsedTime * Math.PI * 0.01;
+
 	// Cast a ray
 	raycaster.setFromCamera(mouse, camera);
 
@@ -250,6 +266,7 @@ const tick = () => {
 	// 	intersect.object.material.color.set("red");
 	// }
 
+	// Set currentIntersect object
 	if (intersects.length) {
 		currentIntersect = intersects[0];
 	} else {
