@@ -250,7 +250,7 @@ const tick = () => {
 
 	// rotate currentScene
 	// PI * 2 is one revloution per second
-	currentScene.rotation.y = elapsedTime * Math.PI * 0.01;
+	// currentScene.rotation.y = elapsedTime * Math.PI * 0.01;
 
 	// Cast a ray
 	raycaster.setFromCamera(mouse, camera);
