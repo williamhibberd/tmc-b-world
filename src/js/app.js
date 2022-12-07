@@ -217,7 +217,9 @@ const lobbyToOutside = gsap.timeline({
 	paused: true,
 	defaults: { duration: 1 },
 });
-lobbyToOutside.to(camera.position, { z: 50 });
+
+lobbyToOutside.to(camera.rotation, { z: 0, x: 0, y: 0 });
+lobbyToOutside.to(camera.position, { z: 50 }, "<");
 lobbyToOutside.to(currentScene.position, { x: 50 });
 lobbyToOutside.to(outside.position, { x: 0 }, "<");
 lobbyToOutside.to(camera.position, { z: 0 });
