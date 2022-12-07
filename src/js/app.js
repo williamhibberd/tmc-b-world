@@ -272,9 +272,16 @@ startButton.addEventListener("click", () => {
 		onComplete: () => videoPlay(),
 		defaults: { duration: 0.5, ease: "power4.out" },
 	});
-	startTl.to("#loaderTri", {
+	startTl.to(startButton, {
 		opacity: 0,
 	});
+	startTl.to(
+		"#loaderTri",
+		{
+			opacity: 0,
+		},
+		"<"
+	);
 	startTl.to(
 		"#loaderCircle",
 		{
@@ -306,9 +313,16 @@ startButton.addEventListener("click", () => {
 	startTl.set(loader, {
 		display: "none",
 	});
-	startTl.set(toggleButton, {
+	startTl.set("#scene", {
 		display: "block",
 	});
+	startTl.to(
+		"#scene",
+		{
+			opacity: 1,
+		},
+		"<"
+	);
 });
 
 function videoPlay() {
