@@ -33,21 +33,60 @@
 				<!--* Toggle Scene Button -->
 				<button
 					id="toggleScene"
-					class="border border-blue text-blue p-12 bg-transparent hover:bg-blue hover:text-white transition-colors absolute top-12 right-12"
+					class="border border-blue text-blue p-12 bg-transparent hover:bg-blue hover:text-white transition-colors absolute top-12 right-12 font-bold"
 				>
 					Toggle Scene
 				</button>
-				<div x-data="{open: false}">
+
+				<div x-cloak x-data="{open: false}">
+					<button id="breuerChairButton" @click="open = !open">
+						<span class="sr-only">Open Breuer Chair Info</span>
+					</button>
+					<section
+						@click.outside="open = false"
+						x-show="open"
+						x-transition.origin.bottom.right
+						class="p-12 shadow-lg bg-white absolute bottom-60 md:right-60 inset-x-12 md:inset-x-auto md:w-1/3"
+					>
+						<img
+							class="pb-12"
+							src="/images/lobby/breuer-chair.jpg"
+							alt=""
+						/>
+						<p class="pb-em">
+							<strong>Marcel Breuer Club chair</strong> (model
+							B3)<br />
+							1927–1928
+						</p>
+						<p class="pb-30">
+							The model for this chair is the traditional
+							overstuffed club chair, but all that remains is its
+							mere outline, an elegant composition traced in
+							gleaming steel. The canvas seat, back, and arms seem
+							to float in space; the body of the sitter does not
+							touch the steel framework.
+						</p>
+						<button
+							aria-label="Close Breuer Chair Info"
+							@click="open = false"
+							class="w-full text-center h-40 flex items-center justify-center rounded-full text-white bg-grey transition-colors hover:bg-grey-light hover:text-grey font-bold"
+						>
+							OK
+						</button>
+					</section>
+				</div>
+				<div x-cloak x-data="{open: false}">
 					<button
-						@click="open = true"
+						@click="open = !open"
 						class="flex justify-center rounder-full items-center bg-white w-36 h-36 absolute bottom-12 right-12 rounded-full"
 					>
 						<span>?</span>
 						<span class="sr-only">Open Info</span>
 					</button>
 					<section
+						@click.outside="open = false"
 						x-show="open"
-						x-transition
+						x-transition.origin.bottom.right
 						class="p-12 shadow-lg bg-white absolute bottom-60 md:right-60 inset-x-12 md:inset-x-auto md:w-1/3"
 					>
 						<img
@@ -62,9 +101,9 @@
 						<button
 							aria-label="close info"
 							@click="open = false"
-							class="w-full text-center h-40 flex items-center justify-center rounded-full text-white bg-grey transition-colors hover:bg-grey-light hover:text-grey"
+							class="w-full text-center h-40 flex items-center justify-center rounded-full text-white bg-grey transition-colors hover:bg-grey-light hover:text-grey font-bold"
 						>
-							Ok
+							OK
 						</button>
 					</section>
 				</div>
@@ -100,7 +139,7 @@
 					<path d="M745.391 645 373 0 .61 645H745.39Z" />
 				</svg>
 				<div class="absolute bottom-60 inset-x-0 text-center">
-					<h1 id="loaderTitle" class="r-h1 uppercase">
+					<h1 id="loaderTitle" class="r-h1 uppercase font-bold">
 						Bauhaus<br />World
 					</h1>
 				</div>
@@ -115,12 +154,12 @@
 			>
 				<div
 					id="progressIndicator"
-					class="absolute inset-y-0 bg-grey/10 h-full w-full -left-full transition-transform duration-1000 ease-in flex justify-end py-42 px-28"
+					class="absolute inset-y-0 bg-grey/10 h-full w-full -left-full transition-transform duration-1000 ease-in flex justify-end py-42 px-28 font-bold"
 				>
 					<span id="count">100</span><span>%</span>
 				</div>
 			</div>
-			<button id="startButton" class="hidden relative block">
+			<button id="startButton" class="hidden relative font-bold">
 				Open World
 			</button>
 		</div>

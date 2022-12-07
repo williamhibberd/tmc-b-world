@@ -134,17 +134,18 @@ scene.add(outside);
 	! Asterix 
 */
 const asterixTexture = textureLoader.load("/images/button.svg");
-const asterixButton = new THREE.Mesh(
+const breuerChairButton = document.querySelector("#breuerChairButton");
+const breuerChairMesh = new THREE.Mesh(
 	// new THREE.SphereGeometry(0.125, 32, 32),
 	new THREE.CircleGeometry(0.125, 32),
 	new THREE.MeshBasicMaterial({
 		map: asterixTexture,
 	})
 );
-asterixButton.position.set(-2.7, -0.4, 0.7);
-asterixButton.rotation.y = Math.PI * 0.6;
-asterixButton.encoding = THREE.sRGBEncoding;
-scene.add(asterixButton);
+breuerChairMesh.position.set(-2.7, -0.4, 0.7);
+breuerChairMesh.rotation.y = Math.PI * 0.6;
+breuerChairMesh.encoding = THREE.sRGBEncoding;
+scene.add(breuerChairMesh);
 
 /* 
 	! Blue Button 
@@ -201,8 +202,9 @@ window.addEventListener("click", () => {
 			case blueButton:
 				console.log("click on a blue button");
 				break;
-			case asterixButton:
-				console.log("click on asterix button");
+			case breuerChairMesh:
+				breuerChairButton.click();
+				// console.log("click on asterix button");
 				break;
 		}
 	}
@@ -237,16 +239,16 @@ const tick = () => {
 	// Cast a ray
 	raycaster.setFromCamera(mouse, camera);
 
-	const objectsToTest = [blueButton, asterixButton];
+	const objectsToTest = [blueButton, breuerChairMesh];
 	const intersects = raycaster.intersectObjects(objectsToTest);
 
-	for (const object of objectsToTest) {
-		object.material.color.set("blue");
-	}
+	// for (const object of objectsToTest) {
+	// 	object.material.color.set("blue");
+	// }
 
-	for (const intersect of intersects) {
-		intersect.object.material.color.set("red");
-	}
+	// for (const intersect of intersects) {
+	// 	intersect.object.material.color.set("red");
+	// }
 
 	if (intersects.length) {
 		currentIntersect = intersects[0];
