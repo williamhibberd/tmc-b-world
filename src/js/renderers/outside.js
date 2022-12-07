@@ -1,9 +1,12 @@
 import { Renderer } from "@unseenco/taxi";
+import { outside } from "../components/meshes";
+import { scene } from "../components/threeConstants";
 
 export default class Outside extends Renderer {
 	onEnter() {
-		console.log("im on the Outside page");
+		scene.add(outside);
 		// run after the new content has been added to the Taxi container
+		// console.log("im on the Outside page");
 	}
 
 	onEnterCompleted() {
@@ -12,6 +15,7 @@ export default class Outside extends Renderer {
 
 	onLeave() {
 		// run before the transition.onLeave method is called
+		scene.remove(outside);
 	}
 
 	onLeaveCompleted() {

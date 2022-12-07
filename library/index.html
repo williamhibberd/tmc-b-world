@@ -14,24 +14,80 @@
 		-->
 	</head>
 	<body>
-		<main data-taxi>
-			<article data-taxi-view>
-				<h1>that that that</h1>
+		<main data-taxi class="relative z-10">
+			<article data-taxi-view="library">
+				<div x-data="{ open: false }">
+					<nav>
+						<ul x-show="open" class="fixed inset-y-0 right-0">
+							<li>Your in the Library</li>
+							<li><a href="/outside/">go outside</a></li>
+							<li><a href="/lobby/">go to the lobby</a></li>
+						</ul>
+						<button
+							@click="open = !open"
+							class="fixed bottom-12 right-12 bg-white"
+						>
+							open nav
+						</button>
+					</nav>
+				</div>
 			</article>
 		</main>
 
-		<!--* Toggle Scene Button -->
-		<div class="absolute top-12 right-12">
-			<button
-				id="toggleScene"
-				class="border border-blue text-blue p-12 bg-transparent hover:bg-blue hover:text-white transition-colors duration-300 hidden"
+		<canvas
+			id="bg"
+			x-data="{ dragging: false }"
+			@mouseup="dragging = false"
+			@mousedown="dragging = true"
+			class="fixed top-0 left-0"
+			:class="dragging ? 'cursor-grabbing':'cursor-grab'"
+		></canvas>
+
+		<!--* Loader -->
+		<div
+			id="loader"
+			class="fixed inset-0 bg-white isolate flex items-center justify-center z-20"
+		>
+			<div
+				class="loader-shape absolute bg-blue rounded-full w-[70vw] h-[70vw] md:w-[38vw] md:h-[38vw] left-12 top-[6vh] mix-blend-multiply"
+			></div>
+			<div class="absolute bottom-0 inset-x-0 mix-blend-multiply">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="loader-shape w-full md:w-[51vw] mx-auto fill-red"
+					fill="currentColor"
+					viewBox="0 0 745 645"
+				>
+					<path d="M745.391 645 373 0 .61 645H745.39Z" />
+				</svg>
+				<div class="absolute bottom-60 inset-x-0 text-center">
+					<h1 id="loaderTitle" class="r-h1 uppercase font-bold">
+						Bauhaus<br />World
+					</h1>
+				</div>
+			</div>
+			<div
+				class="loader-shape absolute bg-yellow w-[46vw] h-[46vw] md:w-[36vw] md:h-[36vw] right-0 top-[37vh] md:top-[13vh] mix-blend-multiply"
+			></div>
+			<div
+				id="progress"
+				class="absolute inset-0 left-0 h-full pointer-events-none"
 			>
-				Toggle Scene
+				<div
+					id="progressIndicator"
+					class="absolute inset-y-0 bg-grey/10 h-full w-full -left-full transition-transform ease-in flex justify-end py-42 px-28 font-bold"
+				></div>
+			</div>
+			<button
+				id="startButton"
+				class="hidden relative font-bold bg-white px-30 py-12 rounded-full"
+			>
+				Open World
 			</button>
 		</div>
 
 		<!--* Header -->
-		<header class="fixed top-12 left-12">
+		<header class="fixed top-12 left-12 z-30">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				class="fill-current w-[64px]"

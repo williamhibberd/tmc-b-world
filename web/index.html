@@ -5,42 +5,34 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Bauhaus World</title>
-		<!--! turn on to use alpine 
-			<style type="text/css">
-				[x-cloak] {
-					display: none;
-				}
-			</style> 
-		-->
+		<style type="text/css">
+			[x-cloak] {
+				display: none;
+			}
+		</style>
 		<script type="module" crossorigin src="/assets/modulepreload-polyfill.c7c6310f.js"></script>
-		<script type="module" crossorigin src="/assets/app.5b9e89f7.js"></script>
-		<link rel="stylesheet" href="/assets/app.b4297a8d.css">
+		<script type="module" crossorigin src="/assets/app.8a486f1a.js"></script>
+		<link rel="stylesheet" href="/assets/app.0b83c039.css">
 	</head>
 	<body>
-		<main data-taxi>
+		<main data-taxi class="relative z-10">
 			<!-- w-screen h-screen -->
-			<article
-				data-taxi-view="lobby"
-				id="scene"
-				class="relative isolate opacity-0 w-screen h-screen"
-			>
-				<canvas
-					id="bg"
-					x-data="{ dragging: false }"
-					@mouseup="dragging = false"
-					@mousedown="dragging = true"
-					class="fixed top-0 left-0"
-					:class="dragging ? 'cursor-grabbing':'cursor-grab'"
-				></canvas>
-
-				<!--* Toggle Scene Button -->
-				<button
-					id="toggleScene"
-					class="border border-blue text-blue p-12 bg-transparent hover:bg-blue hover:text-white transition-colors absolute top-12 right-12 font-bold"
-				>
-					Toggle Scene
-				</button>
-
+			<article data-taxi-view="lobby">
+				<div x-data="{ open: false }">
+					<nav>
+						<ul x-show="open" class="fixed inset-y-0 right-0">
+							<li>Your in the lobby</li>
+							<li><a href="/outside/">go outside</a></li>
+							<li><a href="/library/">go to the library</a></li>
+						</ul>
+						<button
+							@click="open = !open"
+							class="fixed bottom-12 right-12 bg-white"
+						>
+							open nav
+						</button>
+					</nav>
+				</div>
 				<div x-cloak x-data="{open: false}">
 					<button id="breuerChairButton" @click="open = !open">
 						<span class="sr-only">Open Breuer Chair Info</span>
@@ -110,21 +102,22 @@
 						</button>
 					</section>
 				</div>
-
-				<!-- 
-				<div class="absolute inset-x-0 bottom-0 z-50">
-					<a class="bg-black text-white block" href="/outside/"
-						>navigate away</a
-					>
-				</div> 
-				-->
 			</article>
 		</main>
+
+		<canvas
+			id="bg"
+			x-data="{ dragging: false }"
+			@mouseup="dragging = false"
+			@mousedown="dragging = true"
+			class="fixed top-0 left-0"
+			:class="dragging ? 'cursor-grabbing':'cursor-grab'"
+		></canvas>
 
 		<!--* Loader -->
 		<div
 			id="loader"
-			class="fixed inset-0 bg-white isolate flex items-center justify-center"
+			class="fixed inset-0 bg-white isolate flex items-center justify-center z-20"
 		>
 			<div
 				class="loader-shape absolute bg-blue rounded-full w-[70vw] h-[70vw] md:w-[38vw] md:h-[38vw] left-12 top-[6vh] mix-blend-multiply"
@@ -165,7 +158,7 @@
 		</div>
 
 		<!--* Header -->
-		<header class="fixed top-12 left-12">
+		<header class="fixed top-12 left-12 z-30">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				class="fill-current w-[64px]"

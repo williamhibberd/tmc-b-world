@@ -1,9 +1,12 @@
 import { Renderer } from "@unseenco/taxi";
+import { library } from "../components/meshes";
+import { scene } from "../components/threeConstants";
 
 export default class Library extends Renderer {
 	onEnter() {
-		console.log("im on the Library page");
+		// console.log("im on the Library page");
 		// run after the new content has been added to the Taxi container
+		scene.add(library);
 	}
 
 	onEnterCompleted() {
@@ -11,6 +14,7 @@ export default class Library extends Renderer {
 	}
 
 	onLeave() {
+		scene.remove(library);
 		// run before the transition.onLeave method is called
 	}
 

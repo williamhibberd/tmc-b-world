@@ -1,14 +1,27 @@
 import { Renderer } from "@unseenco/taxi";
-import * as THREE from "three";
-import { ACESFilmicToneMapping, sRGBEncoding } from "three";
-// import { VRButton } from "three/addons/webxr/VRButton.js";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import gsap from "gsap";
+import { lobby } from "../components/meshes";
+import { scene } from "../components/threeConstants";
 
 export default class Lobby extends Renderer {
 	onEnter() {
-		console.log("im on the lobby page");
 		// run after the new content has been added to the Taxi container
+		// console.log("im on the lobby page");
+		scene.add(lobby);
+
+		// const breuerChairButton = document.querySelector("#breuerChairButton");
+		// window.addEventListener("click", () => {
+		// 	if (currentIntersect) {
+		// 		switch (currentIntersect.object) {
+		// 			case blueButton:
+		// 				console.log("click on a blue button");
+		// 				break;
+		// 			case breuerChairMesh:
+		// 				breuerChairButton.click();
+		// 				// console.log("click on asterix button");
+		// 				break;
+		// 		}
+		// 	}
+		// });
 	}
 
 	onEnterCompleted() {
@@ -16,8 +29,8 @@ export default class Lobby extends Renderer {
 	}
 
 	onLeave() {
-		blueButton.dispose();
 		// run before the transition.onLeave method is called
+		scene.remove(lobby);
 	}
 
 	onLeaveCompleted() {
