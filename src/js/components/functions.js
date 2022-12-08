@@ -1,8 +1,71 @@
 import * as THREE from "three";
+import { DefaultLoadingManager } from "three";
+import gsap from "gsap";
+
 import { camera, renderer, scene } from "./threeConstants";
 import { controls } from "./controls";
-import { objectsOnScene } from "./meshes";
-import gsap from "gsap";
+import {
+	lobby,
+	library,
+	outside,
+	allHotSpots,
+	breuerChairMesh,
+	blueButton,
+} from "./meshes";
+
+/*
+	! Loading
+*/
+/* Update loader */
+let loaderValue = 0;
+function updateProgress(url, itemsLoaded, itemsTotal) {
+	console.log(`loading file: ${url}.\n${itemsLoaded} of ${itemsTotal} files`);
+	loaderValue = (itemsLoaded / itemsTotal) * 100;
+	progressIndicator.style.transform = `translateX(${loaderValue}%)`;
+}
+
+// ** Load in with button click insead of automatically
+// !! will need to be turned into a function if used
+// const buttonTl = gsap.timeline({ defaults: { duration: 0.3 } });
+// buttonTl.set(startButton, { display: "block" });
+// buttonTl.fromTo(
+// 	startButton,
+// 	{ scale: 0, opacity: 0 },
+// 	{ scale: 1, opacity: 1, delay: 0.3, duration: 0.3 }
+// );
+// startButton.addEventListener("click", () => {
+// 	loadInAnimation();
+// });
+
+/* Load in animation */
+const startButton = document.querySelector("#startButton");
+const loadingEl = document.querySelector("#loader");
+function loadInAnimation(sceneHotspots) {
+	const loadInTl = gsap.timeline({
+		onComplete: () => animateHotspotsIn(sceneHotspots), //! only needed if using video
+		defaults: { duration: 0.5, ease: "power4.out" },
+	});
+	loadInTl.to(".loader-shape", { opacity: 0 });
+	loadInTl.to(startButton, { scale: 0, opacity: 0 }, "<");
+	loadInTl.to("#loaderTitle", { scale: 0, opacity: 0 }, "<");
+	loadInTl.to(loadingEl, { backgroundColor: "#000" }, "<");
+	loadInTl.to(loadingEl, { opacity: 0 });
+	loadInTl.set(loadingEl, { display: "none", duration: 0 });
+}
+
+/* Animate in hotspots */
+function animateHotspotsIn(sceneHotspots) {
+	for (const object of sceneHotspots) {
+		gsap.to(object.scale, { x: 1, y: 1, z: 1 });
+	}
+}
+
+/* Animate out hotspots */
+function animateHotspotsOut(sceneHotspots) {
+	for (const object of sceneHotspots) {
+		gsap.to(object.scale, { x: 0, y: 0, z: 0 });
+	}
+}
 
 /*
 	! Cursor
@@ -42,11 +105,10 @@ const tick = () => {
 	// Cast a ray
 	raycaster.setFromCamera(mouse, camera);
 
-	const intersects = raycaster.intersectObjects(objectsOnScene);
+	const intersects = raycaster.intersectObjects(allHotSpots);
 
 	// Set currentIntersect object
 	if (intersects.length) {
-		console.log("im intersecting");
 		currentIntersect = intersects[0];
 	} else {
 		currentIntersect = null;
@@ -69,12 +131,180 @@ function onWindowResize() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-/*
-	! Resize
+/* 
+	! click hotspot
 */
-export const init = () => {
-	// textureVid.play();
-	for (const object of objectsOnScene) {
-		gsap.to(object.scale, { x: 1, y: 1, z: 1 });
+// Lobby
+const breuerChairButton = document.querySelector("#breuerChairButton");
+function onClickLobbyObject() {
+	if (currentIntersect) {
+		switch (currentIntersect.object) {
+			case blueButton:
+				console.log("click on a blue button");
+				break;
+			case breuerChairMesh:
+				breuerChairButton.click();
+				console.log("click on asterix button");
+				break;
+		}
 	}
+}
+
+// Library
+function onClickLibraryObject() {
+	if (currentIntersect) {
+		switch (
+			currentIntersect.object
+			// case blueButton:
+			// 	console.log("click on a blue button");
+			// 	break;
+			// case breuerChairMesh:
+			// 	breuerChairButton.click();
+			// 	console.log("click on asterix button");
+			// 	break;
+		) {
+		}
+	}
+}
+
+// Outside
+function onClickOutsideObject() {
+	if (currentIntersect) {
+		switch (
+			currentIntersect.object
+			// case blueButton:
+			// 	console.log("click on a blue button");
+			// 	break;
+			// case breuerChairMesh:
+			// 	breuerChairButton.click();
+			// 	console.log("click on asterix button");
+			// 	break;
+		) {
+		}
+	}
+}
+
+/* 
+ ! Render functions
+ */
+
+//  Vars
+let sceneHotspots = null;
+let firstLoad = true;
+
+// Lobby Enter
+export const lobbyEnter = () => {
+	// Set variables
+	sceneHotspots = [breuerChairMesh, blueButton];
+
+	// add objects to scene
+	scene.add(lobby, breuerChairMesh, blueButton);
+
+	// Run during loading steps
+	DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
+		updateProgress(url, itemsLoaded, itemsTotal);
+	};
+
+	// Run once when loaded
+	DefaultLoadingManager.onLoad = function () {
+		setTimeout(() => {
+			loadInAnimation(sceneHotspots);
+		}, 1000);
+		firstLoad = false;
+	};
+
+	// run if navigating to new page (has already loaded)
+	if (!firstLoad) {
+		loadInAnimation(sceneHotspots);
+	}
+
+	// on window click toggle
+	window.addEventListener("click", onClickLobbyObject);
+};
+
+// Lobby Exit
+export const lobbyExit = () => {
+	//!! Not yet working...
+	//!! will need to add to the exit animation
+	animateHotspotsOut(sceneHotspots);
+	scene.remove(lobby, breuerChairMesh, blueButton);
+	window.removeEventListener("click", onClickLobbyObject);
+};
+
+// Library Enter
+export const libraryEnter = () => {
+	// Set variables
+	sceneHotspots = [breuerChairMesh, blueButton];
+
+	// add objects to scene
+	scene.add(library, breuerChairMesh, blueButton);
+
+	// Run during loading steps
+	DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
+		updateProgress(url, itemsLoaded, itemsTotal);
+	};
+
+	// Run once when loaded
+	DefaultLoadingManager.onLoad = function () {
+		setTimeout(() => {
+			loadInAnimation(sceneHotspots);
+		}, 1000);
+		firstLoad = false;
+	};
+
+	// run if navigating to new page (has already loaded)
+	if (!firstLoad) {
+		loadInAnimation(sceneHotspots);
+	}
+
+	// on window click toggle
+	window.addEventListener("click", onClickLibraryObject);
+};
+
+// Library Exit
+export const libraryExit = () => {
+	//!! Not yet working...
+	//!! will need to add to the exit animation
+	animateHotspotsOut(sceneHotspots);
+	scene.remove(library, breuerChairMesh, blueButton);
+	window.removeEventListener("click", onClickLibraryObject);
+};
+
+// Outside Enter
+export const outsideEnter = () => {
+	// Set variables
+	sceneHotspots = [breuerChairMesh, blueButton];
+
+	// add objects to scene
+	scene.add(outside, breuerChairMesh, blueButton);
+
+	// Run during loading steps
+	DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
+		updateProgress(url, itemsLoaded, itemsTotal);
+	};
+
+	// Run once when loaded
+	DefaultLoadingManager.onLoad = function () {
+		setTimeout(() => {
+			loadInAnimation(sceneHotspots);
+		}, 1000);
+		firstLoad = false;
+	};
+
+	// run if navigating to new page (has already loaded)
+	if (!firstLoad) {
+		loadInAnimation(sceneHotspots);
+	}
+
+	// on window click toggle
+	window.addEventListener("click", onClickOutsideObject);
+};
+
+// Outside Exit
+export const outsideExit = () => {
+	//!! Not yet working...
+	//!! will need to add to the exit animation
+	animateHotspotsOut(sceneHotspots);
+	scene.remove(outside, breuerChairMesh, blueButton);
+	window.removeEventListener("click", onClickOutsideObject);
 };

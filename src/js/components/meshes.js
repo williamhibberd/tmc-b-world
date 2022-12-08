@@ -5,8 +5,10 @@ import {
 	outsideTexture,
 	asterixTexture,
 } from "../components/textures";
-import { scene } from "./threeConstants";
 
+/*
+	! Rooms
+*/
 export const lobby = new THREE.Mesh(
 	new THREE.SphereGeometry(3, 32, 32),
 	new THREE.MeshBasicMaterial({
@@ -32,9 +34,9 @@ export const outside = new THREE.Mesh(
 );
 
 /*
-	! Asterix
+	! Hotspots
 */
-const breuerChairMesh = new THREE.Mesh(
+export const breuerChairMesh = new THREE.Mesh(
 	// new THREE.SphereGeometry(0.125, 32, 32),
 	new THREE.CircleGeometry(0.125, 32),
 	new THREE.MeshBasicMaterial({
@@ -44,12 +46,8 @@ const breuerChairMesh = new THREE.Mesh(
 breuerChairMesh.position.set(-2.7, -0.4, 0.7);
 breuerChairMesh.rotation.y = Math.PI * 0.6;
 breuerChairMesh.scale.set(0, 0, 0);
-scene.add(breuerChairMesh);
 
-/*
-	! Blue Button
-*/
-const blueButton = new THREE.Mesh(
+export const blueButton = new THREE.Mesh(
 	new THREE.CircleGeometry(0.5, 32),
 	new THREE.MeshBasicMaterial({
 		color: "blue",
@@ -58,6 +56,5 @@ const blueButton = new THREE.Mesh(
 blueButton.position.set(0, 0.2, -2.9);
 blueButton.scale.set(0, 0, 0);
 // blueButton.rotation.y = Math.PI * 0.5;
-scene.add(blueButton);
 
-export const objectsOnScene = [blueButton, breuerChairMesh];
+export const allHotSpots = [blueButton, breuerChairMesh];

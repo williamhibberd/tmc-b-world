@@ -9,7 +9,6 @@ import "../css/app.pcss";
 import "./utils/vh-screen";
 
 /* Loader */
-import "./components/loader";
 import "./components/textures";
 import "./components/threeConstants";
 import "./components/meshes";
