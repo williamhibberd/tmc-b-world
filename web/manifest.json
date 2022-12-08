@@ -1,12 +1,12 @@
 {
   "src/js/app.js": {
-    "file": "assets/app.720473c5.js",
+    "file": "assets/app.f6d6fea1.js",
     "src": "src/js/app.js",
     "isEntry": true,
     "css": [
       "assets/app.0b83c039.css"
     ],
-    "integrity": "sha384-g9zXNxqdThcw3Fb1NYBMzRsw6ynmduY+VTO5FPGeFTITVegbedADaxxLOm58EkZk"
+    "integrity": "sha384-24Em4t43yL9V0WZhGrzdnzJWrjW639Fkh2WZ0US5KcRQty3P3ZfUzah+dKPRRybL"
   },
   "_modulepreload-polyfill.c7c6310f.js": {
     "file": "assets/modulepreload-polyfill.c7c6310f.js",

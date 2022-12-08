@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { DefaultLoadingManager } from "three";
 import gsap from "gsap";
 
-import { camera, renderer, scene } from "./threeConstants";
+import { camera, group, renderer, scene } from "./threeConstants";
 import { controls } from "./controls";
 import {
 	lobby,
@@ -100,7 +100,7 @@ const tick = () => {
 
 	// rotate currentScene
 	// PI * 2 is one revloution per second
-	// currentScene.rotation.y = elapsedTime * Math.PI * 0.01;
+	group.rotation.y = elapsedTime * Math.PI * 0.01;
 
 	// Cast a ray
 	raycaster.setFromCamera(mouse, camera);
@@ -199,6 +199,7 @@ export const lobbyEnter = () => {
 
 	// add objects to scene
 	scene.add(lobby, breuerChairMesh, blueButton);
+	group.add(lobby, breuerChairMesh, blueButton);
 
 	// Run during loading steps
 	DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
@@ -228,6 +229,7 @@ export const lobbyExit = () => {
 	//!! will need to add to the exit animation
 	animateHotspotsOut(sceneHotspots);
 	scene.remove(lobby, breuerChairMesh, blueButton);
+	group.remove(lobby, breuerChairMesh, blueButton);
 	window.removeEventListener("click", onClickLobbyObject);
 };
 
@@ -238,6 +240,7 @@ export const libraryEnter = () => {
 
 	// add objects to scene
 	scene.add(library, breuerChairMesh, blueButton);
+	group.add(library, breuerChairMesh, blueButton);
 
 	// Run during loading steps
 	DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
@@ -267,6 +270,7 @@ export const libraryExit = () => {
 	//!! will need to add to the exit animation
 	animateHotspotsOut(sceneHotspots);
 	scene.remove(library, breuerChairMesh, blueButton);
+	group.remove(library, breuerChairMesh, blueButton);
 	window.removeEventListener("click", onClickLibraryObject);
 };
 
@@ -277,6 +281,7 @@ export const outsideEnter = () => {
 
 	// add objects to scene
 	scene.add(outside, breuerChairMesh, blueButton);
+	group.add(outside, breuerChairMesh, blueButton);
 
 	// Run during loading steps
 	DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
@@ -306,5 +311,6 @@ export const outsideExit = () => {
 	//!! will need to add to the exit animation
 	animateHotspotsOut(sceneHotspots);
 	scene.remove(outside, breuerChairMesh, blueButton);
+	group.remove(outside, breuerChairMesh, blueButton);
 	window.removeEventListener("click", onClickOutsideObject);
 };

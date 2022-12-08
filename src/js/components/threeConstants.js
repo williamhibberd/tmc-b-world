@@ -35,3 +35,9 @@ renderer.toneMapping = ACESFilmicToneMapping;
 renderer.outputEncoding = sRGBEncoding;
 
 renderer.render(scene, camera);
+
+/* 
+ ! Group Items
+ */
+export const group = new THREE.Group();
+scene.add(group);
