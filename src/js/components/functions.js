@@ -234,11 +234,11 @@ export const lobbyExit = () => {
 // Library Enter
 export const libraryEnter = () => {
 	// Set variables
-	sceneHotspots = [wassilyChairMesh];
+	sceneHotspots = [];
 
 	// add objects to scene
-	scene.add(library, wassilyChairMesh);
-	group.add(library, wassilyChairMesh);
+	scene.add(library);
+	group.add(library);
 
 	// Run during loading steps
 	DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
@@ -267,19 +267,19 @@ export const libraryExit = () => {
 	//!! Not yet working...
 	//!! will need to add to the exit animation
 	animateHotspotsOut(sceneHotspots);
-	scene.remove(library, wassilyChairMesh);
-	group.remove(library, wassilyChairMesh);
+	scene.remove(library);
+	group.remove(library);
 	window.removeEventListener("click", onClickLibraryObject);
 };
 
 // Outside Enter
 export const outsideEnter = () => {
 	// Set variables
-	sceneHotspots = [wassilyChairMesh];
+	sceneHotspots = [];
 
 	// add objects to scene
-	scene.add(outside, wassilyChairMesh);
-	group.add(outside, wassilyChairMesh);
+	scene.add(outside);
+	group.add(outside);
 
 	// Run during loading steps
 	DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
@@ -308,7 +308,7 @@ export const outsideExit = () => {
 	//!! Not yet working...
 	//!! will need to add to the exit animation
 	animateHotspotsOut(sceneHotspots);
-	scene.remove(outside, wassilyChairMesh);
-	group.remove(outside, wassilyChairMesh);
+	scene.remove(outside);
+	group.remove(outside);
 	window.removeEventListener("click", onClickOutsideObject);
 };
