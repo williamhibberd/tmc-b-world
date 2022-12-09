@@ -13,6 +13,7 @@ import "./components/meshes";
 import "./components/controls";
 import "./components/functions";
 import nav from "./components/nav";
+import popup from "./components/popup";
 
 import Lobby from "./renderers/Lobby";
 import Outside from "./renderers/Outside";
@@ -23,6 +24,7 @@ window.Alpine = Alpine;
 
 /* Alpine data */
 Alpine.data("nav", nav);
+Alpine.data("popup", popup);
 
 /* Start Taxi */
 const taxi = new Core({

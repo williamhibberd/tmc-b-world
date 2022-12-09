@@ -2,15 +2,15 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
 	content: ["index.html", "./src/js/**/*.js"],
 	theme: {
-		fontFamily: {
-			sans: ["'Inter'", ...defaultTheme.fontFamily.sans],
-		},
 		fontSize: {
-			md: ["1.3125rem", "2.125rem"], //21/34
+			sm: "0.875rem", //14
+			md: ["1.3125rem", "1.8125rem"], //21/29
+			lg: ["1.625rem", "2.125rem"], //26/34
 		},
 		spacing: {
 			0: "0rem",
 			2: "0.125rem",
+			10: "0.625rem",
 			12: "0.75rem",
 			18: "1.125rem",
 			28: "1.75rem",
@@ -20,6 +20,7 @@ module.exports = {
 			42: "2.625rem",
 			44: "2.75rem",
 			60: "3.75rem",
+			80: "5rem",
 			px: "1px",
 			em: "1em",
 			rem: "1rem",
@@ -41,6 +42,9 @@ module.exports = {
 			},
 		},
 		extend: {
+			fontFamily: {
+				sans: ["'Inter'", ...defaultTheme.fontFamily.sans],
+			},
 			height: {
 				screen: "calc(var(--vh, 1vh) * 100)",
 			},

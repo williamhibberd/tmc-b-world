@@ -9,8 +9,7 @@ import {
 	library,
 	outside,
 	allHotSpots,
-	breuerChairMesh,
-	blueButton,
+	wassilyChairMesh,
 } from "./meshes";
 
 /*
@@ -135,17 +134,16 @@ function onWindowResize() {
 	! click hotspot
 */
 // Lobby
-const breuerChairButton = document.querySelector("#breuerChairButton");
+const toggleWassilyChair = document.querySelector("#toggleWassilyChair");
 export function onClickLobbyObject() {
 	if (currentIntersect) {
 		switch (currentIntersect.object) {
-			case blueButton:
-				console.log("click on a blue button");
+			case wassilyChairMesh:
+				toggleWassilyChair.click();
 				break;
-			case breuerChairMesh:
-				breuerChairButton.click();
-				console.log("click on asterix button");
-				break;
+			// case breuerChairMesh:
+			// 	console.log("click on asterix button");
+			// 	break;
 		}
 	}
 }
@@ -195,11 +193,11 @@ let firstLoad = true;
 // Lobby Enter
 export const lobbyEnter = () => {
 	// Set variables
-	sceneHotspots = [breuerChairMesh, blueButton];
+	sceneHotspots = [wassilyChairMesh];
 
 	// add objects to scene
-	scene.add(lobby, breuerChairMesh, blueButton);
-	group.add(lobby, breuerChairMesh, blueButton);
+	scene.add(lobby, wassilyChairMesh);
+	group.add(lobby, wassilyChairMesh);
 
 	// Run during loading steps
 	DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
@@ -228,19 +226,19 @@ export const lobbyExit = () => {
 	//!! Not yet working...
 	//!! will need to add to the exit animation
 	animateHotspotsOut(sceneHotspots);
-	scene.remove(lobby, breuerChairMesh, blueButton);
-	group.remove(lobby, breuerChairMesh, blueButton);
+	scene.remove(lobby, wassilyChairMesh);
+	group.remove(lobby, wassilyChairMesh);
 	window.removeEventListener("click", onClickLobbyObject);
 };
 
 // Library Enter
 export const libraryEnter = () => {
 	// Set variables
-	sceneHotspots = [breuerChairMesh, blueButton];
+	sceneHotspots = [wassilyChairMesh];
 
 	// add objects to scene
-	scene.add(library, breuerChairMesh, blueButton);
-	group.add(library, breuerChairMesh, blueButton);
+	scene.add(library, wassilyChairMesh);
+	group.add(library, wassilyChairMesh);
 
 	// Run during loading steps
 	DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
@@ -269,19 +267,19 @@ export const libraryExit = () => {
 	//!! Not yet working...
 	//!! will need to add to the exit animation
 	animateHotspotsOut(sceneHotspots);
-	scene.remove(library, breuerChairMesh, blueButton);
-	group.remove(library, breuerChairMesh, blueButton);
+	scene.remove(library, wassilyChairMesh);
+	group.remove(library, wassilyChairMesh);
 	window.removeEventListener("click", onClickLibraryObject);
 };
 
 // Outside Enter
 export const outsideEnter = () => {
 	// Set variables
-	sceneHotspots = [breuerChairMesh, blueButton];
+	sceneHotspots = [wassilyChairMesh];
 
 	// add objects to scene
-	scene.add(outside, breuerChairMesh, blueButton);
-	group.add(outside, breuerChairMesh, blueButton);
+	scene.add(outside, wassilyChairMesh);
+	group.add(outside, wassilyChairMesh);
 
 	// Run during loading steps
 	DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
@@ -310,7 +308,7 @@ export const outsideExit = () => {
 	//!! Not yet working...
 	//!! will need to add to the exit animation
 	animateHotspotsOut(sceneHotspots);
-	scene.remove(outside, breuerChairMesh, blueButton);
-	group.remove(outside, breuerChairMesh, blueButton);
+	scene.remove(outside, wassilyChairMesh);
+	group.remove(outside, wassilyChairMesh);
 	window.removeEventListener("click", onClickOutsideObject);
 };

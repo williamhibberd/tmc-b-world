@@ -7,7 +7,6 @@ import {
 
 export default function nav(scene) {
 	return {
-		open: false,
 		show: false,
 		scene: scene,
 		init() {
@@ -16,7 +15,6 @@ export default function nav(scene) {
 			gsap.set("#burger-2", { y: 4 });
 		},
 		openNav() {
-			this.open = true;
 			this.removePageEvents();
 			const openNav = gsap.timeline({
 				onStart: () => (this.show = true),
@@ -40,39 +38,41 @@ export default function nav(scene) {
 			openNav.to("#burger-2", { rotate: -45 }, 0.5);
 		},
 		closeNav() {
-			this.open = false;
-			this.addPageEvents();
-			const closeNav = gsap.timeline({
-				onComplete: () => (this.show = false),
-				defaults: { duration: 0.25, ease: "power4.in" },
-			});
-			closeNav.fromTo(
-				".nav-item",
-				{ opacity: 1, scale: 1 },
-				{
-					opacity: 0,
-					scale: 0,
-					stagger: {
-						from: "end",
-						each: 0.1,
-					},
-				}
-			);
-			closeNav.fromTo(
-				".nav-title",
-				{ opacity: 1 },
-				{ opacity: 0 },
-				"<+.25"
-			);
-			closeNav.fromTo(
-				"#navWrapper",
-				{ xPercent: 0 },
-				{ xPercent: 100, duration: 0.5 }
-			);
-			closeNav.to("#burger-1", { rotate: 0 }, 0);
-			closeNav.to("#burger-2", { rotate: 0 }, 0);
-			closeNav.to("#burger-1", { y: -4 }, 0.5);
-			closeNav.to("#burger-2", { y: 4 }, 0.5);
+			if (this.show) {
+				this.addPageEvents();
+				const closeNav = gsap.timeline({
+					onComplete: () => (this.show = false),
+					defaults: { duration: 0.25, ease: "power4.in" },
+				});
+				closeNav.fromTo(
+					".nav-item",
+					{ opacity: 1, scale: 1 },
+					{
+						opacity: 0,
+						scale: 0,
+						stagger: {
+							from: "end",
+							each: 0.1,
+						},
+					}
+				);
+				closeNav.fromTo(
+					".nav-title",
+					{ opacity: 1 },
+					{ opacity: 0 },
+					"<+.25"
+				);
+				closeNav.fromTo(
+					"#navWrapper",
+					{ xPercent: 0 },
+					{ xPercent: 100, duration: 0.5 }
+				);
+				closeNav.to("#burger-1", { rotate: 0 }, 0);
+				closeNav.to("#burger-2", { rotate: 0 }, 0);
+				closeNav.to("#burger-1", { y: -4 }, 0.5);
+				closeNav.to("#burger-2", { y: 4 }, 0.5);
+			}
+			return;
 		},
 		addPageEvents() {
 			switch (this.scene) {
@@ -101,7 +101,7 @@ export default function nav(scene) {
 			}
 		},
 		toggleNav() {
-			if (this.open) {
+			if (this.show) {
 				this.closeNav();
 			} else {
 				this.openNav();

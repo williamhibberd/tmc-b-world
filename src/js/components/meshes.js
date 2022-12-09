@@ -36,25 +36,24 @@ export const outside = new THREE.Mesh(
 /*
 	! Hotspots
 */
-export const breuerChairMesh = new THREE.Mesh(
-	// new THREE.SphereGeometry(0.125, 32, 32),
-	new THREE.CircleGeometry(0.125, 32),
-	new THREE.MeshBasicMaterial({
-		map: asterixTexture,
-	})
-);
-breuerChairMesh.position.set(-2.7, -0.4, 0.7);
-breuerChairMesh.rotation.y = Math.PI * 0.6;
-breuerChairMesh.scale.set(0, 0, 0);
+// export const breuerChairMesh = new THREE.Mesh(
+// 	// new THREE.SphereGeometry(0.125, 32, 32),
+// 	new THREE.CircleGeometry(0.125, 32),
+// 	new THREE.MeshBasicMaterial({
+// 		map: asterixTexture,
+// 	})
+// );
+// breuerChairMesh.position.set(-2.7, -0.4, 0.7);
+// breuerChairMesh.rotation.y = Math.PI * 0.6;
+// breuerChairMesh.scale.set(0, 0, 0);
 
-export const blueButton = new THREE.Mesh(
+export const wassilyChairMesh = new THREE.Mesh(
 	new THREE.CircleGeometry(0.5, 32),
 	new THREE.MeshBasicMaterial({
 		color: "blue",
 	})
 );
-blueButton.position.set(0, 0.2, -2.9);
-blueButton.scale.set(0, 0, 0);
-// blueButton.rotation.y = Math.PI * 0.5;
+wassilyChairMesh.position.set(0, 0.2, -2.9);
+wassilyChairMesh.scale.set(0, 0, 0);
 
-export const allHotSpots = [blueButton, breuerChairMesh];
+export const allHotSpots = [wassilyChairMesh];

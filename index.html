@@ -14,7 +14,11 @@
 	<body>
 		<main data-taxi class="relative z-10">
 			<article data-taxi-view="lobby">
-				<div x-cloak x-data="nav('lobby')" @keyup.escape="closeNav()">
+				<div
+					x-cloak
+					x-data="nav('lobby')"
+					@keyup.window.escape="closeNav()"
+				>
 					<nav>
 						<div
 							x-show="show"
@@ -94,44 +98,106 @@
 						</button>
 					</nav>
 				</div>
-				<div x-cloak x-data="{open: false}">
-					<button id="breuerChairButton" @click="open = !open">
-						<span class="sr-only">Open Breuer Chair Info</span>
-					</button>
-					<section
-						@click.outside="open = false"
+				<section
+					x-cloak
+					x-data="popup('lobby')"
+					@keyup.window.escape="closePopup()"
+				>
+					<!-- * button -->
+					<button
+						id="toggleWassilyChair"
+						@click="togglePopup()"
+					></button>
+					<!-- * overlay -->
+					<div
 						x-show="open"
-						x-transition.origin.bottom.right
-						class="p-12 shadow-lg bg-white absolute bottom-60 md:right-60 inset-x-12 md:inset-x-auto md:w-1/3"
+						x-transition.opacity.duration.300ms
+						class="fixed inset-0 bg-yellow-light/70"
 					>
-						<img
-							class="pb-12"
-							src="/images/lobby/breuer-chair.jpg"
-							alt=""
-						/>
-						<p class="pb-em">
-							<strong>Marcel Breuer Club chair</strong> (model
-							B3)<br />
-							1927–1928
-						</p>
-						<p class="pb-30">
-							The model for this chair is the traditional
-							overstuffed club chair, but all that remains is its
-							mere outline, an elegant composition traced in
-							gleaming steel. The canvas seat, back, and arms seem
-							to float in space; the body of the sitter does not
-							touch the steel framework.
-						</p>
-						<button
-							aria-label="Close Breuer Chair Info"
-							@click="open = false"
-							class="w-full text-center h-40 flex items-center justify-center rounded-full text-white bg-grey transition-colors hover:bg-grey-light hover:text-grey font-bold"
+						<div
+							x-ref="container"
+							class="w-screen max-w-[1200px] ml-auto flex flex-col md:flex-row h-screen overflow-y-scroll"
 						>
-							OK
-						</button>
-					</section>
-				</div>
-				<!-- <div x-cloak x-data="{open: false}">
+							<figure x-ref="image" class="w-full">
+								<img
+									class="object-right-top object-contain w-full max-h-screen"
+									src="/images/lobby/breuer-chair.jpg"
+									alt=""
+								/>
+							</figure>
+							<div
+								x-ref="textContainer"
+								class="bg-yellow-light w-full md:max-w-[575px] p-30 md:h-screen flex flex-col justify-between md:overflow-y-scroll relative"
+							>
+								<div x-ref="text" class="text-lg mb-30">
+									<h2
+										class="font-bold pb-em uppercase w-[calc(100%-60px)]"
+									>
+										Marcel Breuer The Wassily Chair, Model
+										B3 (1927 – 1928)
+									</h2>
+									<p class="pb-em">
+										The fabric used was made from Eisengarn
+										('iron yarn'), a strong, shiny,
+										waxed-cotton thread. It had been
+										invented in the 19th century, but
+										Margaretha Reichardt (1907–1984), a
+										student at the Bauhaus weaving workshop,
+										experimented and improved the quality of
+										the thread and developed cloth and
+										strapping material for use on Breuer's
+										tubular-steel chairs.<em
+											>(Source:
+											<a
+												href="https://en.wikipedia.org/wiki/Wassily_Chair"
+												target="_blank"
+												>Wikipedia</a
+											>)</em
+										>
+									</p>
+									<button
+										@click="closePopup()"
+										class="bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm leading-none w-full md:w-auto"
+									>
+										<span>CLOSE</span>
+									</button>
+								</div>
+								<div
+									x-ref="callout"
+									class="bg-white p-rem font-mono relative"
+								>
+									<div class="space-y-30">
+										<h3 class="font-bold mr-30">
+											Learn more about Marcel Breuer
+										</h3>
+										<p>
+											<em>Breuer by Taschen</em><br />
+											From his landmark tubular furniture
+											to “binuclear” housing, his projects
+											across Europe and the United
+											States..
+										</p>
+									</div>
+									<div
+										class="absolute top-rem right-rem w-36 h-36 bg-yellow-light rounded-full flex items-center justify-center"
+									>
+										<span>!</span>
+									</div>
+								</div>
+								<div
+									class="absolute top-10 right-10 w-80 h-80 bg-blue rounded-full"
+								></div>
+							</div>
+						</div>
+						<!--* title -->
+						<!--* text -->
+						<!--* pullout -->
+						<!--* Image -->
+						<!--* bg overlay -->
+					</div>
+				</section>
+				<!--! old "?" popup
+					<div x-cloak x-data="{open: false}">
 					<button
 						@click="open = !open"
 						class="flex justify-center rounder-full items-center bg-white w-36 h-36 absolute bottom-12 right-12 rounded-full"
@@ -162,10 +228,12 @@
 							OK
 						</button>
 					</section>
-				</div> -->
+				</div> 
+			-->
 			</article>
 		</main>
 
+		<!--* Canvas -->
 		<canvas
 			id="bg"
 			x-data="{ dragging: false }"
