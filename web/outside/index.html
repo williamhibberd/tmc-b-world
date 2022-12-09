@@ -4,22 +4,20 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Bauhaus World</title>
-		<!--! turn on to use alpine 
-			<style type="text/css">
-				[x-cloak] {
-					display: none;
-				}
-			</style> 
-		-->
+		<title>Bauhaus World - Outside</title>
+		<style type="text/css">
+			[x-cloak] {
+				display: none;
+			}
+		</style>
 		<script type="module" crossorigin src="/assets/modulepreload-polyfill.c7c6310f.js"></script>
 		<script type="module" crossorigin src="/assets/app.b0ef458b.js"></script>
-		<link rel="stylesheet" href="/assets/app.5cbf1560.css">
+		<link rel="stylesheet" href="/assets/app.ae89d960.css">
 	</head>
 	<body>
 		<main data-taxi class="relative z-10">
 			<article data-taxi-view="outside">
-				<div x-cloak x-data="nav('outside')">
+				<div x-cloak x-data="nav('outside')" @keyup.escape="closeNav()">
 					<nav>
 						<div
 							x-show="show"
@@ -86,11 +84,11 @@
 						>
 							<span
 								id="burger-1"
-								class="block w-rem h-2 bg-black"
+								class="transition-transform block w-rem h-2 bg-black"
 							></span>
 							<span
 								id="burger-2"
-								class="block w-rem h-2 bg-black"
+								class="transition-transform block w-rem h-2 bg-black"
 							></span>
 							<span class="sr-only">Open Navigation</span>
 						</button>
