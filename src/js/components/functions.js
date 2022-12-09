@@ -136,7 +136,7 @@ function onWindowResize() {
 */
 // Lobby
 const breuerChairButton = document.querySelector("#breuerChairButton");
-function onClickLobbyObject() {
+export function onClickLobbyObject() {
 	if (currentIntersect) {
 		switch (currentIntersect.object) {
 			case blueButton:
@@ -151,7 +151,7 @@ function onClickLobbyObject() {
 }
 
 // Library
-function onClickLibraryObject() {
+export function onClickLibraryObject() {
 	if (currentIntersect) {
 		switch (
 			currentIntersect.object
@@ -168,7 +168,7 @@ function onClickLibraryObject() {
 }
 
 // Outside
-function onClickOutsideObject() {
+export function onClickOutsideObject() {
 	if (currentIntersect) {
 		switch (
 			currentIntersect.object

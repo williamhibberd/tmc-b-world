@@ -11,25 +11,90 @@
 			}
 		</style>
 		<script type="module" crossorigin src="/assets/modulepreload-polyfill.c7c6310f.js"></script>
-		<script type="module" crossorigin src="/assets/app.f6d6fea1.js"></script>
-		<link rel="stylesheet" href="/assets/app.0b83c039.css">
+		<script type="module" crossorigin src="/assets/app.b0ef458b.js"></script>
+		<link rel="stylesheet" href="/assets/app.27b5539b.css">
 	</head>
 	<body>
 		<main data-taxi class="relative z-10">
 			<!-- w-screen h-screen -->
 			<article data-taxi-view="lobby">
-				<div x-data="{ open: false }">
+				<div x-cloak x-data="nav('lobby')">
 					<nav>
-						<ul x-show="open" class="fixed inset-y-0 right-0">
-							<li>Your in the lobby</li>
-							<li><a href="/outside/">go outside</a></li>
-							<li><a href="/library/">go to the library</a></li>
-						</ul>
-						<button
-							@click="open = !open"
-							class="fixed bottom-12 right-12 bg-white"
+						<div
+							x-show="show"
+							id="navWrapper"
+							class="fixed inset-y-0 right-0 w-screen max-w-[575px] bg-yellow-light pt-60 pb-18 px-12 h-full flex flex-col"
 						>
-							open nav
+							<p
+								class="r-h1 uppercase font-bold text-center pb-40 nav-title"
+							>
+								Bauhaus<br />World
+							</p>
+							<!-- :class="open ? 'translate-x-0' : 'translate-x-full'" -->
+							<ul
+								class="flex grow h-full relative text-md uppercase font-bold text-center isolate"
+							>
+								<li
+									class="left-60 absolute w-[46%] opacity-70 nav-item"
+								>
+									<a
+										href="/"
+										class="flex flex-col space-y-12 transition-all hover:opacity-75 hover:scale-110"
+									>
+										<span
+											class="bg-blue rounded-full aspect-square mix-blend-multiply"
+										></span>
+										<p>Lobby</p>
+									</a>
+								</li>
+								<li
+									class="absolute w-[46%] -right-[10%] inset-y-0 flex items-center nav-item"
+								>
+									<a
+										href="/library/"
+										class="flex flex-col space-y-12 transition-all hover:opacity-75 hover:scale-110"
+									>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											class="w-full fill-red"
+											fill="currentColor"
+											viewBox="0 0 745 645"
+										>
+											<path
+												d="M745.391 645 373 0 .61 645H745.39Z"
+											/>
+										</svg>
+										<p>Library</p>
+									</a>
+								</li>
+								<li
+									class="left-0 bottom-12 absolute w-[46%] nav-item"
+								>
+									<a
+										href="/outside/"
+										class="flex flex-col space-y-12 transition-all hover:opacity-75 hover:scale-110"
+									>
+										<span
+											class="bg-yellow aspect-square mix-blend-multiply"
+										></span>
+										<p>Outside</p>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<button
+							@click="toggleNav();"
+							class="fixed bottom-12 right-12 bg-white w-44 h-44 rounded-full flex flex-col justify-center items-center"
+						>
+							<span
+								id="burger-1"
+								class="transition-transform block w-rem h-2 bg-black"
+							></span>
+							<span
+								id="burger-2"
+								class="transition-transform block w-rem h-2 bg-black"
+							></span>
+							<span class="sr-only">Open Navigation</span>
 						</button>
 					</nav>
 				</div>
@@ -70,7 +135,7 @@
 						</button>
 					</section>
 				</div>
-				<div x-cloak x-data="{open: false}">
+				<!-- <div x-cloak x-data="{open: false}">
 					<button
 						@click="open = !open"
 						class="flex justify-center rounder-full items-center bg-white w-36 h-36 absolute bottom-12 right-12 rounded-full"
@@ -101,7 +166,7 @@
 							OK
 						</button>
 					</section>
-				</div>
+				</div> -->
 			</article>
 		</main>
 
