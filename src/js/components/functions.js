@@ -36,9 +36,9 @@ function updateProgress(url, itemsLoaded, itemsTotal) {
 // startButton.addEventListener("click", () => {
 // 	loadInAnimation();
 // });
+// const startButton = document.querySelector("#startButton");
 
 /* Load in animation */
-const startButton = document.querySelector("#startButton");
 const loadingEl = document.querySelector("#loader");
 function loadInAnimation(sceneHotspots) {
 	const loadInTl = gsap.timeline({
@@ -46,8 +46,6 @@ function loadInAnimation(sceneHotspots) {
 		defaults: { duration: 0.5, ease: "power4.out" },
 	});
 	loadInTl.to(".loader-shape", { opacity: 0 });
-	loadInTl.to(startButton, { scale: 0, opacity: 0 }, "<");
-	loadInTl.to("#loaderTitle", { scale: 0, opacity: 0 }, "<");
 	loadInTl.to(loadingEl, { backgroundColor: "#000" }, "<");
 	loadInTl.to(loadingEl, { opacity: 0 });
 	loadInTl.set(loadingEl, { display: "none", duration: 0 });
