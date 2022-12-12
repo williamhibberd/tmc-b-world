@@ -14,6 +14,7 @@ export const lobby = new THREE.Mesh(
 	new THREE.MeshBasicMaterial({
 		side: THREE.BackSide,
 		map: lobbyTexture,
+		// wireframe: true,
 	})
 );
 
@@ -36,24 +37,24 @@ export const outside = new THREE.Mesh(
 /*
 	! Hotspots
 */
-// export const breuerChairMesh = new THREE.Mesh(
-// 	// new THREE.SphereGeometry(0.125, 32, 32),
-// 	new THREE.CircleGeometry(0.125, 32),
-// 	new THREE.MeshBasicMaterial({
-// 		map: asterixTexture,
-// 	})
-// );
-// breuerChairMesh.position.set(-2.7, -0.4, 0.7);
-// breuerChairMesh.rotation.y = Math.PI * 0.6;
-// breuerChairMesh.scale.set(0, 0, 0);
+export const barcelonaPavilionMesh = new THREE.Mesh(
+	new THREE.CircleGeometry(0.1, 32),
+	new THREE.MeshBasicMaterial({
+		map: asterixTexture,
+	})
+);
+barcelonaPavilionMesh.position.set(2.7, -0.05, 0.7);
+barcelonaPavilionMesh.rotation.y = Math.PI * -0.6;
+barcelonaPavilionMesh.scale.set(0, 0, 0);
 
 export const wassilyChairMesh = new THREE.Mesh(
-	new THREE.CircleGeometry(0.5, 32),
+	new THREE.CircleGeometry(0.2, 32),
 	new THREE.MeshBasicMaterial({
 		color: "blue",
 	})
 );
-wassilyChairMesh.position.set(0, 0.2, -2.9);
+wassilyChairMesh.rotation.y = Math.PI * 1.1;
+wassilyChairMesh.position.set(0.8, -0.12, 2.8);
 wassilyChairMesh.scale.set(0, 0, 0);
 
-export const allHotSpots = [wassilyChairMesh];
+export const allHotSpots = [wassilyChairMesh, barcelonaPavilionMesh];

@@ -19,6 +19,7 @@ module.exports = {
 			40: "2.5rem",
 			42: "2.625rem",
 			44: "2.75rem",
+			48: "3rem",
 			60: "3.75rem",
 			80: "5rem",
 			px: "1px",
@@ -47,6 +48,7 @@ module.exports = {
 			},
 			height: {
 				screen: "calc(var(--vh, 1vh) * 100)",
+				"screen-w-header": "calc(calc(var(--vh, 1vh) * 100) + 48px)",
 			},
 			maxHeight: {
 				screen: "calc(var(--vh, 1vh) * 100)",

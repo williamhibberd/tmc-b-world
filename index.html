@@ -61,7 +61,7 @@
 						<div
 							x-show="show"
 							id="navWrapper"
-							class="fixed inset-y-0 right-0 w-screen max-w-[575px] bg-yellow-light pt-60 pb-18 px-12 h-full flex flex-col"
+							class="fixed top-48 bottom-0 md:inset-y-0 right-0 w-screen max-w-[575px] bg-yellow-light pt-60 pb-18 px-12 flex flex-col"
 						>
 							<p
 								class="r-h1 uppercase font-bold text-center pb-40 nav-title"
@@ -154,7 +154,8 @@
 					>
 						<div
 							x-ref="container"
-							class="w-screen max-w-[1200px] ml-auto flex flex-col md:flex-row h-screen overflow-y-scroll"
+							@click.outside="closePopup()"
+							class="absolute top-48 inset-x-0 bottom-0 md:relative md:top-0 md:inset-x-auto w-screen md:max-w-[83%] ml-auto flex flex-col md:flex-row md:items-start md:h-screen overflow-y-scroll"
 						>
 							<figure class="w-full">
 								<img
@@ -165,9 +166,12 @@
 							</figure>
 							<div
 								x-ref="textContainer"
-								class="bg-yellow-light w-full md:max-w-[575px] p-30 md:h-screen flex flex-col justify-between md:overflow-y-scroll relative"
+								class="bg-yellow-light w-full md:max-w-[575px] p-30 md:h-screen flex flex-col justify-between md:overflow-y-scroll relative grow"
 							>
-								<div x-ref="text" class="text-lg mb-30">
+								<div
+									x-ref="text"
+									class="text-md md:text-lg mb-30"
+								>
 									<h2
 										class="font-bold pb-em uppercase w-[calc(100%-60px)]"
 									>
@@ -189,6 +193,7 @@
 											<a
 												href="https://en.wikipedia.org/wiki/Wassily_Chair"
 												target="_blank"
+												class="underline"
 												>Wikipedia</a
 											>)</em
 										>
@@ -227,11 +232,106 @@
 								></div>
 							</div>
 						</div>
-						<!--* title -->
-						<!--* text -->
-						<!--* pullout -->
-						<!--* Image -->
-						<!--* bg overlay -->
+					</div>
+				</section>
+				<section
+					x-cloak
+					x-data="popup('lobby')"
+					@keyup.window.escape="closePopup()"
+				>
+					<!-- * button -->
+					<button
+						id="togglebarcelonaPavilion"
+						@click="togglePopup()"
+					></button>
+					<!-- * overlay -->
+					<div
+						x-show="open"
+						x-transition.opacity.duration.300ms
+						class="fixed inset-0 bg-yellow-light/70"
+					>
+						<div
+							x-ref="container"
+							@click.outside="closePopup()"
+							class="absolute top-48 inset-x-0 bottom-0 md:relative md:top-0 md:inset-x-auto w-screen md:max-w-[83%] ml-auto flex flex-col md:flex-row md:items-start md:h-screen overflow-y-scroll"
+						>
+							<figure class="w-full">
+								<img
+									class="object-right-top object-contain w-full max-h-screen"
+									src="/images/lobby/barcelona-pavilion.jpg"
+									alt=""
+								/>
+							</figure>
+							<div
+								x-ref="textContainer"
+								class="bg-yellow-light w-full md:max-w-[575px] p-30 md:h-screen flex flex-col justify-between md:overflow-y-scroll relative grow"
+							>
+								<div
+									x-ref="text"
+									class="text-md md:text-lg mb-30"
+								>
+									<h2
+										class="font-bold pb-em uppercase w-[calc(100%-60px)]"
+									>
+										The lobby is inspired by Mies van der
+										Rohe's Barcelona Pavilion built in 1928
+									</h2>
+									<p class="pb-em">
+										Designed by Ludwig Mies van der Rohe and
+										Lilly Reich, was the German Pavilion for
+										the 1929 International Exposition in
+										Barcelona, Spain. It is an important
+										building in the history of modern
+										architecture, known for its simple form
+										and its spectacular use of extravagant
+										materials, such as marble, red onyx and
+										travertine.<em
+											>(Source:
+											<a
+												href="https://en.wikipedia.org/wiki/Barcelona_Pavilion"
+												target="_blank"
+												class="underline"
+												>Wikipedia</a
+											>)</em
+										>
+									</p>
+									<button
+										@click="closePopup()"
+										class="bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm leading-none w-full md:w-auto"
+									>
+										<span>CLOSE</span>
+									</button>
+								</div>
+								<div
+									x-ref="callout"
+									class="bg-white p-rem font-mono relative"
+								>
+									<div class="space-y-30">
+										<h3 class="font-bold mr-30">
+											Learn more about Mies van der Rohe
+										</h3>
+										<p>
+											<em>Mies van der Rohe by Taschen</em
+											><br />Discover the master of the
+											modern minimalist, Mies van der
+											Rohe, one of the defining and most
+											hotly debated tastemakers of the
+											twentieth century.
+										</p>
+									</div>
+									<div
+										class="absolute top-rem right-rem w-36 h-36 bg-yellow-light rounded-full flex items-center justify-center"
+									>
+										<span>!</span>
+									</div>
+								</div>
+								<div
+									class="absolute top-10 right-10 w-80 h-80 bg-white rounded-full flex justify-center items-center"
+								>
+									<span class="mt-[.5em]">*</span>
+								</div>
+							</div>
+						</div>
 					</div>
 				</section>
 				<!--! old "?" popup

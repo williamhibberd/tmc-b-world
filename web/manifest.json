@@ -1,20 +1,20 @@
 {
   "src/js/app.js": {
-    "file": "assets/app.0b2a28e8.js",
+    "file": "assets/app.1e2dac70.js",
     "src": "src/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app.f8698028.css"
+      "assets/app.ba89c15a.css"
     ],
-    "integrity": "sha384-BXeHQiaTGW725du0TIt9nK9/ov7lalX1rV2FjxAQCJzZm3oy8L0owktErLTx+z/p"
+    "integrity": "sha384-zo5bWo0PVX3MRq0w7xs3ROBwR8G19BcijmAYfwp9fC06qGkVL3vvCC58E2D/Dk1b"
   },
   "_modulepreload-polyfill.c7c6310f.js": {
     "file": "assets/modulepreload-polyfill.c7c6310f.js",
     "integrity": "sha384-3bNm9D6U77cdsqCfNMkcY/qmfKFpXe6+YGJi3Ar45gu2CviZtNYaV3/Z2gfHHE6b"
   },
   "src/js/app.css": {
-    "file": "assets/app.f8698028.css",
+    "file": "assets/app.ba89c15a.css",
     "src": "src/js/app.css",
-    "integrity": "sha384-pKlJJAQP1/WDVLgJVw+HSvJwy+Ou0Zh7cQywrqRbZ86HzI7xwG692WNLdDaymhF3"
+    "integrity": "sha384-iPC4s3MRo88CzBudFEhC/hPeJxyBs+EdGTkgYASB/snZyYAnSkiTXmlkd3TNngJU"
   }
 }

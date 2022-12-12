@@ -10,6 +10,7 @@ import {
 	outside,
 	allHotSpots,
 	wassilyChairMesh,
+	barcelonaPavilionMesh,
 } from "./meshes";
 
 /*
@@ -137,14 +138,17 @@ function onWindowResize() {
 export function onClickLobbyObject() {
 	// refrence all buttons to pseudo click
 	const toggleWassilyChair = document.querySelector("#toggleWassilyChair");
+	const togglebarcelonaPavilion = document.querySelector(
+		"#togglebarcelonaPavilion"
+	);
 	if (currentIntersect) {
 		switch (currentIntersect.object) {
 			case wassilyChairMesh:
 				toggleWassilyChair.click();
 				break;
-			// case breuerChairMesh:
-			// 	console.log("click on asterix button");
-			// 	break;
+			case barcelonaPavilionMesh:
+				togglebarcelonaPavilion.click();
+				break;
 		}
 	}
 }
@@ -194,11 +198,11 @@ let firstLoad = true;
 // Lobby Enter
 export const lobbyEnter = () => {
 	// Set variables
-	sceneHotspots = [wassilyChairMesh];
+	sceneHotspots = [wassilyChairMesh, barcelonaPavilionMesh];
 
 	// add objects to scene
-	scene.add(lobby, wassilyChairMesh);
-	group.add(lobby, wassilyChairMesh);
+	scene.add(lobby, wassilyChairMesh, barcelonaPavilionMesh);
+	group.add(lobby, wassilyChairMesh, barcelonaPavilionMesh);
 
 	// Run during loading steps
 	DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
@@ -227,8 +231,8 @@ export const lobbyExit = () => {
 	//!! Not yet working...
 	//!! will need to add to the exit animation
 	animateHotspotsOut(sceneHotspots);
-	scene.remove(lobby, wassilyChairMesh);
-	group.remove(lobby, wassilyChairMesh);
+	scene.remove(lobby, wassilyChairMesh, barcelonaPavilionMesh);
+	group.remove(lobby, wassilyChairMesh, barcelonaPavilionMesh);
 	window.removeEventListener("click", onClickLobbyObject);
 };
 
