@@ -13,10 +13,10 @@ export default class Outside extends Renderer {
 
 	onLeave() {
 		// run before the transition.onLeave method is called
-		outsideExit();
 	}
 
 	onLeaveCompleted() {
 		// run after the transition.onleave has fully completed
+		outsideExit();
 	}
 }

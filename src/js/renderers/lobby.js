@@ -13,10 +13,10 @@ export default class Lobby extends Renderer {
 
 	onLeave() {
 		// run before the transition.onLeave method is called
-		lobbyExit();
 	}
 
 	onLeaveCompleted() {
 		// run after the transition.onleave has fully completed
+		lobbyExit();
 	}
 }

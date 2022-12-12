@@ -13,10 +13,10 @@ export default class Library extends Renderer {
 
 	onLeave() {
 		// run before the transition.onLeave method is called
-		libraryExit();
 	}
 
 	onLeaveCompleted() {
 		// run after the transition.onleave has fully completed
+		libraryExit();
 	}
 }

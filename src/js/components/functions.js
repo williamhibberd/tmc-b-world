@@ -134,8 +134,9 @@ function onWindowResize() {
 	! click hotspot
 */
 // Lobby
-const toggleWassilyChair = document.querySelector("#toggleWassilyChair");
 export function onClickLobbyObject() {
+	// refrence all buttons to pseudo click
+	const toggleWassilyChair = document.querySelector("#toggleWassilyChair");
 	if (currentIntersect) {
 		switch (currentIntersect.object) {
 			case wassilyChairMesh:

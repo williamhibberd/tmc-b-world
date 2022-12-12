@@ -5,6 +5,36 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Bauhaus World - Lobby</title>
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="/favicon/lobby/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="/favicon/lobby/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="/favicon/lobby/favicon-16x16.png"
+		/>
+		<link rel="manifest" href="/favicon/lobby/site.webmanifest" />
+		<link
+			rel="mask-icon"
+			href="/favicon/lobby/safari-pinned-tab.svg"
+			color="#27369c"
+		/>
+		<link rel="shortcut icon" href="/favicon/lobby/favicon.ico" />
+		<meta name="msapplication-TileColor" content="#27369c" />
+		<meta
+			name="msapplication-config"
+			content="/favicon/lobby/browserconfig.xml"
+		/>
+		<meta name="theme-color" content="#ffffff" />
 		<style type="text/css">
 			[x-cloak] {
 				display: none;
@@ -13,7 +43,7 @@
 	</head>
 	<body>
 		<main data-taxi class="relative z-10">
-			<article data-taxi-view="lobby">
+			<article id="view" data-taxi-view="lobby">
 				<div
 					x-cloak
 					x-data="nav('lobby')"
@@ -35,20 +65,20 @@
 								class="flex grow h-full relative text-md uppercase font-bold text-center isolate"
 							>
 								<li
-									class="left-60 absolute w-[46%] opacity-70 nav-item"
+									class="left-60 absolute w-[46%] opacity-70 nav-item mix-blend-multiply"
 								>
 									<a
 										href="/"
 										class="flex flex-col space-y-12 transition-all hover:opacity-75 hover:scale-110"
 									>
 										<span
-											class="bg-blue rounded-full aspect-square mix-blend-multiply"
+											class="bg-blue rounded-full aspect-square"
 										></span>
 										<p>Lobby</p>
 									</a>
 								</li>
 								<li
-									class="absolute w-[46%] -right-[10%] inset-y-0 flex items-center nav-item"
+									class="absolute w-[46%] -right-[10%] inset-y-0 flex items-center nav-item mix-blend-multiply"
 								>
 									<a
 										href="/library/"
@@ -68,14 +98,14 @@
 									</a>
 								</li>
 								<li
-									class="left-0 bottom-12 absolute w-[46%] nav-item"
+									class="left-0 bottom-12 absolute w-[46%] nav-item mix-blend-multiply"
 								>
 									<a
 										href="/outside/"
 										class="flex flex-col space-y-12 transition-all hover:opacity-75 hover:scale-110"
 									>
 										<span
-											class="bg-yellow aspect-square mix-blend-multiply"
+											class="bg-yellow aspect-square"
 										></span>
 										<p>Outside</p>
 									</a>
@@ -118,7 +148,7 @@
 							x-ref="container"
 							class="w-screen max-w-[1200px] ml-auto flex flex-col md:flex-row h-screen overflow-y-scroll"
 						>
-							<figure x-ref="image" class="w-full">
+							<figure class="w-full">
 								<img
 									class="object-right-top object-contain w-full max-h-screen"
 									src="/images/lobby/breuer-chair.jpg"
@@ -299,6 +329,10 @@
 				/>
 			</svg>
 		</header>
+
+		<!--* transition -->
+		<div id="transition" class="z-40 fixed inset-0 bg-blue hidden"></div>
+
 		<script type="module" src="./src/js/app.js"></script>
 	</body>
 </html>
