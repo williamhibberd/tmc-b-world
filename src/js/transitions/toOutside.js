@@ -24,6 +24,17 @@ export default class toOutside extends Transition {
 	 * @param { { to: HTMLElement, trigger: string|HTMLElement|false, done: function } } props
 	 */
 	onEnter({ to, trigger, done }) {
+		document.querySelector("#apple-touch-icon").href =
+			"/favicon/outside/apple-touch-icon.png";
+		document.querySelector("#icon-large").href =
+			"/favicon/outside/favicon-32x32.png";
+		document.querySelector("#icon-small").href =
+			"/favicon/outside/favicon-16x16.png";
+		document.querySelector("#mask").setAttribute("color", "#E8E36B");
+		document
+			.querySelector("#tile-color")
+			.setAttribute("content", "#E8E36B");
+
 		const enterTL = gsap.timeline({
 			onComplete: () => done(),
 			defaults: { duration: 0.5, ease: "power4.in" },

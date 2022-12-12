@@ -24,6 +24,17 @@ export default class toLibrary extends Transition {
 	 * @param { { to: HTMLElement, trigger: string|HTMLElement|false, done: function } } props
 	 */
 	onEnter({ to, trigger, done }) {
+		document.querySelector("#apple-touch-icon").href =
+			"/favicon/library/apple-touch-icon.png";
+		document.querySelector("#icon-large").href =
+			"/favicon/library/favicon-32x32.png";
+		document.querySelector("#icon-small").href =
+			"/favicon/library/favicon-16x16.png";
+		document.querySelector("#mask").setAttribute("color", "#DF3128");
+		document
+			.querySelector("#tile-color")
+			.setAttribute("content", "#DF3128");
+
 		const enterTL = gsap.timeline({
 			onComplete: () => done(),
 			defaults: { duration: 0.5, ease: "power4.in" },
