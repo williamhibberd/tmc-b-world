@@ -3,6 +3,7 @@ import {
 	onClickLobbyObject,
 	onClickLibraryObject,
 	onClickOutsideObject,
+	toggleSpin,
 } from "./functions";
 
 export default function popup(scene) {
@@ -14,6 +15,7 @@ export default function popup(scene) {
 			gsap.set(this.$refs.callout, { opacity: 0 });
 		},
 		openPopup() {
+			toggleSpin();
 			this.removePageEvents();
 			const openPopup = gsap.timeline({
 				onStart: () => (this.open = true),
@@ -34,6 +36,7 @@ export default function popup(scene) {
 		},
 		closePopup() {
 			if (this.open) {
+				toggleSpin();
 				this.addPageEvents();
 				const closePopup = gsap.timeline({
 					onComplete: () => (this.open = false),

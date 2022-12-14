@@ -19,7 +19,7 @@ import {
 /* Update loader */
 let loaderValue = 0;
 function updateProgress(url, itemsLoaded, itemsTotal) {
-	console.log(`loading file: ${url}.\n${itemsLoaded} of ${itemsTotal} files`);
+	// console.log(`loading file: ${url}.\n${itemsLoaded} of ${itemsTotal} files`);
 	loaderValue = (itemsLoaded / itemsTotal) * 100;
 	progressIndicator.style.transform = `translateX(${loaderValue}%)`;
 }
@@ -83,6 +83,16 @@ window.addEventListener("mousemove", (event) => {
 	// }
 });
 
+/* Toggle Panel Open Var */
+let spin = true;
+export function toggleSpin() {
+	if (spin === true) {
+		spin = false;
+	} else {
+		spin = true;
+	}
+}
+
 /*
 	! Tick
 */
@@ -98,7 +108,9 @@ const tick = () => {
 
 	// rotate currentScene
 	// PI * 2 is one revloution per second
-	group.rotation.y = elapsedTime * Math.PI * 0.01;
+	if (spin === true) {
+		group.rotation.y = elapsedTime * Math.PI * 0.01;
+	}
 
 	// Cast a ray
 	raycaster.setFromCamera(mouse, camera);
@@ -202,6 +214,8 @@ export const lobbyEnter = () => {
 	scene.add(lobby, wassilyChairMesh, barcelonaPavilionMesh);
 	group.add(lobby, wassilyChairMesh, barcelonaPavilionMesh);
 
+	spin = true;
+
 	// Run during loading steps
 	DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
 		updateProgress(url, itemsLoaded, itemsTotal);
@@ -243,6 +257,8 @@ export const libraryEnter = () => {
 	scene.add(library);
 	group.add(library);
 
+	spin = true;
+
 	// Run during loading steps
 	DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
 		updateProgress(url, itemsLoaded, itemsTotal);
@@ -283,6 +299,8 @@ export const outsideEnter = () => {
 	// add objects to scene
 	scene.add(outside);
 	group.add(outside);
+
+	spin = true;
 
 	// Run during loading steps
 	DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
