@@ -10,7 +10,9 @@ export const libraryTexture = textureLoader.load("/images/library/library.jpg");
 libraryTexture.mapping = THREE.EquirectangularReflectionMapping;
 libraryTexture.encoding = THREE.sRGBEncoding;
 
-export const outsideTexture = textureLoader.load("/images/outside/outside.jpg");
+export const outsideTexture = textureLoader.load(
+	"/images/outside/outside-hr-20-01-23.jpg"
+);
 outsideTexture.mapping = THREE.EquirectangularReflectionMapping;
 outsideTexture.encoding = THREE.sRGBEncoding;
 
