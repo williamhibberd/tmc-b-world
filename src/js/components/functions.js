@@ -12,6 +12,7 @@ import {
 	wassilyChairMesh,
 	barcelonaPavilionMesh,
 } from "./meshes";
+import lazySizes from "lazysizes";
 
 /*
 	! Loading
@@ -123,6 +124,19 @@ const tick = () => {
 	} else {
 		currentIntersect = null;
 	}
+
+	/* wip to scale object on hover
+		// let lastObject = null;
+		// if (currentIntersect) {
+		// 	console.log(currentIntersect.object);
+		// 	lastObject = currentIntersect;
+		// 	gsap.to(currentIntersect.scale, { x: 1, y: 1, z: 1 });
+		// } else {
+		// 	gsap.to(lastObject.object.scale, { x: 0, y: 0, z: 0 }).then(
+		// 		(lastObject = null)
+		// 	);
+		// }
+	*/
 
 	controls.update;
 	renderer.render(scene, camera);
