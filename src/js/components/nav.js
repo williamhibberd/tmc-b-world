@@ -11,46 +11,66 @@ export default function nav(scene) {
 		showInfo: false,
 		scene: scene,
 		init() {
-			gsap.set("#infoWrapper", { xPercent: 100 });
 			gsap.set("#navWrapper", { xPercent: 100 });
 			gsap.set("#burger-1", { y: -4 });
 			gsap.set("#burger-2", { y: 4 });
-			gsap.set(this.$refs.text, { opacity: 0 });
-			gsap.set(this.$refs.callout, { opacity: 0 });
 		},
 		openInfo() {
-			const openInfo = gsap.timeline({
-				onStart: () => (this.showInfo = true),
+			const closeNav = gsap.timeline({
 				defaults: { duration: 0.25, ease: "power4.in" },
+				onComplete: () => (this.showInfo = true),
 			});
-			openInfo.fromTo(
-				"#infoWrapper",
-				{ xPercent: 100 },
-				{ xPercent: 0, duration: 0.5 }
+			closeNav.fromTo(
+				".nav-item",
+				{ opacity: 1, scale: 1 },
+				{
+					opacity: 0,
+					scale: 0,
+					stagger: {
+						from: "end",
+						each: 0.1,
+					},
+				}
 			);
-			openInfo.fromTo(this.$refs.text, { opacity: 0 }, { opacity: 1 });
-			openInfo.fromTo(
-				this.$refs.callout,
-				{ opacity: 0 },
+			closeNav.fromTo(
+				".nav-title",
 				{ opacity: 1 },
+				{ opacity: 0 },
+				"<+.25"
+			);
+			closeNav.fromTo(
+				"#toggleNavButton",
+				{ opacity: 1 },
+				{ opacity: 0 },
 				"<"
 			);
-		},
-		closeInfo() {
-			const closeInfo = gsap.timeline({
-				onComplete: () => (this.showInfo = false),
-				defaults: { duration: 0.25, ease: "power4.in" },
-			});
-			closeInfo.fromTo(
-				"#infoWrapper",
+			closeNav.fromTo(
+				"#navWrapper",
 				{ xPercent: 0 },
 				{ xPercent: 100, duration: 0.5 }
 			);
-			closeInfo.fromTo(this.$refs.text, { opacity: 1 }, { opacity: 0 });
-			closeInfo.fromTo(
-				this.$refs.callout,
-				{ opacity: 1 },
+		},
+		closeInfo() {
+			const openNav = gsap.timeline({
+				onStart: () => (this.showInfo = false),
+				defaults: { duration: 0.25, ease: "power4.in" },
+			});
+			openNav.fromTo(
+				"#navWrapper",
+				{ xPercent: 100 },
+				{ xPercent: 0, duration: 0.5 }
+			);
+			openNav.fromTo(".nav-title", { opacity: 0 }, { opacity: 1 });
+			openNav.fromTo(
+				".nav-item",
+				{ opacity: 0, scale: 0 },
+				{ opacity: 1, scale: 1, stagger: 0.1 },
+				"<"
+			);
+			openNav.fromTo(
+				"#toggleNavButton",
 				{ opacity: 0 },
+				{ opacity: 1 },
 				"<"
 			);
 		},
@@ -115,6 +135,27 @@ export default function nav(scene) {
 				closeNav.to("#burger-2", { y: 4 }, 0.5);
 			}
 			return;
+		},
+		openNavAnimation() {
+			const openNav = gsap.timeline({
+				defaults: { duration: 0.25, ease: "power4.in" },
+			});
+			openNav.fromTo(
+				"#navWrapper",
+				{ xPercent: 100 },
+				{ xPercent: 0, duration: 0.5 }
+			);
+			openNav.fromTo(".nav-title", { opacity: 0 }, { opacity: 1 });
+			openNav.fromTo(
+				".nav-item",
+				{ opacity: 0, scale: 0 },
+				{ opacity: 1, scale: 1, stagger: 0.1 },
+				"<"
+			);
+			openNav.to("#burger-1", { y: 1 }, 0);
+			openNav.to("#burger-2", { y: -1 }, 0);
+			openNav.to("#burger-1", { rotate: 45 }, 0.5);
+			openNav.to("#burger-2", { rotate: -45 }, 0.5);
 		},
 		addPageEvents() {
 			switch (this.scene) {

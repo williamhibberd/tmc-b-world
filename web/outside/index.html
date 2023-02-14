@@ -49,8 +49,8 @@
 			}
 		</style>
 		<script type="module" crossorigin src="/assets/modulepreload-polyfill.c7c6310f.js"></script>
-		<script type="module" crossorigin src="/assets/app.1032ecdc.js"></script>
-		<link rel="stylesheet" href="/assets/app.7e14294d.css">
+		<script type="module" crossorigin src="/assets/app.4b27aa98.js"></script>
+		<link rel="stylesheet" href="/assets/app.04963802.css">
 	</head>
 	<body>
 		<main data-taxi class="relative z-10">
@@ -74,85 +74,74 @@
 								<span>?</span>
 								<span class="sr-only">Show Project Info</span>
 							</button>
-							<div
-								id="infoWrapper"
-								x-show="showInfo"
-								@click.outside="closeInfo()"
-								class="absolute inset-0 bg-yellow-light z-50 overflow-y-scroll"
-							>
+							<template x-teleport="body">
 								<div
-									x-ref="textContainer"
-									class="bg-yellow-light w-full md:max-w-[575px] p-30 md:h-screen flex flex-col justify-between md:overflow-y-scroll relative grow h-full"
+									x-show="showInfo"
+									x-transition:enter.duration.500ms
+									x-transition:leave.duration.500ms
+									class="absolute top-48 inset-x-0 bottom-0 md:inset-0 z-30 flex flex-col md:flex-row md:items-center md:justify-center"
 								>
-									<div
-										x-ref="text"
-										class="text-md md:text-lg mb-30"
+									<button
+										@click="closeInfo()"
+										class="hidden fixed bottom-12 right-12 bg-white w-44 h-44 rounded-full md:flex flex-col justify-center items-center"
 									>
-										<h2
-											class="font-bold pb-em uppercase w-[calc(100%-60px)]"
-										>
-											Adidas x END. (2022)
-										</h2>
-										<p class="pb-em">
-											Nunc mi tellus, bibendum vel
-											pellentesque at, consequat non
-											ligula. Nulla eros enim, efficitur
-											ut lorem non, convallis feugiat
-											urna. Class aptent taciti sociosqu
-											ad litora torquent per conubia
-											nostra, per inceptos himenaeos.
-											Praesent sollicitudin justo sit amet
-											ante tempus efficitur.<em
-												>(Source:
-												<a
-													href="https://www.endclothing.com/"
-													target="_blank"
-													class="underline"
-													>end</a
-												>)</em
-											>
-										</p>
-										<button
-											@click="closeInfo()"
-											class="bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm leading-none w-full md:w-auto"
-										>
-											<span>CLOSE</span>
-										</button>
-									</div>
+										?<span class="sr-only">Close Info</span>
+									</button>
 									<div
-										x-ref="callout"
-										class="bg-white p-rem font-mono relative"
+										@click.outside="closeInfo()"
+										class="w-full h-full md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row items-stretch relative -space-y-30 md:-space-y-0 md:-space-x-30"
 									>
-										<div class="space-y-30">
-											<h3 class="font-bold mr-30">
-												Learn more about the
-												collaboration
-											</h3>
-											<p>
-												<a
-													href="https://www.endclothing.com/"
-													target="_blank"
-													class="underline"
-													>Visit End</a
+										<figure
+											class="md:shrink shrink-0 rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden"
+										>
+											<img
+												class="object-cover w-full h-full"
+												src="/images/lobby/barcelona-pavilion.jpg"
+												alt=""
+											/>
+										</figure>
+										<div
+											class="text-body p-24 bg-yellow-light rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto"
+										>
+											<div>
+												<h2
+													class="font-bold pb-em uppercase"
 												>
-												to learn more about the
-												collaboration between Adidas and
-												this Bauhaus themed collection.
-											</p>
+													adidas originals x
+													end.Bauhaus collection
+													(2023)
+												</h2>
+												<p class="pb-em">
+													Nunc mi tellus, bibendum vel
+													pellentesque at, consequat
+													non ligula. Nulla eros enim,
+													efficitur ut lorem non,
+													convallis feugiat urna.
+												</p>
+												<p class="pb-em">
+													Class aptent taciti sociosqu
+													ad litora torquent per
+													conubia nostra, per inceptos
+													himenaeos. Praesent
+													sollicitudin justo sit amet
+													ante tempus efficitur.
+												</p>
+											</div>
+											<button
+												@click="closeInfo()"
+												class="bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm leading-none w-full"
+											>
+												<span>CLOSE</span>
+											</button>
 										</div>
 										<div
-											class="absolute top-rem right-rem w-36 h-36 bg-yellow-light rounded-full flex items-center justify-center"
+											class="absolute -top-12 right-12 md:-top-60 md:right-350 md:w-80 md:h-80 w-60 h-60 bg-white rounded-full flex justify-center items-center"
 										>
-											<span>!</span>
+											<span>?</span>
 										</div>
 									</div>
-									<div
-										class="absolute top-10 right-10 w-80 h-80 bg-white rounded-full flex justify-center items-center"
-									>
-										<span>?</span>
-									</div>
 								</div>
-							</div>
+							</template>
 							<p
 								class="r-h1 uppercase font-bold text-center pb-40 nav-title"
 							>
@@ -210,6 +199,7 @@
 							</ul>
 						</div>
 						<button
+							id="toggleNavButton"
 							@click="toggleNav();"
 							class="fixed bottom-12 right-12 bg-white w-44 h-44 rounded-full flex flex-col justify-center items-center"
 						>
@@ -293,6 +283,12 @@
 				/>
 			</svg>
 		</header>
+
+		<a
+			class="block fixed bottom-12 left-12 bg-white text-black hover:text-white hover:bg-black transition-colors px-60 py-18 rounded-full text-sm leading-none"
+			href="#"
+			>FULL COLLECTION</a
+		>
 
 		<!--* transition -->
 		<div id="transition" class="z-40 fixed inset-0 bg-blue hidden"></div>
