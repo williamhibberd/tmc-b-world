@@ -216,6 +216,334 @@
 						</button>
 					</nav>
 				</div>
+				<!-- Outside Shoe -->
+				<section
+					x-cloak
+					x-data="popup('outside')"
+					@keyup.window.escape="closePopup()"
+				>
+					<!-- * button -->
+					<button
+						id="toggleOutsideShoe"
+						@click="togglePopup()"
+					></button>
+					<!-- * overlay -->
+					<div
+						x-show="open"
+						x-transition:enter.opacity.duration.500ms
+						x-transition:leave.opacity.duration.500ms
+						class="fixed inset-0 md:bg-yellow-light/70"
+					></div>
+					<div
+						x-show="open"
+						x-transition:enter.duration.500ms
+						x-transition:leave.duration.500ms
+						class="fixed inset-0 flex flex-col md:flex-row md:items-center md:justify-center overflow-y-scroll"
+					>
+						<div
+							@click.outside="closePopup()"
+							class="pt-48 md:pt-0 w-full h-full justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row items-stretch relative -space-y-30 md:-space-y-0 md:-space-x-30"
+						>
+							<figure
+								class="w-full rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden bg-grey-light"
+							>
+								<img
+									class="object-contain w-full h-full"
+									src="/images/outside/outside-shoe.png"
+									alt=""
+								/>
+							</figure>
+							<div
+								class="text-body p-24 bg-yellow-light rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto relative space-y-30 md:overflow-y-scroll"
+							>
+								<div>
+									<h2 class="font-bold pb-em uppercase">
+										Adidas ORIGINALS x END. BAUHAUS
+										COLLECTION (2023)
+									</h2>
+									<p>
+										Nunc mi tellus, bibendum vel
+										pellentesque at, consequat non ligula.
+										Nulla eros enim, efficitur ut lorem non,
+										convallis feugiat urna. Class aptent
+										taciti sociosqu ad litora torquent per
+										conubia nostra, per inceptos himenaeos.
+										Praesent sollicitudin justo sit amet
+										ante tempus efficitur.
+										<em>(Source)</em>
+									</p>
+								</div>
+								<div class="space-y-24">
+									<div
+										class="bg-white p-rem font-mono relative text-sm"
+									>
+										<div class="space-y-30">
+											<h3 class="font-bold mr-30">
+												Learn more about the
+												collaboration
+											</h3>
+											<p>
+												<em
+													>Visit End to learn more
+													about this Bauhaus themed
+													collection.</em
+												>
+											</p>
+										</div>
+										<div
+											class="absolute top-rem right-rem w-36 h-36 bg-yellow-light rounded-full flex items-center justify-center"
+										>
+											<span>!</span>
+										</div>
+									</div>
+									<div class="space-y-12">
+										<a
+											target="_blank"
+											href="https://www.endclothing.com/"
+											class="block font-bold bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm text-center leading-none w-full"
+											>BUY NOW</a
+										>
+										<button
+											@click="closePopup()"
+											class="border border-black text-black hover:text-grey hover:bg-grey-light hover:border-grey-light transition-colors px-60 py-18 rounded-full text-sm leading-none w-full"
+										>
+											<span>CLOSE</span>
+										</button>
+									</div>
+								</div>
+							</div>
+							<div
+								class="absolute top-36 right-12 md:-top-60 md:right-350 md:w-80 md:h-80 w-60 h-60 bg-yellow rounded-full"
+							></div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Oskar -->
+				<section
+					x-cloak
+					x-data="popup('outside')"
+					@keyup.window.escape="closePopup()"
+				>
+					<!-- * button -->
+					<button id="toggleOskar" @click="togglePopup()"></button>
+					<!-- * overlay -->
+					<div
+						x-show="open"
+						x-transition:enter.opacity.duration.500ms
+						x-transition:leave.opacity.duration.500ms
+						class="fixed inset-0 md:bg-yellow-light/70"
+					></div>
+					<div
+						x-show="open"
+						x-transition:enter.duration.500ms
+						x-transition:leave.duration.500ms
+						class="fixed inset-0 flex flex-col md:flex-row md:items-center md:justify-center overflow-y-scroll"
+					>
+						<div
+							@click.outside="closePopup()"
+							class="pt-48 md:pt-0 w-full h-full justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row items-stretch relative -space-y-30 md:-space-y-0 md:-space-x-30"
+						>
+							<figure
+								class="w-full rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden bg-grey-light"
+							>
+								<img
+									class="object-contain w-full h-full"
+									src="/images/outside/oskar.png"
+									alt=""
+								/>
+							</figure>
+							<div
+								class="text-body p-24 bg-yellow-light rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto relative space-y-30 md:overflow-y-scroll"
+							>
+								<div>
+									<h2 class="font-bold pb-em uppercase">
+										OUTSIDE SCULPTURE INSPIRED by Oskar
+										Schlemmer (2023)
+									</h2>
+									<p class="pb-em">
+										Oskar Schlemmer was a German painter,
+										sculptor, designer and choreographer
+										associated with the Bauhaus school.
+									</p>
+									<p>
+										His most famous work is Triadisches
+										Ballett (Triadic Ballet), which saw
+										costumed actors transformed into
+										geometrical representations of the human
+										body in what he described as a "party of
+										form and colour".
+										<em
+											>(<a
+												href="https://en.wikipedia.org/wiki/Oskar_Schlemmer"
+												target="_blank"
+												class="underline"
+												>Source</a
+											>)</em
+										>
+									</p>
+								</div>
+								<div class="space-y-24">
+									<div
+										class="bg-white p-rem font-mono relative text-sm"
+									>
+										<div class="space-y-30">
+											<h3 class="font-bold mr-30">
+												Learn more about Oskar Schlemmer
+											</h3>
+											<p>
+												<em>George Nelson On Design</em
+												><br />A compendium of essays
+												published in the late 1950s,
+												Nelson doesn’t hesitate to point
+												fingers..
+											</p>
+										</div>
+										<div
+											class="absolute top-rem right-rem w-36 h-36 bg-yellow-light rounded-full flex items-center justify-center"
+										>
+											<span>!</span>
+										</div>
+									</div>
+									<button
+										@click="closePopup()"
+										class="block font-bold bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm text-center leading-none w-full"
+									>
+										<span>CLOSE</span>
+									</button>
+								</div>
+							</div>
+							<div
+								class="absolute top-36 right-12 md:-top-60 md:right-350 md:w-80 md:h-80 w-60 h-60 bg-yellow rounded-full"
+							></div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Fallingwater -->
+				<section
+					x-cloak
+					x-data="popup('outside')"
+					@keyup.window.escape="closePopup()"
+				>
+					<!-- * button -->
+					<button
+						id="toggleOutsideBuilding"
+						@click="togglePopup()"
+					></button>
+					<!-- * overlay -->
+					<div
+						x-show="open"
+						x-transition:enter.opacity.duration.500ms
+						x-transition:leave.opacity.duration.500ms
+						class="fixed inset-0 md:bg-yellow-light/70"
+					></div>
+					<div
+						x-show="open"
+						x-transition:enter.duration.500ms
+						x-transition:leave.duration.500ms
+						class="fixed inset-0 flex flex-col md:flex-row md:items-center md:justify-center overflow-y-scroll"
+					>
+						<div
+							@click.outside="closePopup()"
+							class="pt-48 md:pt-0 w-full h-full justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row items-stretch relative -space-y-30 md:-space-y-0 md:-space-x-30"
+						>
+							<figure
+								class="w-full rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden"
+							>
+								<img
+									class="object-cover w-full h-full"
+									src="/images/outside/fallingwater.jpg"
+									alt=""
+								/>
+							</figure>
+							<div
+								class="text-body p-24 bg-yellow-light rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto relative space-y-30 md:overflow-y-scroll"
+							>
+								<div>
+									OUTSIDE IS INSPIRED by Frank Lloyd Wright’S
+									FALLINGWATER HOUSE (1935)
+
+									<h2 class="font-bold pb-em uppercase">
+										The lobby is inspired by Mies van der
+										Rohe's Barcelona Pavilion (1928)
+									</h2>
+									<p class="pb-em">
+										After its completion, Time called
+										Fallingwater Wright's "most beautiful
+										job" and it is listed among
+										Smithsonian's "Life List of 28 Places to
+										See Before You Die".
+									</p>
+									<p>
+										The house was designated a National
+										Historic Landmark on May 11th, 1976. In
+										1991, members of the American Institute
+										of Architects named Fallingwater the
+										"best all-time work of American
+										architecture" and in 2007, it was ranked
+										29th on the list of America's Favorite
+										Architecture according to the AIA.
+										<em
+											>(
+											<a
+												href="https://en.wikipedia.org/wiki/Fallingwater"
+												target="_blank"
+												class="underline"
+												>Source</a
+											>
+											/
+											<a
+												href="https://commons.wikimedia.org/wiki/File:Fallingwater,_Pennsylvania.jpg"
+												target="_blank"
+												class="underline"
+												>image source</a
+											>
+											)</em
+										>
+									</p>
+								</div>
+								<div class="space-y-24">
+									<div
+										class="bg-white p-rem font-mono relative text-sm"
+									>
+										<div class="space-y-30">
+											<h3 class="font-bold mr-30">
+												Learn more about Frank Lloyd
+												Wright
+											</h3>
+											<p>
+												<em
+													>The Natural House by
+													Bramhall House Mr.
+													Wright</em
+												><br />
+												explains his aims and
+												contributions to Architecture..
+											</p>
+										</div>
+										<div
+											class="absolute top-rem right-rem w-36 h-36 bg-yellow-light rounded-full flex items-center justify-center"
+										>
+											!
+										</div>
+									</div>
+									<button
+										@click="closePopup()"
+										class="block font-bold bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm text-center leading-none w-full"
+									>
+										<span>CLOSE</span>
+									</button>
+								</div>
+							</div>
+							<div
+								class="absolute top-36 right-12 md:-top-60 md:right-350 md:w-80 md:h-80 w-60 h-60 bg-white rounded-full flex justify-center items-center text-[26px] md:text-[34px] font-bold"
+							>
+								<span class="mt-[.5em]">*</span>
+							</div>
+						</div>
+					</div>
+				</section>
 			</article>
 		</main>
 

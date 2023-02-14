@@ -215,6 +215,105 @@
 						</button>
 					</nav>
 				</div>
+
+				<section
+					x-cloak
+					x-data="popup('library')"
+					@keyup.window.escape="closePopup()"
+				>
+					<!-- * button -->
+					<button id="toggleLibShoe" @click="togglePopup()"></button>
+					<!-- * overlay -->
+					<div
+						x-show="open"
+						x-transition:enter.opacity.duration.500ms
+						x-transition:leave.opacity.duration.500ms
+						class="fixed inset-0 md:bg-yellow-light/70"
+					></div>
+					<div
+						x-show="open"
+						x-transition:enter.duration.500ms
+						x-transition:leave.duration.500ms
+						class="fixed inset-0 flex flex-col md:flex-row md:items-center md:justify-center overflow-y-scroll"
+					>
+						<div
+							@click.outside="closePopup()"
+							class="pt-48 md:pt-0 w-full h-full justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row items-stretch relative -space-y-30 md:-space-y-0 md:-space-x-30"
+						>
+							<figure
+								class="w-full rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden bg-grey-light"
+							>
+								<img
+									class="object-contain w-full h-full"
+									src="/images/library/lib-shoe.png"
+									alt=""
+								/>
+							</figure>
+							<div
+								class="text-body p-24 bg-yellow-light rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto relative space-y-30 md:overflow-y-scroll"
+							>
+								<div>
+									<h2 class="font-bold pb-em uppercase">
+										Adidas ORIGINALS x END. BAUHAUS
+										COLLECTION (2023)
+									</h2>
+									<p>
+										Nunc mi tellus, bibendum vel
+										pellentesque at, consequat non ligula.
+										Nulla eros enim, efficitur ut lorem non,
+										convallis feugiat urna. Class aptent
+										taciti sociosqu ad litora torquent per
+										conubia nostra, per inceptos himenaeos.
+										Praesent sollicitudin justo sit amet
+										ante tempus efficitur.
+										<em>(Source)</em>
+									</p>
+								</div>
+								<div class="space-y-24">
+									<div
+										class="bg-white p-rem font-mono relative text-sm"
+									>
+										<div class="space-y-30">
+											<h3 class="font-bold mr-30">
+												Learn more about the
+												collaboration
+											</h3>
+											<p>
+												<em
+													>Visit End to learn more
+													about this Bauhaus themed
+													collection.</em
+												>
+											</p>
+										</div>
+										<div
+											class="absolute top-rem right-rem w-36 h-36 bg-yellow-light rounded-full flex items-center justify-center"
+										>
+											<span>!</span>
+										</div>
+									</div>
+									<div class="space-y-12">
+										<a
+											target="_blank"
+											href="https://www.endclothing.com/"
+											class="block font-bold bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm text-center leading-none w-full"
+											>BUY NOW</a
+										>
+										<button
+											@click="closePopup()"
+											class="border border-black text-black hover:text-grey hover:bg-grey-light hover:border-grey-light transition-colors px-60 py-18 rounded-full text-sm leading-none w-full"
+										>
+											<span>CLOSE</span>
+										</button>
+									</div>
+								</div>
+							</div>
+							<div
+								class="absolute top-36 right-12 md:-top-60 md:right-350 md:w-80 md:h-80 w-60 h-60 bg-red rounded-full"
+							></div>
+						</div>
+					</div>
+				</section>
 			</article>
 		</main>
 
