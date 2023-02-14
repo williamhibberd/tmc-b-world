@@ -9,6 +9,7 @@ import {
 	library,
 	outside,
 	allHotSpots,
+	lobbyShoeMesh,
 	wassilyChairMesh,
 	barcelonaPavilionMesh,
 } from "./meshes";
@@ -110,7 +111,7 @@ const tick = () => {
 	// rotate currentScene
 	// PI * 2 is one revloution per second
 	if (spin === true) {
-		group.rotation.y = elapsedTime * Math.PI * 0.01;
+		// group.rotation.y = elapsedTime * Math.PI * 0.01;
 	}
 
 	// Cast a ray
@@ -161,12 +162,16 @@ function onWindowResize() {
 // Lobby
 export function onClickLobbyObject() {
 	// refrence all buttons to pseudo click
+	const toggleLobbyShoe = document.querySelector("#toggleLobbyShoe");
 	const toggleWassilyChair = document.querySelector("#toggleWassilyChair");
 	const togglebarcelonaPavilion = document.querySelector(
 		"#togglebarcelonaPavilion"
 	);
 	if (currentIntersect) {
 		switch (currentIntersect.object) {
+			case lobbyShoeMesh:
+				toggleLobbyShoe.click();
+				break;
 			case wassilyChairMesh:
 				toggleWassilyChair.click();
 				break;
@@ -222,11 +227,11 @@ let firstLoad = true;
 // Lobby Enter
 export const lobbyEnter = () => {
 	// Set variables
-	sceneHotspots = [wassilyChairMesh, barcelonaPavilionMesh];
+	sceneHotspots = [lobbyShoeMesh, wassilyChairMesh, barcelonaPavilionMesh];
 
 	// add objects to scene
-	scene.add(lobby, wassilyChairMesh, barcelonaPavilionMesh);
-	group.add(lobby, wassilyChairMesh, barcelonaPavilionMesh);
+	scene.add(lobby, lobbyShoeMesh, wassilyChairMesh, barcelonaPavilionMesh);
+	group.add(lobby, lobbyShoeMesh, wassilyChairMesh, barcelonaPavilionMesh);
 
 	spin = true;
 
@@ -257,8 +262,8 @@ export const lobbyExit = () => {
 	//!! Not yet working...
 	//!! will need to add to the exit animation
 	animateHotspotsOut(sceneHotspots);
-	scene.remove(lobby, wassilyChairMesh, barcelonaPavilionMesh);
-	group.remove(lobby, wassilyChairMesh, barcelonaPavilionMesh);
+	group.remove(lobby, lobbyShoeMesh, wassilyChairMesh, barcelonaPavilionMesh);
+	scene.remove(lobby, lobbyShoeMesh, wassilyChairMesh, barcelonaPavilionMesh);
 	window.removeEventListener("click", onClickLobbyObject);
 };
 

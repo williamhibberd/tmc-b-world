@@ -52,7 +52,11 @@
 	<body>
 		<main data-taxi class="relative z-10">
 			<article id="view" data-taxi-view="outside">
-				<div x-cloak x-data="nav('outside')" @keyup.escape="closeNav()">
+				<div
+					x-cloak
+					x-data="nav('outside')"
+					@keyup.window.escape="showInfo ? closeInfo() : closeNav()"
+				>
 					<div
 						x-show="show"
 						x-transition.opacity.duration.300ms
@@ -89,11 +93,11 @@
 										class="w-full h-full md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row items-stretch relative -space-y-30 md:-space-y-0 md:-space-x-30"
 									>
 										<figure
-											class="md:shrink shrink-0 rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden"
+											class="w-full rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden"
 										>
 											<img
 												class="object-cover w-full h-full"
-												src="/images/lobby/barcelona-pavilion.jpg"
+												src="/images/info.jpg"
 												alt=""
 											/>
 										</figure>
@@ -132,7 +136,7 @@
 											</button>
 										</div>
 										<div
-											class="absolute -top-12 right-12 md:-top-60 md:right-350 md:w-80 md:h-80 w-60 h-60 bg-white rounded-full flex justify-center items-center"
+											class="absolute -top-12 right-12 md:-top-60 md:right-350 md:w-80 md:h-80 w-60 h-60 bg-white rounded-full flex justify-center items-center font-bold"
 										>
 											<span>?</span>
 										</div>
@@ -283,7 +287,7 @@
 
 		<a
 			href="#"
-			class="block fixed bottom-12 left-12 bg-white text-black hover:text-white hover:bg-black transition-colors px-24 py-18 rounded-full text-sm leading-none font-bold"
+			class="block fixed bottom-12 left-12 bg-white text-black hover:text-grey hover:bg-grey-light transition-colors px-24 py-18 rounded-full text-sm leading-none font-bold"
 			>FULL COLLECTION</a
 		>
 

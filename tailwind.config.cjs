@@ -42,7 +42,7 @@ module.exports = {
 			red: "#DF3128",
 			grey: {
 				DEFAULT: "#343434",
-				light: "#D1D1D1",
+				light: "#DEDFDF",
 			},
 		},
 		extend: {
