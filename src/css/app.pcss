@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap"); */
+@import url("https://use.typekit.net/cxy6prh.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,14 +15,17 @@
 }
 
 @layer base {
+	body {
+		@apply font-sans;
+	}
+	button {
+		@apply font-bold;
+	}
 	.r-h1 {
 		font-size: responsive 32px 58px; /* min-size, max-size */
 		font-range: 640px 1440px;
 		line-height: responsive 28px 51px;
 		line-height-range: 640px 1440px;
 		letter-spacing: 0.06em;
-	}
-	button {
-		@apply font-bold;
 	}
 }

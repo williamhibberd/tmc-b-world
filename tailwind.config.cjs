@@ -47,7 +47,10 @@ module.exports = {
 		},
 		extend: {
 			fontFamily: {
-				sans: ["'Inter'", ...defaultTheme.fontFamily.sans],
+				sans: [
+					"'neue-haas-grotesk-display'",
+					...defaultTheme.fontFamily.sans,
+				],
 			},
 			height: {
 				screen: "calc(var(--vh, 1vh) * 100)",
