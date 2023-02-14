@@ -12,6 +12,12 @@ import {
 	lobbyShoeMesh,
 	wassilyChairMesh,
 	barcelonaPavilionMesh,
+	libShoeMesh,
+	vitraClockMesh,
+	bauhausBuildingMesh,
+	outsideShoeMesh,
+	oskarMesh,
+	outsideBuildingMesh,
 } from "./meshes";
 import lazySizes from "lazysizes";
 
@@ -184,34 +190,46 @@ export function onClickLobbyObject() {
 
 // Library
 export function onClickLibraryObject() {
+	// refrence all buttons to pseudo click
+	const toggleLibShoe = document.querySelector("#toggleLibShoe");
+	const toggleVitraClock = document.querySelector("#toggleVitraClock");
+	const toggleBauhausBuilding = document.querySelector(
+		"#toggleBauhausBuilding"
+	);
 	if (currentIntersect) {
-		switch (
-			currentIntersect.object
-			// case blueButton:
-			// 	console.log("click on a blue button");
-			// 	break;
-			// case breuerChairMesh:
-			// 	breuerChairButton.click();
-			// 	console.log("click on asterix button");
-			// 	break;
-		) {
+		switch (currentIntersect.object) {
+			case libShoeMesh:
+				toggleLibShoe.click();
+				break;
+			case vitraClockMesh:
+				toggleVitraClock.click();
+				break;
+			case bauhausBuildingMesh:
+				toggleBauhausBuilding.click();
+				break;
 		}
 	}
 }
 
 // Outside
 export function onClickOutsideObject() {
+	// refrence all buttons to pseudo click
+	const toggleOutsideShoe = document.querySelector("#toggleOutsideShoe");
+	const toggleOskar = document.querySelector("#toggleOskar");
+	const toggleOutsideBuilding = document.querySelector(
+		"#toggleOutsideBuilding"
+	);
 	if (currentIntersect) {
-		switch (
-			currentIntersect.object
-			// case blueButton:
-			// 	console.log("click on a blue button");
-			// 	break;
-			// case breuerChairMesh:
-			// 	breuerChairButton.click();
-			// 	console.log("click on asterix button");
-			// 	break;
-		) {
+		switch (currentIntersect.object) {
+			case outsideShoeMesh:
+				toggleOutsideShoe.click();
+				break;
+			case oskarMesh:
+				toggleOskar.click();
+				break;
+			case outsideBuildingMesh:
+				toggleOutsideBuilding.click();
+				break;
 		}
 	}
 }
@@ -270,11 +288,11 @@ export const lobbyExit = () => {
 // Library Enter
 export const libraryEnter = () => {
 	// Set variables
-	sceneHotspots = [];
+	sceneHotspots = [libShoeMesh, vitraClockMesh, bauhausBuildingMesh];
 
 	// add objects to scene
-	scene.add(library);
-	group.add(library);
+	scene.add(library, libShoeMesh, vitraClockMesh, bauhausBuildingMesh);
+	group.add(library, libShoeMesh, vitraClockMesh, bauhausBuildingMesh);
 
 	spin = true;
 
@@ -305,19 +323,19 @@ export const libraryExit = () => {
 	//!! Not yet working...
 	//!! will need to add to the exit animation
 	animateHotspotsOut(sceneHotspots);
-	scene.remove(library);
-	group.remove(library);
+	scene.remove(library, libShoeMesh, vitraClockMesh, bauhausBuildingMesh);
+	group.remove(library, libShoeMesh, vitraClockMesh, bauhausBuildingMesh);
 	window.removeEventListener("click", onClickLibraryObject);
 };
 
 // Outside Enter
 export const outsideEnter = () => {
 	// Set variables
-	sceneHotspots = [];
+	sceneHotspots = [outsideShoeMesh, oskarMesh, outsideBuildingMesh];
 
 	// add objects to scene
-	scene.add(outside);
-	group.add(outside);
+	scene.add(outside, outsideShoeMesh, oskarMesh, outsideBuildingMesh);
+	group.add(outside, outsideShoeMesh, oskarMesh, outsideBuildingMesh);
 
 	spin = true;
 
@@ -348,7 +366,7 @@ export const outsideExit = () => {
 	//!! Not yet working...
 	//!! will need to add to the exit animation
 	animateHotspotsOut(sceneHotspots);
-	scene.remove(outside);
-	group.remove(outside);
+	scene.remove(outside, outsideShoeMesh, oskarMesh, outsideBuildingMesh);
+	group.remove(outside, outsideShoeMesh, oskarMesh, outsideBuildingMesh);
 	window.removeEventListener("click", onClickOutsideObject);
 };
