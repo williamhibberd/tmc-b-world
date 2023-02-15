@@ -255,11 +255,19 @@
 							<figure
 								class="shrink-0 md:shrink rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden w-full bg-grey-light"
 							>
-								<img
+								<video
+									loop
+									muted
+									autoplay
+									playsinline
+									src="/videos/lobby.mp4"
+									class="object-cover w-full h-full"
+								></video>
+								<!-- <img
 									class="object-contain w-full h-full"
 									src="/images/lobby/lobby-shoe.png"
 									alt=""
-								/>
+								/> -->
 							</figure>
 							<div
 								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow"
@@ -554,6 +562,70 @@
 						</div>
 					</div>
 				</section>
+
+				<!-- form 
+				<section
+					x-cloak
+					x-data="popup('lobby')"
+					@keyup.window.escape="closePopup()"
+				>
+					<form
+						x-data="form"
+						x-show="show"
+						x-transition.opacity.duration.500ms
+						x-ref="form"
+						x-validate
+						x-on:submit.prevent="submitForm()"
+						class="space-y-30"
+						name="winner"
+						method="POST"
+						netlify
+					>
+						<input
+							type="hidden"
+							name="form-name"
+							value="winner"
+							hidden
+						/>
+						<fieldset>
+							<input
+								type="text"
+								name="name"
+								:placeholder="language == 'en' ? 'Full Name' : 'Nom et prénom'"
+								x-validate.required
+							/>
+						</fieldset>
+						<fieldset>
+							<input
+								type="email"
+								name="email"
+								:placeholder="language == 'en' ? 'Email Address' : 'Email'"
+								x-validate.required
+								x-validate.email
+							/>
+						</fieldset>
+						<fieldset>
+							<input
+								type="tel"
+								name="tel"
+								:placeholder="language == 'en' ? 'Telephone Number' : 'Numéro de téléphone'"
+								x-validate.required
+								x-validate.tel
+							/>
+						</fieldset>
+						<button
+							id="formSubmit"
+							type="submit"
+							class="submit"
+							x-text="language == 'en' ? 'Enter the raffle' : 'Participe au tirage au sort'"
+						></button>
+						<p
+							class="text-xs"
+							x-html="language == 'en' ? steps[7].gdpr : steps[7].gdprFR"
+						></p>
+					</form>
+				</section>
+				-->
 			</article>
 		</main>
 
