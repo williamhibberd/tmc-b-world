@@ -4,7 +4,7 @@
     "src": "src/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app.e7519880.css"
+      "assets/app.0274d27d.css"
     ],
     "integrity": "sha384-eoKavV5BR+WJzJRcwJJ6kpvtP+5Gi6rbky0CYplgE4MdD+wztXFD+Q+DYQMYm9hh"
   },
@@ -13,8 +13,8 @@
     "integrity": "sha384-3bNm9D6U77cdsqCfNMkcY/qmfKFpXe6+YGJi3Ar45gu2CviZtNYaV3/Z2gfHHE6b"
   },
   "src/js/app.css": {
-    "file": "assets/app.e7519880.css",
+    "file": "assets/app.0274d27d.css",
     "src": "src/js/app.css",
-    "integrity": "sha384-o5QCmyh5UPqmjxTi+CcMz/azKh4ml75GMc/i3RwFRsIYBBj93Cpvyly+OBNpVO0O"
+    "integrity": "sha384-NhBBOXAl6R84vXDrzEsutOl3A9GgswvsVNlUFSjmdKpFmuKpy1xNzjCKVGKbKHg2"
   }
 }

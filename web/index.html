@@ -50,7 +50,7 @@
 		</style>
 		<script type="module" crossorigin src="/assets/modulepreload-polyfill.c7c6310f.js"></script>
 		<script type="module" crossorigin src="/assets/app.1f1bc145.js"></script>
-		<link rel="stylesheet" href="/assets/app.e7519880.css">
+		<link rel="stylesheet" href="/assets/app.0274d27d.css">
 	</head>
 	<body>
 		<main data-taxi class="relative z-10">
@@ -84,7 +84,7 @@
 									x-show="showInfo"
 									x-transition:enter.duration.500ms
 									x-transition:leave.duration.500ms
-									class="absolute top-48 inset-x-0 bottom-0 md:inset-0 z-30 flex flex-col md:flex-row md:items-center md:justify-center"
+									class="absolute pt-48 md:pt-0 inset-0 z-30 flex flex-col md:flex-row md:items-center md:justify-center"
 								>
 									<button
 										@click="closeInfo()"
@@ -94,10 +94,10 @@
 									</button>
 									<div
 										@click.outside="closeInfo()"
-										class="w-full h-full justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row items-stretch relative -space-y-30 md:-space-y-0 md:-space-x-30"
+										class="w-full h-full justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row items-stretch relative -space-y-30 md:-space-y-0 md:-space-x-30 overflow-y-scroll rounded-t-large md:rounded-large md:overflow-y-visible bg-yellow-light"
 									>
 										<figure
-											class="rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden w-full"
+											class="shrink-0 md:shrink rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden w-full"
 										>
 											<img
 												class="object-cover w-full h-full"
@@ -106,7 +106,7 @@
 											/>
 										</figure>
 										<div
-											class="text-body p-24 bg-yellow-light rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto"
+											class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto md:overflow-y-scroll grow"
 										>
 											<div>
 												<h2
@@ -140,10 +140,15 @@
 											</button>
 										</div>
 										<div
-											class="absolute -top-12 right-12 md:-top-60 md:right-350 md:w-80 md:h-80 w-60 h-60 bg-white rounded-full flex justify-center items-center font-bold"
+											class="hidden absolute md:-top-60 md:right-350 md:w-80 md:h-80 bg-white rounded-full md:flex justify-center items-center font-bold"
 										>
 											<span>?</span>
 										</div>
+									</div>
+									<div
+										class="absolute md:hidden top-12 right-12 w-60 h-60 bg-white rounded-full flex justify-center items-center font-bold"
+									>
+										<span>?</span>
 									</div>
 								</div>
 							</template>
@@ -243,14 +248,14 @@
 						x-show="open"
 						x-transition:enter.duration.500ms
 						x-transition:leave.duration.500ms
-						class="fixed inset-0 flex flex-col md:flex-row md:items-center md:justify-center overflow-y-scroll"
+						class="fixed pt-48 md:pt-0 inset-0 z-30 md:flex md:flex-row md:items-center md:justify-center"
 					>
 						<div
 							@click.outside="closePopup()"
-							class="pt-48 md:pt-0 w-full h-full justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row items-stretch relative -space-y-30 md:-space-y-0 md:-space-x-30"
+							class="w-full h-full md:justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row relative -space-y-30 md:-space-y-0 md:-space-x-30 overflow-y-scroll rounded-t-large md:rounded-large md:overflow-y-visible bg-yellow-light"
 						>
 							<figure
-								class="w-full rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden bg-grey-light"
+								class="shrink-0 md:shrink rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden w-full bg-grey-light"
 							>
 								<img
 									class="object-contain w-full h-full"
@@ -259,68 +264,73 @@
 								/>
 							</figure>
 							<div
-								class="text-body p-24 bg-yellow-light rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto relative space-y-30 md:overflow-y-scroll"
+								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow"
 							>
-								<div>
-									<h2 class="font-bold pb-em uppercase">
-										Adidas ORIGINALS x END. BAUHAUS
-										COLLECTION (2023)
+								<div
+									class="relative space-y-em md:mb-[138px] md:pb-24 md:overflow-y-scroll"
+								>
+									<h2 class="font-bold uppercase">
+										END. x adidas Originals Bermuda
+										“Bauhaus” (2023)
 									</h2>
 									<p>
-										Nunc mi tellus, bibendum vel
-										pellentesque at, consequat non ligula.
-										Nulla eros enim, efficitur ut lorem non,
-										convallis feugiat urna. Class aptent
-										taciti sociosqu ad litora torquent per
-										conubia nostra, per inceptos himenaeos.
-										Praesent sollicitudin justo sit amet
-										ante tempus efficitur.
-										<em>(Source)</em>
+										END. links up with adidas on a bright
+										‘n’ bold trio of footwear that taps into
+										the 20th century movement of Bauhaus and
+										its instantly recognisable aesthetic,
+										that has influenced way beyond then.
+									</p>
+									<p>
+										Capturing its modernist vision through
+										the lens of sporting footwear, the duo
+										revisits the classic Bermuda, mirroring
+										the iconic German art school’s penchant
+										for bold typography, geometric shapes
+										and of course - the distinct colour
+										palette.
+									</p>
+									<p>
+										Washed in a pastel blue suede, the
+										leather Three Stripes and heel take on
+										Bauhaus’ primary colours and layered
+										forms, while further nods to the
+										movement sit pride of place at the woven
+										tongue patch.
+									</p>
+									<p>
+										To finish END. and the sportswear
+										powerhouse take over the colour pop
+										heels - with metallic gold foiled
+										branding.
 									</p>
 								</div>
-								<div class="space-y-24">
-									<div
-										class="bg-white p-rem font-mono relative text-sm"
+								<div
+									class="space-y-12 md:absolute md:bottom-0 md:inset-x-0 md:p-24 md:bg-yellow-light"
+								>
+									<a
+										target="_blank"
+										href="https://www.endclothing.com/"
+										class="block font-bold bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm text-center leading-none w-full"
+										>BUY NOW</a
 									>
-										<div class="space-y-30">
-											<h3 class="font-bold mr-30">
-												Learn more about the
-												collaboration
-											</h3>
-											<p>
-												<em
-													>Visit End to learn more
-													about this Bauhaus themed
-													collection.</em
-												>
-											</p>
-										</div>
-										<div
-											class="absolute top-rem right-rem w-36 h-36 bg-yellow-light rounded-full flex items-center justify-center"
-										>
-											<span>!</span>
-										</div>
-									</div>
-									<div class="space-y-12">
-										<a
-											target="_blank"
-											href="https://www.endclothing.com/"
-											class="block font-bold bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm text-center leading-none w-full"
-											>BUY NOW</a
-										>
-										<button
-											@click="closePopup()"
-											class="border border-black text-black hover:text-grey hover:bg-grey-light hover:border-grey-light transition-colors px-60 py-18 rounded-full text-sm leading-none w-full"
-										>
-											<span>CLOSE</span>
-										</button>
-									</div>
+									<button
+										@click="closePopup()"
+										class="border border-black text-black hover:text-grey hover:bg-grey-light hover:border-grey-light transition-colors px-60 py-18 rounded-full text-sm leading-none w-full"
+									>
+										<span>CLOSE</span>
+									</button>
 								</div>
+								<div
+									class="absolute hidden md:block bg-gradient-to-t from-yellow-light bottom-[162px] inset-x-0 h-40"
+								></div>
 							</div>
 							<div
-								class="absolute top-36 right-12 md:-top-60 md:right-350 md:w-80 md:h-80 w-60 h-60 bg-blue rounded-full"
+								class="hidden md:block absolute -top-60 right-350 w-80 h-80 bg-blue rounded-full"
 							></div>
 						</div>
+						<div
+							class="block md:hidden absolute top-12 right-12 w-60 h-60 bg-blue rounded-full"
+						></div>
 					</div>
 				</section>
 				<!-- Wassily Chair -->
