@@ -8,6 +8,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@colinaut/alpinejs-plugin-simple-validate": "^1.7.13",
 		"@unseenco/taxi": "^1.2.2",
 		"alpinejs": "^3.2.3",
 		"gsap": "^3.11.3",

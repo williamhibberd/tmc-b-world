@@ -5,9 +5,10 @@ import {
 	toggleSpin,
 } from "./functions";
 
-export default function popup(scene) {
+export default function form(scene) {
 	return {
 		open: false,
+		success: false,
 		scene: scene,
 		openPopup() {
 			toggleSpin();
@@ -53,6 +54,24 @@ export default function popup(scene) {
 				this.closePopup();
 			} else {
 				this.openPopup();
+			}
+		},
+		submitForm() {
+			const formSubmit = document.querySelector("#formSubmit");
+			if (this.$validate.isComplete(this.$root)) {
+				const myForm = this.$refs.form;
+				const formData = new FormData(myForm);
+				console.log(formData);
+				fetch("/", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/x-www-form-urlencoded",
+					},
+					body: new URLSearchParams(formData).toString(),
+				})
+					.then(() => console.log("Form successfully submitted"))
+					.then(() => (this.success = true))
+					.catch((error) => alert(error));
 			}
 		},
 	};

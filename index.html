@@ -563,69 +563,88 @@
 					</div>
 				</section>
 
-				<!-- form 
+				<!-- form -->
 				<section
 					x-cloak
-					x-data="popup('lobby')"
+					x-data="form('lobby')"
 					@keyup.window.escape="closePopup()"
 				>
-					<form
-						x-data="form"
-						x-show="show"
-						x-transition.opacity.duration.500ms
-						x-ref="form"
-						x-validate
-						x-on:submit.prevent="submitForm()"
-						class="space-y-30"
-						name="winner"
-						method="POST"
-						netlify
+					<button
+						@click="open = !open"
+						class="fixed top-12 right-12 rounded-full bg-red w-10 h-10"
+					></button>
+					<div
+						x-show="open"
+						x-transition:enter.opacity.duration.500ms
+						x-transition:leave.opacity.duration.500ms
+						class="fixed inset-0 md:bg-yellow-light/70"
+					></div>
+					<div
+						x-show="open && !success"
+						x-transition:enter.duration.500ms
+						x-transition:leave.duration.500ms
+						class="fixed pt-48 md:pt-0 inset-0 z-30 md:flex md:flex-row md:items-center md:justify-center"
 					>
-						<input
-							type="hidden"
-							name="form-name"
-							value="winner"
-							hidden
-						/>
-						<fieldset>
-							<input
-								type="text"
-								name="name"
-								:placeholder="language == 'en' ? 'Full Name' : 'Nom et prénom'"
-								x-validate.required
-							/>
-						</fieldset>
-						<fieldset>
-							<input
-								type="email"
-								name="email"
-								:placeholder="language == 'en' ? 'Email Address' : 'Email'"
-								x-validate.required
-								x-validate.email
-							/>
-						</fieldset>
-						<fieldset>
-							<input
-								type="tel"
-								name="tel"
-								:placeholder="language == 'en' ? 'Telephone Number' : 'Numéro de téléphone'"
-								x-validate.required
-								x-validate.tel
-							/>
-						</fieldset>
-						<button
-							id="formSubmit"
-							type="submit"
-							class="submit"
-							x-text="language == 'en' ? 'Enter the raffle' : 'Participe au tirage au sort'"
-						></button>
-						<p
-							class="text-xs"
-							x-html="language == 'en' ? steps[7].gdpr : steps[7].gdprFR"
-						></p>
-					</form>
+						<div
+							@click.outside="open = false"
+							class="w-full h-full md:justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row relative -space-y-30 md:-space-y-0 md:-space-x-30 overflow-y-scroll rounded-t-large md:rounded-large md:overflow-y-visible bg-yellow-light"
+						>
+							<figure
+								class="shrink-0 md:shrink rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden w-full bg-grey-light"
+							>
+								<img
+									class="object-cover w-full h-full"
+									src="/images/lobby/the-barcelona-pavilion.jpg"
+									alt=""
+								/>
+							</figure>
+							<form
+								x-ref="form"
+								x-validate
+								x-on:submit.prevent="submitForm()"
+								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
+								name="hidden coin"
+								method="POST"
+								netlify
+							>
+								<fieldset>
+									<input
+										type="text"
+										name="name"
+										placeholder="'Full Name'"
+										x-validate.required
+									/>
+								</fieldset>
+								<fieldset>
+									<input
+										type="email"
+										name="email"
+										placeholder="'Email Address'"
+										x-validate.required
+										x-validate.email
+									/>
+								</fieldset>
+								<fieldset>
+									<input
+										type="tel"
+										name="tel"
+										placeholder="'Telephone Number'"
+										x-validate.required
+										x-validate.tel
+									/>
+								</fieldset>
+								<button
+									id="formSubmit"
+									type="submit"
+									class="submit"
+								>
+									Enter the raffle
+								</button>
+								<p class="text-sm">something about gdpr</p>
+							</form>
+						</div>
+					</div>
 				</section>
-				-->
 			</article>
 		</main>
 

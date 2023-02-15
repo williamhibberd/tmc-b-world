@@ -1,5 +1,6 @@
 /* Packages */
 import Alpine from "alpinejs";
+import validate from "@colinaut/alpinejs-plugin-simple-validate";
 import { Core } from "@unseenco/taxi";
 
 /* CSS imported here */
@@ -14,6 +15,7 @@ import "./components/controls";
 import "./components/functions";
 import nav from "./components/nav";
 import popup from "./components/popup";
+import form from "./components/form";
 
 import DefaultTaxiTransition from "./transitions/default";
 import toLobby from "./transitions/toLobby";
@@ -26,9 +28,13 @@ import Library from "./renderers/Library";
 /* Place alpine on the window to get Alpine dev tools working */
 window.Alpine = Alpine;
 
+/* Alpine plugins */
+Alpine.plugin(validate);
+
 /* Alpine data */
 Alpine.data("nav", nav);
 Alpine.data("popup", popup);
+Alpine.data("form", form);
 
 /* Start Taxi */
 const taxi = new Core({
