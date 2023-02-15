@@ -50,7 +50,7 @@
 		</style>
 		<script type="module" crossorigin src="/assets/modulepreload-polyfill.c7c6310f.js"></script>
 		<script type="module" crossorigin src="/assets/app.1f1bc145.js"></script>
-		<link rel="stylesheet" href="/assets/app.e6e3e06c.css">
+		<link rel="stylesheet" href="/assets/app.d57db2c2.css">
 	</head>
 	<body>
 		<main data-taxi class="relative z-10">
@@ -356,14 +356,14 @@
 						x-show="open"
 						x-transition:enter.duration.500ms
 						x-transition:leave.duration.500ms
-						class="fixed inset-0 flex flex-col md:flex-row md:items-center md:justify-center overflow-y-scroll"
+						class="fixed pt-48 md:pt-0 inset-0 z-30 md:flex md:flex-row md:items-center md:justify-center"
 					>
 						<div
 							@click.outside="closePopup()"
-							class="pt-48 md:pt-0 w-full h-full justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row items-stretch relative -space-y-30 md:-space-y-0 md:-space-x-30"
+							class="w-full h-full md:justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row relative -space-y-30 md:-space-y-0 md:-space-x-30 overflow-y-scroll rounded-t-large md:rounded-large md:overflow-y-visible bg-yellow-light"
 						>
 							<figure
-								class="w-full rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden bg-grey-light"
+								class="shrink-0 md:shrink rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden w-full bg-grey-light"
 							>
 								<img
 									class="object-contain w-full h-full"
@@ -372,10 +372,10 @@
 								/>
 							</figure>
 							<div
-								class="text-body p-24 bg-yellow-light rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto relative space-y-30 md:overflow-y-scroll"
+								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
 							>
-								<div>
-									<h2 class="font-bold pb-em uppercase">
+								<div class="space-y-em">
+									<h2 class="font-bold uppercase">
 										Marcel Breuer The Wassily Chair, Model
 										B3 (1927 – 1928)
 									</h2>
@@ -432,9 +432,12 @@
 								</div>
 							</div>
 							<div
-								class="absolute top-36 right-12 md:-top-60 md:right-350 md:w-80 md:h-80 w-60 h-60 bg-blue rounded-full"
+								class="hidden md:block absolute -top-60 right-350 w-80 h-80 bg-blue rounded-full"
 							></div>
 						</div>
+						<div
+							class="block md:hidden absolute top-12 right-12 w-60 h-60 bg-blue rounded-full"
+						></div>
 					</div>
 				</section>
 				<!-- The Barcalona Pav -->
@@ -459,14 +462,14 @@
 						x-show="open"
 						x-transition:enter.duration.500ms
 						x-transition:leave.duration.500ms
-						class="fixed inset-0 flex flex-col md:flex-row md:items-center md:justify-center overflow-y-scroll"
+						class="fixed pt-48 md:pt-0 inset-0 z-30 md:flex md:flex-row md:items-center md:justify-center"
 					>
 						<div
 							@click.outside="closePopup()"
-							class="pt-48 md:pt-0 w-full h-full justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row items-stretch relative -space-y-30 md:-space-y-0 md:-space-x-30"
+							class="w-full h-full md:justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row relative -space-y-30 md:-space-y-0 md:-space-x-30 overflow-y-scroll rounded-t-large md:rounded-large md:overflow-y-visible bg-yellow-light"
 						>
 							<figure
-								class="w-full rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden"
+								class="shrink-0 md:shrink rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden w-full bg-grey-light"
 							>
 								<img
 									class="object-cover w-full h-full"
@@ -475,10 +478,10 @@
 								/>
 							</figure>
 							<div
-								class="text-body p-24 bg-yellow-light rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto relative space-y-30 md:overflow-y-scroll"
+								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
 							>
-								<div>
-									<h2 class="font-bold pb-em uppercase">
+								<div class="space-y-em">
+									<h2 class="font-bold uppercase">
 										The lobby is inspired by Mies van der
 										Rohe's Barcelona Pavilion (1928)
 									</h2>
@@ -542,10 +545,15 @@
 								</div>
 							</div>
 							<div
-								class="absolute top-36 right-12 md:-top-60 md:right-350 md:w-80 md:h-80 w-60 h-60 bg-white rounded-full flex justify-center items-center text-[26px] md:text-[34px] font-bold"
+								class="hidden md:flex absolute -top-60 right-350 w-80 h-80 rounded-full bg-white justify-center items-center text-[34px] font-bold"
 							>
 								<span class="mt-[.5em]">*</span>
 							</div>
+						</div>
+						<div
+							class="flex justify-center items-center md:hidden absolute top-12 right-12 w-60 h-60 bg-white rounded-full text-[26px] font-bold"
+						>
+							<span class="mt-[.5em]">*</span>
 						</div>
 					</div>
 				</section>
