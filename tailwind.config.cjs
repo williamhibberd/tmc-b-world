@@ -57,6 +57,7 @@ module.exports = {
 					"'neue-haas-grotesk-display'",
 					...defaultTheme.fontFamily.sans,
 				],
+				mono: ["Courier New", "monospace"],
 			},
 			height: {
 				screen: "calc(var(--vh, 1vh) * 100)",

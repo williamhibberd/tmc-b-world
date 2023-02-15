@@ -218,7 +218,7 @@
 						</button>
 					</nav>
 				</div>
-
+				<!-- * lib shoe -->
 				<section
 					x-cloak
 					x-data="popup('library')"
@@ -237,14 +237,14 @@
 						x-show="open"
 						x-transition:enter.duration.500ms
 						x-transition:leave.duration.500ms
-						class="fixed inset-0 flex flex-col md:flex-row md:items-center md:justify-center overflow-y-scroll"
+						class="fixed pt-48 md:pt-0 inset-0 z-30 md:flex md:flex-row md:items-center md:justify-center"
 					>
 						<div
 							@click.outside="closePopup()"
-							class="pt-48 md:pt-0 w-full h-full justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row items-stretch relative -space-y-30 md:-space-y-0 md:-space-x-30"
+							class="w-full h-full md:justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row relative -space-y-30 md:-space-y-0 md:-space-x-30 overflow-y-scroll rounded-t-large md:rounded-large md:overflow-y-visible bg-yellow-light"
 						>
 							<figure
-								class="w-full rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden bg-grey-light"
+								class="shrink-0 md:shrink rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden w-full bg-grey-light"
 							>
 								<img
 									class="object-contain w-full h-full"
@@ -253,23 +253,141 @@
 								/>
 							</figure>
 							<div
-								class="text-body p-24 bg-yellow-light rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto relative space-y-30 md:overflow-y-scroll"
+								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow"
 							>
-								<div>
-									<h2 class="font-bold pb-em uppercase">
-										Adidas ORIGINALS x END. BAUHAUS
-										COLLECTION (2023)
+								<div
+									class="relative space-y-em md:mb-[138px] md:pb-24 md:overflow-y-scroll"
+								>
+									<h2 class="font-bold uppercase">
+										END. x adidas Originals ZX 420 “Bauhaus”
+										(2023)
 									</h2>
 									<p>
-										Nunc mi tellus, bibendum vel
-										pellentesque at, consequat non ligula.
-										Nulla eros enim, efficitur ut lorem non,
-										convallis feugiat urna. Class aptent
-										taciti sociosqu ad litora torquent per
-										conubia nostra, per inceptos himenaeos.
-										Praesent sollicitudin justo sit amet
-										ante tempus efficitur.
-										<em>(Source)</em>
+										What’s Bauhaus’ favourite colour?
+										Bright. END. and adidas team up, diving
+										into the world of the Bauhaus movement.
+									</p>
+									<p>
+										A trio of footwear relays the
+										influential school’s aesthetic vision,
+										which focused on a Modernist approach to
+										art, design and architecture with bold
+										typography, block colours and
+										architectural forms. Taking on the ZX
+										420, this rendition mirrors the
+										movements penchant for clean lined
+										geometric shapes and of course - its
+										distinct colour palette.
+									</p>
+									<p>
+										A muted twist on the retro-runner,
+										creamy mesh is overlaid with plush suede
+										and the leather Three Stripes and heel
+										take on primary colour pops and layered
+										forms. Further nods sit pride of place
+										at the woven tongue patch.
+									</p>
+									<p>
+										To finish END. and the sportswear
+										powerhouse take over the heels - with
+										metallic gold foiled branding, adding
+										adidas’ trademark style.
+									</p>
+								</div>
+								<div
+									class="space-y-12 md:absolute md:bottom-0 md:inset-x-0 md:p-24 md:bg-yellow-light"
+								>
+									<a
+										target="_blank"
+										href="https://www.endclothing.com/"
+										class="block font-bold bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm text-center leading-none w-full"
+										>BUY NOW</a
+									>
+									<button
+										@click="closePopup()"
+										class="border border-black text-black hover:text-grey hover:bg-grey-light hover:border-grey-light transition-colors px-60 py-18 rounded-full text-sm leading-none w-full"
+									>
+										<span>CLOSE</span>
+									</button>
+								</div>
+								<div
+									class="absolute hidden md:block bg-gradient-to-t from-yellow-light bottom-[162px] inset-x-0 h-40"
+								></div>
+							</div>
+							<div
+								class="hidden md:block absolute -top-60 right-350 w-80 h-80 bg-red rounded-full"
+							></div>
+						</div>
+						<div
+							class="block md:hidden absolute top-12 right-12 w-60 h-60 bg-red rounded-full"
+						></div>
+					</div>
+				</section>
+
+				<!-- Vitra Clock -->
+				<section
+					x-cloak
+					x-data="popup('library')"
+					@keyup.window.escape="closePopup()"
+				>
+					<!-- * button -->
+					<button
+						id="toggleVitraClock"
+						@click="togglePopup()"
+					></button>
+					<!-- * overlay -->
+					<div
+						x-show="open"
+						x-transition:enter.opacity.duration.500ms
+						x-transition:leave.opacity.duration.500ms
+						class="fixed inset-0 md:bg-yellow-light/70"
+					></div>
+					<div
+						x-show="open"
+						x-transition:enter.duration.500ms
+						x-transition:leave.duration.500ms
+						class="fixed pt-48 md:pt-0 inset-0 z-30 md:flex md:flex-row md:items-center md:justify-center"
+					>
+						<div
+							@click.outside="closePopup()"
+							class="w-full h-full md:justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row relative -space-y-30 md:-space-y-0 md:-space-x-30 overflow-y-scroll rounded-t-large md:rounded-large md:overflow-y-visible bg-yellow-light"
+						>
+							<figure
+								class="shrink-0 md:shrink rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden w-full bg-grey-light"
+							>
+								<img
+									class="object-contain w-full h-full"
+									src="/images/library/vitra-clock.png"
+									alt=""
+								/>
+							</figure>
+							<div
+								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
+							>
+								<div class="space-y-em">
+									<h2 class="font-bold uppercase">
+										George Nelson Ball Wall Clock by VitrA
+										(1948 - 1960)
+									</h2>
+									<p>
+										All the original clock designs were
+										simply assigned numbers by Howard
+										Miller. Probably the most recognisable
+										of the series, the Ball Clock, was
+										advertised and sold as 'Clock 4755'; the
+										Sunflower Clock as 'Clock 2261'. Several
+										colour variations were available for
+										many of the clocks. The Ball Clock was
+										available in six colour variations, the
+										Sunflower Clock in three.
+										<em
+											>(<a
+												href="https://en.wikipedia.org/wiki/George_Nelson_(designer)#Furniture_designs"
+												target="_blank"
+												class="underline"
+												>Source</a
+											>)</em
+										>
 									</p>
 								</div>
 								<div class="space-y-24">
@@ -278,15 +396,14 @@
 									>
 										<div class="space-y-30">
 											<h3 class="font-bold mr-30">
-												Learn more about the
-												collaboration
+												Learn more about George Nelson
 											</h3>
 											<p>
-												<em
-													>Visit End to learn more
-													about this Bauhaus themed
-													collection.</em
-												>
+												<em>George Nelson On Design</em
+												><br />A compendium of essays
+												published in the late 1950s,
+												Nelson doesn’t hesitate to point
+												fingers..
 											</p>
 										</div>
 										<div
@@ -295,25 +412,140 @@
 											<span>!</span>
 										</div>
 									</div>
-									<div class="space-y-12">
-										<a
-											target="_blank"
-											href="https://www.endclothing.com/"
-											class="block font-bold bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm text-center leading-none w-full"
-											>BUY NOW</a
-										>
-										<button
-											@click="closePopup()"
-											class="border border-black text-black hover:text-grey hover:bg-grey-light hover:border-grey-light transition-colors px-60 py-18 rounded-full text-sm leading-none w-full"
-										>
-											<span>CLOSE</span>
-										</button>
-									</div>
+									<button
+										@click="closePopup()"
+										class="block font-bold bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm text-center leading-none w-full"
+									>
+										<span>CLOSE</span>
+									</button>
 								</div>
 							</div>
 							<div
-								class="absolute top-36 right-12 md:-top-60 md:right-350 md:w-80 md:h-80 w-60 h-60 bg-red rounded-full"
+								class="hidden md:block absolute -top-60 right-350 w-80 h-80 bg-red rounded-full"
 							></div>
+						</div>
+						<div
+							class="block md:hidden absolute top-12 right-12 w-60 h-60 bg-red rounded-full"
+						></div>
+					</div>
+				</section>
+
+				<!-- * Bauhaus Building -->
+				<section
+					x-cloak
+					x-data="popup('library')"
+					@keyup.window.escape="closePopup()"
+				>
+					<!-- * button -->
+					<button
+						id="toggleBauhausBuilding"
+						@click="togglePopup()"
+					></button>
+					<!-- * overlay -->
+					<div
+						x-show="open"
+						x-transition:enter.opacity.duration.500ms
+						x-transition:leave.opacity.duration.500ms
+						class="fixed inset-0 md:bg-yellow-light/70"
+					></div>
+					<div
+						x-show="open"
+						x-transition:enter.duration.500ms
+						x-transition:leave.duration.500ms
+						class="fixed pt-48 md:pt-0 inset-0 z-30 md:flex md:flex-row md:items-center md:justify-center"
+					>
+						<div
+							@click.outside="closePopup()"
+							class="w-full h-full md:justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row relative -space-y-30 md:-space-y-0 md:-space-x-30 overflow-y-scroll rounded-t-large md:rounded-large md:overflow-y-visible bg-yellow-light"
+						>
+							<figure
+								class="shrink-0 md:shrink rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden w-full bg-grey-light"
+							>
+								<img
+									class="object-cover w-full h-full"
+									src="/images/library/bauhaus-building.jpg"
+									alt=""
+								/>
+							</figure>
+							<div
+								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
+							>
+								<div class="space-y-em">
+									<h2 class="font-bold uppercase">
+										The Library is inspired by The Bauhaus
+										building in Dessau designed by Walter
+										Gropius(1925–1932)
+									</h2>
+									<p>
+										The Bauhaus was founded by architect
+										Walter Gropius in Weimar.
+									</p>
+									<p>
+										The Bauhaus movement had a profound
+										influence upon subsequent developments
+										in art, architecture, graphic design,
+										interior design, industrial design, and
+										typography.
+										<em
+											>(
+											<a
+												href="https://en.wikipedia.org/wiki/Bauhaus"
+												target="_blank"
+												class="underline"
+												>Source</a
+											>
+											/
+											<a
+												href="https://commons.wikimedia.org/wiki/File:6265_Dessau.JPG"
+												target="_blank"
+												class="underline"
+												>image source</a
+											>
+											)</em
+										>
+									</p>
+								</div>
+								<div class="space-y-24">
+									<div
+										class="bg-white p-rem font-mono relative text-sm"
+									>
+										<div class="space-y-30">
+											<h3 class="font-bold mr-30">
+												Learn more about Bauhaus
+											</h3>
+											<p>
+												<em>Bauhaus by Taschen</em
+												><br />
+												Bauhaus school of art and design
+												changed the face of modernity.
+												With utopian ideas for the
+												future..
+											</p>
+										</div>
+										<div
+											class="absolute top-rem right-rem w-36 h-36 bg-yellow-light rounded-full flex items-center justify-center"
+										>
+											!
+										</div>
+									</div>
+									<button
+										@click="closePopup()"
+										class="block font-bold bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm text-center leading-none w-full"
+									>
+										<span>CLOSE</span>
+									</button>
+								</div>
+							</div>
+							<div
+								class="hidden md:flex absolute -top-60 right-350 w-80 h-80 rounded-full bg-white justify-center items-center text-[34px] font-bold"
+							>
+								<span class="mt-[.5em]">*</span>
+							</div>
+						</div>
+						<div
+							class="flex justify-center items-center md:hidden absolute top-12 right-12 w-60 h-60 bg-white rounded-full text-[26px] font-bold"
+						>
+							<span class="mt-[.5em]">*</span>
 						</div>
 					</div>
 				</section>
