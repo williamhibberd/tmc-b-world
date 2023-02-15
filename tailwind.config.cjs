@@ -5,7 +5,13 @@ module.exports = {
 		fontSize: {
 			sm: "0.875rem", //14
 			md: ["1.3125rem", "1.8125rem"], //21/29
-			body: ["1rem", "1.375rem"], //16/22
+			body: [
+				"1rem",
+				{
+					lineHeight: "1.375rem",
+					letterSpacing: "0.03125rem",
+				},
+			], //16/22
 			lg: ["1.625rem", "2.125rem"], //26/34
 		},
 		spacing: {

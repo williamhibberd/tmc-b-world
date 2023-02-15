@@ -50,7 +50,7 @@
 		</style>
 		<script type="module" crossorigin src="/assets/modulepreload-polyfill.c7c6310f.js"></script>
 		<script type="module" crossorigin src="/assets/app.1f1bc145.js"></script>
-		<link rel="stylesheet" href="/assets/app.0274d27d.css">
+		<link rel="stylesheet" href="/assets/app.e6e3e06c.css">
 	</head>
 	<body>
 		<main data-taxi class="relative z-10">
@@ -69,6 +69,7 @@
 						<div
 							id="navWrapper"
 							x-show="show"
+							@click.outside="showInfo || closeNav()"
 							class="fixed top-48 bottom-0 md:inset-y-0 right-0 w-screen max-w-[575px] bg-yellow-light pt-60 pb-18 px-12 flex flex-col"
 						>
 							<button
@@ -84,7 +85,7 @@
 									x-show="showInfo"
 									x-transition:enter.duration.500ms
 									x-transition:leave.duration.500ms
-									class="absolute pt-48 md:pt-0 inset-0 z-30 flex flex-col md:flex-row md:items-center md:justify-center"
+									class="absolute pt-48 md:pt-0 inset-0 z-30 md:flex md:flex-row md:items-center md:justify-center"
 								>
 									<button
 										@click="closeInfo()"
@@ -94,7 +95,7 @@
 									</button>
 									<div
 										@click.outside="closeInfo()"
-										class="w-full h-full justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row items-stretch relative -space-y-30 md:-space-y-0 md:-space-x-30 overflow-y-scroll rounded-t-large md:rounded-large md:overflow-y-visible bg-yellow-light"
+										class="w-full h-full md:justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row relative -space-y-30 md:-space-y-0 md:-space-x-30 overflow-y-scroll rounded-t-large md:rounded-large md:overflow-y-visible bg-yellow-light"
 									>
 										<figure
 											class="shrink-0 md:shrink rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden w-full"
@@ -106,7 +107,7 @@
 											/>
 										</figure>
 										<div
-											class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto md:overflow-y-scroll grow"
+											class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow"
 										>
 											<div>
 												<h2
@@ -211,7 +212,7 @@
 						<button
 							id="toggleNavButton"
 							@click="toggleNav()"
-							class="fixed bottom-12 right-12 bg-white w-44 h-44 rounded-full flex flex-col justify-center items-center"
+							class="fixed bottom-12 right-12 bg-white w-44 h-44 rounded-full flex flex-col justify-center items-center hover:bg-grey-light transition-colors"
 						>
 							<span
 								id="burger-1"

@@ -50,7 +50,7 @@
 		</style>
 		<script type="module" crossorigin src="/assets/modulepreload-polyfill.c7c6310f.js"></script>
 		<script type="module" crossorigin src="/assets/app.1f1bc145.js"></script>
-		<link rel="stylesheet" href="/assets/app.0274d27d.css">
+		<link rel="stylesheet" href="/assets/app.e6e3e06c.css">
 	</head>
 	<body>
 		<main data-taxi class="relative z-10">
@@ -67,9 +67,10 @@
 					></div>
 					<nav>
 						<div
-							x-show="show"
 							id="navWrapper"
-							class="fixed inset-y-0 right-0 w-screen max-w-[575px] bg-yellow-light pt-60 pb-18 px-12 h-full flex flex-col"
+							x-show="show"
+							@click.outside="showInfo || closeNav()"
+							class="fixed top-48 bottom-0 md:inset-y-0 right-0 w-screen max-w-[575px] bg-yellow-light pt-60 pb-18 px-12 flex flex-col"
 						>
 							<button
 								@click="openInfo()"
@@ -83,7 +84,7 @@
 									x-show="showInfo"
 									x-transition:enter.duration.500ms
 									x-transition:leave.duration.500ms
-									class="absolute top-48 inset-x-0 bottom-0 md:inset-0 z-30 flex flex-col md:flex-row md:items-center md:justify-center"
+									class="absolute pt-48 md:pt-0 inset-0 z-30 md:flex md:flex-row md:items-center md:justify-center"
 								>
 									<button
 										@click="closeInfo()"
@@ -93,10 +94,10 @@
 									</button>
 									<div
 										@click.outside="closeInfo()"
-										class="w-full h-full md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row items-stretch relative -space-y-30 md:-space-y-0 md:-space-x-30"
+										class="w-full h-full md:justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row relative -space-y-30 md:-space-y-0 md:-space-x-30 overflow-y-scroll rounded-t-large md:rounded-large md:overflow-y-visible bg-yellow-light"
 									>
 										<figure
-											class="w-full rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden"
+											class="shrink-0 md:shrink rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden w-full"
 										>
 											<img
 												class="object-cover w-full h-full"
@@ -105,7 +106,7 @@
 											/>
 										</figure>
 										<div
-											class="text-body p-24 bg-yellow-light rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto"
+											class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow"
 										>
 											<div>
 												<h2
@@ -139,10 +140,15 @@
 											</button>
 										</div>
 										<div
-											class="absolute -top-12 right-12 md:-top-60 md:right-350 md:w-80 md:h-80 w-60 h-60 bg-white rounded-full flex justify-center items-center font-bold"
+											class="hidden absolute md:-top-60 md:right-350 md:w-80 md:h-80 bg-white rounded-full md:flex justify-center items-center font-bold"
 										>
 											<span>?</span>
 										</div>
+									</div>
+									<div
+										class="absolute md:hidden top-12 right-12 w-60 h-60 bg-white rounded-full flex justify-center items-center font-bold"
+									>
+										<span>?</span>
 									</div>
 								</div>
 							</template>
