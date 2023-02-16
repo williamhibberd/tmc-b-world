@@ -57,11 +57,10 @@ export default function form(scene) {
 			}
 		},
 		submitForm() {
-			const formSubmit = document.querySelector("#formSubmit");
+			const form = this.$root.document.querySelector("form");
 			console.log("testing submit");
-			if (this.$validate.isComplete(this.$refs.form)) {
-				const myForm = this.$refs.form;
-				const formData = new FormData(myForm);
+			if (this.$validate.isComplete(form)) {
+				const formData = new FormData(form);
 				console.log(formData);
 				fetch("/", {
 					method: "POST",

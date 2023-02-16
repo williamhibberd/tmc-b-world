@@ -49,7 +49,7 @@
 			}
 		</style>
 		<script type="module" crossorigin src="/assets/modulepreload-polyfill.c7c6310f.js"></script>
-		<script type="module" crossorigin src="/assets/app.136da885.js"></script>
+		<script type="module" crossorigin src="/assets/app.b7172dd1.js"></script>
 		<link rel="stylesheet" href="/assets/app.67b44277.css">
 	</head>
 	<body>
@@ -601,14 +601,11 @@
 									alt=""
 								/>
 							</figure>
-							<!-- x-ref="form"
-								x-on:submit.prevent="submitForm()" 
-							-->
 							<form
-								x-validate
 								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
 								name="coin"
 								method="POST"
+								x-validate
 								netlify
 							>
 								<input
@@ -647,6 +644,8 @@
 									id="formSubmit"
 									type="submit"
 									class="submit"
+									x-on:click.prevent="submitForm()"
+									x-on:submit.prevent="submitForm()"
 								>
 									Enter the raffle
 								</button>
