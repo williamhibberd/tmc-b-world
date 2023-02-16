@@ -58,7 +58,8 @@ export default function form(scene) {
 		},
 		submitForm() {
 			const formSubmit = document.querySelector("#formSubmit");
-			if (this.$validate.isComplete(this.$root)) {
+			console.log("testing submit");
+			if (this.$validate.isComplete(this.$refs.form)) {
 				const myForm = this.$refs.form;
 				const formData = new FormData(myForm);
 				console.log(formData);
