@@ -49,8 +49,8 @@
 			}
 		</style>
 		<script type="module" crossorigin src="/assets/modulepreload-polyfill.c7c6310f.js"></script>
-		<script type="module" crossorigin src="/assets/app.e36b9405.js"></script>
-		<link rel="stylesheet" href="/assets/app.67b44277.css">
+		<script type="module" crossorigin src="/assets/app.313e21a5.js"></script>
+		<link rel="stylesheet" href="/assets/app.72aaece8.css">
 	</head>
 	<body>
 		<main data-taxi class="relative z-10">
@@ -479,11 +479,14 @@
 							<figure
 								class="shrink-0 md:shrink rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden w-full bg-grey-light"
 							>
-								<img
+								<video
+									loop
+									muted
+									autoplay
+									playsinline
+									src="/videos/lobby.mp4"
 									class="object-cover w-full h-full"
-									src="/images/lobby/the-barcelona-pavilion.jpg"
-									alt=""
-								/>
+								></video>
 							</figure>
 							<div
 								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
@@ -573,7 +576,7 @@
 					@keyup.window.escape="closePopup()"
 				>
 					<button
-						@click="open = !open"
+						@click="togglePopup()"
 						class="fixed top-12 right-12 rounded-full bg-red w-10 h-10"
 					></button>
 					<div
@@ -589,69 +592,128 @@
 						class="fixed pt-48 md:pt-0 inset-0 z-30 md:flex md:flex-row md:items-center md:justify-center"
 					>
 						<div
-							@click.outside="open = false"
+							@click.outside="closePopup()"
 							class="w-full h-full md:justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row relative -space-y-30 md:-space-y-0 md:-space-x-30 overflow-y-scroll rounded-t-large md:rounded-large md:overflow-y-visible bg-yellow-light"
 						>
 							<figure
 								class="shrink-0 md:shrink rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden w-full bg-grey-light"
 							>
-								<img
+								<video
+									loop
+									muted
+									autoplay
+									playsinline
+									src="/videos/coin.mp4"
 									class="object-cover w-full h-full"
-									src="/images/lobby/the-barcelona-pavilion.jpg"
-									alt=""
-								/>
+								></video>
 							</figure>
-							<form
+							<div
 								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
-								name="coin"
-								method="POST"
-								x-validate
-								netlify
 							>
-								<input
-									type="hidden"
-									name="form"
-									value="coin-finders"
-									hidden
-								/>
-								<fieldset>
-									<input
-										type="text"
-										name="name"
-										placeholder="'Full Name'"
-										x-validate.required
-									/>
-								</fieldset>
-								<fieldset>
-									<input
-										type="email"
-										name="email"
-										placeholder="'Email Address'"
-										x-validate.required
-										x-validate.email
-									/>
-								</fieldset>
-								<fieldset>
-									<input
-										type="tel"
-										name="tel"
-										placeholder="'Telephone Number'"
-										x-validate.required
-										x-validate.tel
-									/>
-								</fieldset>
-								<button
-									id="formSubmit"
-									type="submit"
-									class="submit"
-									x-on:click.prevent="submitForm()"
-									x-on:submit.prevent="submitForm()"
-								>
-									Enter the raffle
-								</button>
-								<p class="text-sm">something about gdpr</p>
-							</form>
+								<div class="space-y-em">
+									<h2 class="font-bold uppercase">
+										CONGRATULATIONS You found a hidden coin
+									</h2>
+									<p>
+										Trade in for a chance to win a pair from
+										the adidas Originals x END. Bauhaus
+										Collection.
+									</p>
+								</div>
+								<div class="space-y-24">
+									<div
+										class="bg-white p-rem relative text-sm"
+									>
+										<div class="space-y-30">
+											<h3
+												class="font-bold font-mono mr-30"
+											>
+												Share your details for a chance
+												to win
+											</h3>
+											<p class="font-mono">
+												Your information will be stored
+												for the duration of the
+												competition and only used to get
+												in touch if you win.
+											</p>
+											<form
+												name="coin"
+												method="POST"
+												class="space-y-12"
+												x-validate
+												netlify
+											>
+												<input
+													type="hidden"
+													name="form"
+													value="coin-finders"
+													hidden
+												/>
+												<fieldset>
+													<input
+														type="text"
+														name="name"
+														placeholder="Full Name*"
+														x-validate.required
+													/>
+												</fieldset>
+												<fieldset>
+													<input
+														type="email"
+														name="email"
+														placeholder="Email Address*"
+														x-validate.required
+														x-validate.email
+													/>
+												</fieldset>
+												<fieldset>
+													<input
+														type="tel"
+														name="tel"
+														placeholder="Telephone Number*"
+														x-validate.required
+														x-validate.tel
+													/>
+												</fieldset>
+												<div class="flex space-x-12">
+													<button
+														id="formSubmit"
+														type="submit"
+														class="submit block font-bold bg-black text-white hover:text-grey hover:bg-grey-light transition-colors py-18 rounded-full text-sm text-center leading-none w-1/2 md:w-full"
+														x-on:click.prevent="submitForm()"
+														x-on:submit.prevent="submitForm()"
+													>
+														Enter
+														<span
+															class="hidden sm:inline"
+															>the raffle</span
+														>
+													</button>
+													<button
+														x-on:click.prevent="closePopup()"
+														class="block font-bold border border-black text-black hover:text-grey hover:bg-grey-light hover:border-grey-light transition-colors py-18 rounded-full text-sm text-center leading-none px-18 w-1/2 md:w-auto"
+													>
+														close
+													</button>
+												</div>
+											</form>
+										</div>
+										<div
+											class="absolute top-rem right-rem w-36 h-36 bg-yellow-light rounded-full flex items-center justify-center"
+										>
+											!
+										</div>
+									</div>
+								</div>
+							</div>
+							<div
+								class="hidden md:block absolute -top-60 right-350 w-80 h-80 bg-blue rounded-full"
+							></div>
 						</div>
+						<div
+							class="block md:hidden absolute top-12 right-12 w-60 h-60 bg-blue rounded-full"
+						></div>
 					</div>
 				</section>
 			</article>

@@ -14,12 +14,26 @@
 	@apply h-60 w-60 bg-red pointer-events-none;
 }
 
+.error-msg {
+	@apply hidden;
+}
+
+input {
+	@apply w-full border-black border bg-white rounded-full placeholder:text-black text-left focus:ring-0 outline-none focus:outline focus:outline-black font-mono px-24 py-12 placeholder:uppercase;
+	&[aria-invalid="true"] {
+		@apply border-red focus:outline-red;
+	}
+	&[aria-invalid="false"] {
+		@apply border-[green] focus:outline-[green];
+	}
+}
+
 @layer base {
 	body {
 		@apply font-sans;
 	}
 	button {
-		@apply font-bold;
+		@apply font-bold uppercase;
 	}
 	.font-mono {
 		@apply leading-[1.125rem];

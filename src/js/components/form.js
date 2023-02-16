@@ -58,10 +58,9 @@ export default function form(scene) {
 		},
 		submitForm() {
 			const form = this.$root.querySelector("form");
-			console.log("testing submit");
 			if (this.$validate.isComplete(form)) {
 				const formData = new FormData(form);
-				console.log(formData);
+				// console.log(formData);
 				fetch("/", {
 					method: "POST",
 					headers: {
@@ -69,7 +68,7 @@ export default function form(scene) {
 					},
 					body: new URLSearchParams(formData).toString(),
 				})
-					.then(() => console.log("Form successfully submitted"))
+					// .then(() => console.log("Form successfully submitted"))
 					.then(() => (this.success = true))
 					.catch((error) => alert(error));
 			}
