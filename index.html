@@ -52,6 +52,7 @@
 	<body>
 		<main data-taxi class="relative z-10">
 			<article id="view" data-taxi-view="lobby">
+				<!-- Nav -->
 				<div
 					x-cloak
 					x-data="nav('lobby')"
@@ -104,9 +105,11 @@
 											/>
 										</figure>
 										<div
-											class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow"
+											class="text-body bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-hidden"
 										>
-											<div class="space-y-em">
+											<div
+												class="space-y-em px-24 pt-24 md:overflow-y-scroll md:mb-[98px] md:pb-24"
+											>
 												<h2 class="font-bold uppercase">
 													adidas originals x
 													end.Bauhaus collection
@@ -194,12 +197,19 @@
 													shoe’s woven tongue patch.
 												</p>
 											</div>
-											<button
-												@click="closeInfo()"
-												class="bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm leading-none w-full"
+											<div
+												class="md:absolute md:bottom-0 md:inset-x-0 px-24 pb-24 md:p-24 md:bg-yellow-light"
 											>
-												<span>CLOSE</span>
-											</button>
+												<button
+													@click="closeInfo()"
+													class="bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm leading-none w-full"
+												>
+													<span>CLOSE</span>
+												</button>
+											</div>
+											<div
+												class="absolute hidden md:block bg-gradient-to-t from-yellow-light bottom-[98px] inset-x-0 h-40"
+											></div>
 										</div>
 										<div
 											class="hidden absolute md:-top-60 md:right-350 md:w-80 md:h-80 bg-white rounded-full md:flex justify-center items-center font-bold"
@@ -287,7 +297,6 @@
 						</button>
 					</nav>
 				</div>
-				<!-- Popups -->
 				<!-- Lobby Shoe -->
 				<section
 					x-cloak
@@ -334,10 +343,10 @@
 								/> -->
 							</figure>
 							<div
-								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow"
+								class="text-body bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow"
 							>
 								<div
-									class="relative space-y-em md:mb-[138px] md:pb-24 md:overflow-y-scroll"
+									class="px-24 relative space-y-em md:mb-[138px] md:pb-24 md:overflow-y-scroll pt-24"
 								>
 									<h2 class="font-bold uppercase">
 										END. x adidas Originals Bermuda
@@ -375,7 +384,7 @@
 									</p>
 								</div>
 								<div
-									class="space-y-12 md:absolute md:bottom-0 md:inset-x-0 md:p-24 md:bg-yellow-light"
+									class="px-24 space-y-12 md:absolute md:bottom-0 md:inset-x-0 md:p-24 md:bg-yellow-light pb-24"
 								>
 									<a
 										target="_blank"
@@ -441,9 +450,9 @@
 								/>
 							</figure>
 							<div
-								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
+								class="text-body bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
 							>
-								<div class="space-y-em">
+								<div class="space-y-em pt-24 px-24">
 									<h2 class="font-bold uppercase">
 										Marcel Breuer The Wassily Chair, Model
 										B3 (1927 – 1928)
@@ -470,7 +479,7 @@
 										>
 									</p>
 								</div>
-								<div class="space-y-24">
+								<div class="space-y-24 pb-24 px-24">
 									<div
 										class="bg-white p-rem font-mono relative text-sm"
 									>
@@ -538,21 +547,18 @@
 							class="w-full h-full md:justify-center md:h-3/4 md:w-3/4 md:min-h-3/4 flex flex-col md:flex-row relative -space-y-30 md:-space-y-0 md:-space-x-30 overflow-y-scroll rounded-t-large md:rounded-large md:overflow-y-visible bg-yellow-light"
 						>
 							<figure
-								class="shrink-0 md:shrink rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden w-full bg-grey-light"
+								class="shrink-0 md:shrink rounded-t-large md:rounded-tr-none md:rounded-l-large overflow-hidden w-full"
 							>
-								<video
-									loop
-									muted
-									autoplay
-									playsinline
-									src="/videos/lobby.mp4"
+								<img
 									class="object-cover w-full h-full"
-								></video>
+									src="/images/lobby/the-barcelona-pavilion.jpg"
+									alt=""
+								/>
 							</figure>
 							<div
-								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
+								class="text-body bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
 							>
-								<div class="space-y-em">
+								<div class="space-y-em pt-24 px-24">
 									<h2 class="font-bold uppercase">
 										The lobby is inspired by Mies van der
 										Rohe's Barcelona Pavilion (1928)
@@ -586,7 +592,7 @@
 										>
 									</p>
 								</div>
-								<div class="space-y-24">
+								<div class="space-y-24 pb-24 px-24">
 									<div
 										class="bg-white p-rem font-mono relative text-sm"
 									>
@@ -629,7 +635,6 @@
 						</div>
 					</div>
 				</section>
-
 				<!-- form -->
 				<section
 					x-cloak
@@ -710,9 +715,9 @@
 								></video>
 							</figure>
 							<div
-								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
+								class="text-body bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
 							>
-								<div class="space-y-em">
+								<div class="space-y-em pt-24 px-24">
 									<h2 class="font-bold uppercase">
 										CONGRATULATIONS You found a hidden coin
 									</h2>
@@ -722,7 +727,7 @@
 										Collection.
 									</p>
 								</div>
-								<div class="space-y-24">
+								<div class="space-y-24 pb-24 px-24">
 									<div
 										class="bg-white p-rem relative text-sm"
 									>

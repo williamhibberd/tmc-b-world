@@ -46,11 +46,12 @@
 		</style>
 		<script type="module" crossorigin src="/assets/modulepreload-polyfill.c7c6310f.js"></script>
 		<script type="module" crossorigin src="/assets/app.313e21a5.js"></script>
-		<link rel="stylesheet" href="/assets/app.e5cad020.css">
+		<link rel="stylesheet" href="/assets/app.fba36890.css">
 	</head>
 	<body>
 		<main data-taxi class="relative z-10">
 			<article id="view" data-taxi-view="library">
+				<!-- Nav -->
 				<div
 					x-cloak
 					x-data="nav('library')"
@@ -102,38 +103,111 @@
 											/>
 										</figure>
 										<div
-											class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow"
+											class="text-body bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-hidden"
 										>
-											<div>
-												<h2
-													class="font-bold pb-em uppercase"
-												>
+											<div
+												class="space-y-em px-24 pt-24 md:overflow-y-scroll md:mb-[98px] md:pb-24"
+											>
+												<h2 class="font-bold uppercase">
 													adidas originals x
 													end.Bauhaus collection
 													(2023)
 												</h2>
-												<p class="pb-em">
-													Nunc mi tellus, bibendum vel
-													pellentesque at, consequat
-													non ligula. Nulla eros enim,
-													efficitur ut lorem non,
-													convallis feugiat urna.
+												<p>
+													Delving into the world of
+													Bauhaus for inspiration on
+													their latest collaboration,
+													END. and adidas share a trio
+													of footwear styles that look
+													to the iconic German school
+													for guidance.
 												</p>
-												<p class="pb-em">
-													Class aptent taciti sociosqu
-													ad litora torquent per
-													conubia nostra, per inceptos
-													himenaeos. Praesent
-													sollicitudin justo sit amet
-													ante tempus efficitur.
+												<p>
+													Transforming the Bermuda,
+													Handball Spezial and ZX420
+													silhouettes, the British
+													retailer and the German
+													sportswear brand tap the
+													20th century movement of
+													Bauhaus, relaying the
+													influential school’s
+													aesthetic vision through the
+													lens of modern sporting
+													footwear.
+												</p>
+												<p>
+													Operating between 1919 and
+													1933, the Staatliches
+													Bauhaus was an art school
+													founded in Weimar, Germany,
+													by Walter Gropius, that
+													focussed on a Modernist
+													approach to art, design and
+													architecture. Creating
+													objects and art under the
+													notion that form follows
+													function, the Bauhaus
+													movement aimed to bring art
+													and design back into contact
+													with our everyday lives.
+													Combining bold typography,
+													block colours and
+													architectural forms,
+													Bauhaus’ influence has
+													continued beyond the early
+													20th century, with iconic
+													pieces from Kandinsky,
+													Breuer, Klee and more
+													heralded as some of the
+													century’s most important and
+													influential works.
+												</p>
+												<p>
+													Applying the infamous
+													movement’s approach to a
+													trio of classic adidas
+													styles, END. draw
+													inspiration from the
+													instantly recognisable
+													Bauhaus colour palette. Cast
+													in a Team Yellow suede, the
+													Bermuda shoe is punctuated
+													with red and blue, with
+													adidas’ Three Stripes
+													reflecting Bauhaus’ penchant
+													for geometrical shapes and
+													layered forms. The Handball
+													Spezial sneaker combines
+													plush suede with Navy and
+													Hazy Blue tones, with gold
+													foil branding adding a
+													flourish of adidas’
+													trademark style. Completing
+													the pack is a muted twist on
+													the ZX420 – a retro runner
+													replete with Bauhaus charm.
+													All three silhouettes are
+													embellished with END.
+													branding to the tongue and
+													aglets, while further nods
+													to the Bauhaus movement sit
+													pride of place at each
+													shoe’s woven tongue patch.
 												</p>
 											</div>
-											<button
-												@click="closeInfo()"
-												class="bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm leading-none w-full"
+											<div
+												class="md:absolute md:bottom-0 md:inset-x-0 px-24 pb-24 md:p-24 md:bg-yellow-light"
 											>
-												<span>CLOSE</span>
-											</button>
+												<button
+													@click="closeInfo()"
+													class="bg-black text-white hover:text-grey hover:bg-grey-light transition-colors px-60 py-18 rounded-full text-sm leading-none w-full"
+												>
+													<span>CLOSE</span>
+												</button>
+											</div>
+											<div
+												class="absolute hidden md:block bg-gradient-to-t from-yellow-light bottom-[98px] inset-x-0 h-40"
+											></div>
 										</div>
 										<div
 											class="hidden absolute md:-top-60 md:right-350 md:w-80 md:h-80 bg-white rounded-full md:flex justify-center items-center font-bold"
@@ -264,10 +338,10 @@
 								/> -->
 							</figure>
 							<div
-								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow"
+								class="text-body bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow"
 							>
 								<div
-									class="relative space-y-em md:mb-[138px] md:pb-24 md:overflow-y-scroll"
+									class="relative px-24 pt-24 space-y-em md:mb-[138px] md:pb-24 md:overflow-y-scroll"
 								>
 									<h2 class="font-bold uppercase">
 										END. x adidas Originals ZX 420 “Bauhaus”
@@ -306,7 +380,7 @@
 									</p>
 								</div>
 								<div
-									class="space-y-12 md:absolute md:bottom-0 md:inset-x-0 md:p-24 md:bg-yellow-light"
+									class="pb-24 px-24 space-y-12 md:absolute md:bottom-0 md:inset-x-0 md:p-24 md:bg-yellow-light"
 								>
 									<a
 										target="_blank"
@@ -334,7 +408,6 @@
 						></div>
 					</div>
 				</section>
-
 				<!-- Vitra Clock -->
 				<section
 					x-cloak
@@ -373,9 +446,9 @@
 								/>
 							</figure>
 							<div
-								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
+								class="text-body bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
 							>
-								<div class="space-y-em">
+								<div class="space-y-em px-24 pt-24">
 									<h2 class="font-bold uppercase">
 										George Nelson Ball Wall Clock by VitrA
 										(1948 - 1960)
@@ -401,7 +474,7 @@
 										>
 									</p>
 								</div>
-								<div class="space-y-24">
+								<div class="space-y-24 px-24 pb-24">
 									<div
 										class="bg-white p-rem font-mono relative text-sm"
 									>
@@ -440,7 +513,6 @@
 						></div>
 					</div>
 				</section>
-
 				<!-- * Bauhaus Building -->
 				<section
 					x-cloak
@@ -479,9 +551,9 @@
 								/>
 							</figure>
 							<div
-								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
+								class="text-body bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
 							>
-								<div class="space-y-em">
+								<div class="space-y-em px-24 pt-24">
 									<h2 class="font-bold uppercase">
 										The Library is inspired by The Bauhaus
 										building in Dessau designed by Walter
@@ -516,7 +588,7 @@
 										>
 									</p>
 								</div>
-								<div class="space-y-24">
+								<div class="space-y-24 px-24 pb-24">
 									<div
 										class="bg-white p-rem font-mono relative text-sm"
 									>
@@ -569,7 +641,7 @@
 				>
 					<button
 						@click="togglePopup()"
-						class="fixed top-12 right-12 rounded-full bg-red w-10 h-10"
+						class="fixed top-12 right-12 rounded-full bg-blue w-10 h-10"
 					></button>
 					<div
 						x-show="open"
@@ -641,9 +713,9 @@
 								></video>
 							</figure>
 							<div
-								class="text-body p-24 bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
+								class="text-body bg-yellow-light rounded-t-large md:rounded-large flex flex-col justify-between w-full md:min-w-350 md:w-350 h-full md:h-auto space-y-30 relative grow md:overflow-y-scroll"
 							>
-								<div class="space-y-em">
+								<div class="space-y-em px-24 pt-24">
 									<h2 class="font-bold uppercase">
 										CONGRATULATIONS You found a hidden coin
 									</h2>
@@ -653,7 +725,7 @@
 										Collection.
 									</p>
 								</div>
-								<div class="space-y-24">
+								<div class="space-y-24 px-24 pb-24">
 									<div
 										class="bg-white p-rem relative text-sm"
 									>
