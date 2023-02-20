@@ -5,7 +5,7 @@ import { camera, renderer } from "./threeConstants";
 	! Controls
 */
 export const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableZoom = false;
+// controls.enableZoom = false;
 controls.enableDamping = true;
 
 /*

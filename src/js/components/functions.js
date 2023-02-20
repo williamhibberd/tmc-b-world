@@ -2,13 +2,12 @@ import * as THREE from "three";
 import { DefaultLoadingManager } from "three";
 import gsap from "gsap";
 
-import { camera, group, renderer, scene } from "./threeConstants";
+import { camera, group, renderer, scene, canvas } from "./threeConstants";
 import { controls } from "./controls";
 import {
 	lobby,
 	library,
 	outside,
-	allHotSpots,
 	lobbyShoeMesh,
 	wassilyChairMesh,
 	barcelonaPavilionMesh,
@@ -18,6 +17,13 @@ import {
 	outsideShoeMesh,
 	oskarMesh,
 	outsideBuildingMesh,
+	lobbyCoin1,
+	lobbyCoin2,
+	lobbyCoin3,
+	libCoin1,
+	libCoin2,
+	libCoin3,
+	outsideCoin,
 } from "./meshes";
 import lazySizes from "lazysizes";
 
@@ -102,57 +108,6 @@ export function toggleSpin() {
 }
 
 /*
-	! Tick
-*/
-// Clock
-const clock = new THREE.Clock();
-
-// Raycaster
-const raycaster = new THREE.Raycaster();
-let currentIntersect = null;
-const tick = () => {
-	// Set elapsedTime
-	const elapsedTime = clock.getElapsedTime();
-
-	// rotate currentScene
-	// PI * 2 is one revloution per second
-	if (spin === true) {
-		group.rotation.y = elapsedTime * Math.PI * 0.01;
-	}
-
-	// Cast a ray
-	raycaster.setFromCamera(mouse, camera);
-
-	const intersects = raycaster.intersectObjects(allHotSpots);
-
-	// Set currentIntersect object
-	if (intersects.length) {
-		currentIntersect = intersects[0];
-	} else {
-		currentIntersect = null;
-	}
-
-	/* wip to scale object on hover
-		// let lastObject = null;
-		// if (currentIntersect) {
-		// 	console.log(currentIntersect.object);
-		// 	lastObject = currentIntersect;
-		// 	gsap.to(currentIntersect.scale, { x: 1, y: 1, z: 1 });
-		// } else {
-		// 	gsap.to(lastObject.object.scale, { x: 0, y: 0, z: 0 }).then(
-		// 		(lastObject = null)
-		// 	);
-		// }
-	*/
-
-	controls.update;
-	renderer.render(scene, camera);
-	window.requestAnimationFrame(tick);
-};
-
-tick();
-
-/*
 	! Resize
 */
 window.addEventListener("resize", onWindowResize);
@@ -168,11 +123,13 @@ function onWindowResize() {
 // Lobby
 export function onClickLobbyObject() {
 	// refrence all buttons to pseudo click
+	const toggleForm = document.querySelector("#toggleForm");
 	const toggleLobbyShoe = document.querySelector("#toggleLobbyShoe");
 	const toggleWassilyChair = document.querySelector("#toggleWassilyChair");
 	const togglebarcelonaPavilion = document.querySelector(
 		"#togglebarcelonaPavilion"
 	);
+
 	if (currentIntersect) {
 		switch (currentIntersect.object) {
 			case lobbyShoeMesh:
@@ -184,6 +141,15 @@ export function onClickLobbyObject() {
 			case barcelonaPavilionMesh:
 				togglebarcelonaPavilion.click();
 				break;
+			case lobbyCoin1:
+				toggleForm.click();
+				break;
+			case lobbyCoin2:
+				toggleForm.click();
+				break;
+			case lobbyCoin3:
+				toggleForm.click();
+				break;
 		}
 	}
 }
@@ -191,6 +157,7 @@ export function onClickLobbyObject() {
 // Library
 export function onClickLibraryObject() {
 	// refrence all buttons to pseudo click
+	const toggleForm = document.querySelector("#toggleForm");
 	const toggleLibShoe = document.querySelector("#toggleLibShoe");
 	const toggleVitraClock = document.querySelector("#toggleVitraClock");
 	const toggleBauhausBuilding = document.querySelector(
@@ -207,6 +174,15 @@ export function onClickLibraryObject() {
 			case bauhausBuildingMesh:
 				toggleBauhausBuilding.click();
 				break;
+			case libCoin1:
+				toggleForm.click();
+				break;
+			case libCoin2:
+				toggleForm.click();
+				break;
+			case libCoin3:
+				toggleForm.click();
+				break;
 		}
 	}
 }
@@ -214,6 +190,7 @@ export function onClickLibraryObject() {
 // Outside
 export function onClickOutsideObject() {
 	// refrence all buttons to pseudo click
+	const toggleForm = document.querySelector("#toggleForm");
 	const toggleOutsideShoe = document.querySelector("#toggleOutsideShoe");
 	const toggleOskar = document.querySelector("#toggleOskar");
 	const toggleOutsideBuilding = document.querySelector(
@@ -230,6 +207,9 @@ export function onClickOutsideObject() {
 			case outsideBuildingMesh:
 				toggleOutsideBuilding.click();
 				break;
+			case outsideCoin:
+				toggleForm.click();
+				break;
 		}
 	}
 }
@@ -239,17 +219,40 @@ export function onClickOutsideObject() {
  */
 
 //  Vars
-let sceneHotspots = null;
+let sceneHotspots = [];
 let firstLoad = true;
 
 // Lobby Enter
 export const lobbyEnter = () => {
 	// Set variables
-	sceneHotspots = [lobbyShoeMesh, wassilyChairMesh, barcelonaPavilionMesh];
+	sceneHotspots = [
+		lobbyShoeMesh,
+		wassilyChairMesh,
+		barcelonaPavilionMesh,
+		lobbyCoin1,
+		lobbyCoin2,
+		lobbyCoin3,
+	];
 
 	// add objects to scene
-	scene.add(lobby, lobbyShoeMesh, wassilyChairMesh, barcelonaPavilionMesh);
-	group.add(lobby, lobbyShoeMesh, wassilyChairMesh, barcelonaPavilionMesh);
+	scene.add(
+		lobby,
+		lobbyShoeMesh,
+		wassilyChairMesh,
+		barcelonaPavilionMesh,
+		lobbyCoin1,
+		lobbyCoin2,
+		lobbyCoin3
+	);
+	group.add(
+		lobby,
+		lobbyShoeMesh,
+		wassilyChairMesh,
+		barcelonaPavilionMesh,
+		lobbyCoin1,
+		lobbyCoin2,
+		lobbyCoin3
+	);
 
 	spin = true;
 
@@ -280,19 +283,58 @@ export const lobbyExit = () => {
 	//!! Not yet working...
 	//!! will need to add to the exit animation
 	animateHotspotsOut(sceneHotspots);
-	group.remove(lobby, lobbyShoeMesh, wassilyChairMesh, barcelonaPavilionMesh);
-	scene.remove(lobby, lobbyShoeMesh, wassilyChairMesh, barcelonaPavilionMesh);
+	group.remove(
+		lobby,
+		lobbyShoeMesh,
+		wassilyChairMesh,
+		barcelonaPavilionMesh,
+		lobbyCoin1,
+		lobbyCoin2,
+		lobbyCoin3
+	);
+	scene.remove(
+		lobby,
+		lobbyShoeMesh,
+		wassilyChairMesh,
+		barcelonaPavilionMesh,
+		lobbyCoin1,
+		lobbyCoin2,
+		lobbyCoin3
+	);
 	window.removeEventListener("click", onClickLobbyObject);
 };
 
 // Library Enter
 export const libraryEnter = () => {
 	// Set variables
-	sceneHotspots = [libShoeMesh, vitraClockMesh, bauhausBuildingMesh];
+	sceneHotspots = [
+		libShoeMesh,
+		vitraClockMesh,
+		bauhausBuildingMesh,
+		libCoin1,
+		libCoin2,
+		libCoin3,
+	];
 
 	// add objects to scene
-	scene.add(library, libShoeMesh, vitraClockMesh, bauhausBuildingMesh);
-	group.add(library, libShoeMesh, vitraClockMesh, bauhausBuildingMesh);
+	scene.add(
+		library,
+		libShoeMesh,
+		vitraClockMesh,
+		bauhausBuildingMesh,
+		libCoin1,
+		libCoin2,
+		libCoin3
+	);
+	group.add(
+		library,
+		libShoeMesh,
+		vitraClockMesh,
+		bauhausBuildingMesh,
+		libCoin1,
+		libCoin2,
+		libCoin3
+	);
 
 	spin = true;
 
@@ -323,19 +365,52 @@ export const libraryExit = () => {
 	//!! Not yet working...
 	//!! will need to add to the exit animation
 	animateHotspotsOut(sceneHotspots);
-	scene.remove(library, libShoeMesh, vitraClockMesh, bauhausBuildingMesh);
-	group.remove(library, libShoeMesh, vitraClockMesh, bauhausBuildingMesh);
+	scene.remove(
+		library,
+		libShoeMesh,
+		vitraClockMesh,
+		bauhausBuildingMesh,
+		libCoin1,
+		libCoin2,
+		libCoin3
+	);
+	group.remove(
+		library,
+		libShoeMesh,
+		vitraClockMesh,
+		bauhausBuildingMesh,
+		libCoin1,
+		libCoin2,
+		libCoin3
+	);
 	window.removeEventListener("click", onClickLibraryObject);
 };
 
 // Outside Enter
 export const outsideEnter = () => {
 	// Set variables
-	sceneHotspots = [outsideShoeMesh, oskarMesh, outsideBuildingMesh];
+	sceneHotspots = [
+		outsideShoeMesh,
+		oskarMesh,
+		outsideBuildingMesh,
+		outsideCoin,
+	];
 
 	// add objects to scene
-	scene.add(outside, outsideShoeMesh, oskarMesh, outsideBuildingMesh);
-	group.add(outside, outsideShoeMesh, oskarMesh, outsideBuildingMesh);
+	scene.add(
+		outside,
+		outsideShoeMesh,
+		oskarMesh,
+		outsideBuildingMesh,
+		outsideCoin
+	);
+	group.add(
+		outside,
+		outsideShoeMesh,
+		oskarMesh,
+		outsideBuildingMesh,
+		outsideCoin
+	);
 
 	spin = true;
 
@@ -366,7 +441,72 @@ export const outsideExit = () => {
 	//!! Not yet working...
 	//!! will need to add to the exit animation
 	animateHotspotsOut(sceneHotspots);
-	scene.remove(outside, outsideShoeMesh, oskarMesh, outsideBuildingMesh);
-	group.remove(outside, outsideShoeMesh, oskarMesh, outsideBuildingMesh);
+	scene.remove(
+		outside,
+		outsideShoeMesh,
+		oskarMesh,
+		outsideBuildingMesh,
+		outsideCoin
+	);
+	group.remove(
+		outside,
+		outsideShoeMesh,
+		oskarMesh,
+		outsideBuildingMesh,
+		outsideCoin
+	);
 	window.removeEventListener("click", onClickOutsideObject);
 };
+
+/*
+	! Tick
+*/
+// Clock
+const clock = new THREE.Clock();
+
+// Raycaster
+const raycaster = new THREE.Raycaster();
+let currentIntersect = null;
+const tick = () => {
+	// Set elapsedTime
+	const elapsedTime = clock.getElapsedTime();
+
+	// rotate currentScene
+	// PI * 2 is one revloution per second
+	if (spin === true) {
+		// group.rotation.y = elapsedTime * Math.PI * 0.01;
+	}
+
+	// Cast a ray
+	raycaster.setFromCamera(mouse, camera);
+
+	const intersects = raycaster.intersectObjects(sceneHotspots);
+
+	// Set currentIntersect object
+	if (intersects.length) {
+		currentIntersect = intersects[0];
+		canvas.style.cursor = "pointer";
+	} else {
+		currentIntersect = null;
+		canvas.style.cursor = "";
+	}
+
+	/* wip to scale object on hover
+		// let lastObject = null;
+		// if (currentIntersect) {
+		// 	console.log(currentIntersect.object);
+		// 	lastObject = currentIntersect;
+		// 	gsap.to(currentIntersect.scale, { x: 1, y: 1, z: 1 });
+		// } else {
+		// 	gsap.to(lastObject.object.scale, { x: 0, y: 0, z: 0 }).then(
+		// 		(lastObject = null)
+		// 	);
+		// }
+	*/
+
+	controls.update;
+	renderer.render(scene, camera);
+	window.requestAnimationFrame(tick);
+};
+
+tick();

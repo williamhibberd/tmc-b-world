@@ -127,14 +127,76 @@ outsideBuildingMesh.position.set(2.31, 0.86, 1.64);
 outsideBuildingMesh.rotation.y = Math.PI * -0.7;
 outsideBuildingMesh.scale.set(0, 0, 0);
 
-export const allHotSpots = [
-	lobbyShoeMesh,
-	wassilyChairMesh,
-	barcelonaPavilionMesh,
-	libShoeMesh,
-	vitraClockMesh,
-	bauhausBuildingMesh,
-	outsideShoeMesh,
-	oskarMesh,
-	outsideBuildingMesh,
-];
+/* Coins */
+export const lobbyCoin1 = new THREE.Mesh(
+	new THREE.CircleGeometry(0.1, 20),
+	new THREE.MeshBasicMaterial({
+		transparent: true,
+		opacity: 0,
+	})
+);
+lobbyCoin1.rotation.y = Math.PI * 0;
+lobbyCoin1.position.set(-0.33, -0.52, -2.7);
+lobbyCoin1.scale.set(0, 0, 0);
+
+export const lobbyCoin2 = new THREE.Mesh(
+	new THREE.CircleGeometry(0.1, 20),
+	new THREE.MeshBasicMaterial({
+		transparent: true,
+		opacity: 0,
+	})
+);
+lobbyCoin2.rotation.y = Math.PI * -0.5;
+lobbyCoin2.position.set(2.78, -0.78, -0.08);
+lobbyCoin2.scale.set(0, 0, 0);
+
+export const lobbyCoin3 = new THREE.Mesh(
+	new THREE.CircleGeometry(0.1, 20),
+	new THREE.MeshBasicMaterial({
+		transparent: true,
+		opacity: 0,
+	})
+);
+lobbyCoin3.rotation.y = Math.PI * 0.5;
+lobbyCoin3.position.set(-2.78, -0.62, -0.38);
+lobbyCoin3.scale.set(0, 0, 0);
+
+export const libCoin1 = new THREE.Mesh(
+	new THREE.CircleGeometry(0.1, 20),
+	new THREE.MeshBasicMaterial({
+		color: "orange",
+	})
+);
+libCoin1.rotation.y = Math.PI * 0.19;
+libCoin1.position.set(-1.99, -0.39, -2.13);
+libCoin1.scale.set(0, 0, 0);
+
+export const libCoin2 = new THREE.Mesh(
+	new THREE.CircleGeometry(0.1, 20),
+	new THREE.MeshBasicMaterial({
+		color: "orange",
+	})
+);
+libCoin2.rotation.y = Math.PI * 0.19;
+libCoin2.position.set(-1.99, -0.39, -2.13);
+libCoin2.scale.set(0, 0, 0);
+
+export const libCoin3 = new THREE.Mesh(
+	new THREE.CircleGeometry(0.1, 20),
+	new THREE.MeshBasicMaterial({
+		color: "orange",
+	})
+);
+libCoin3.rotation.y = Math.PI * 0.19;
+libCoin3.position.set(-1.99, -0.39, -2.13);
+libCoin3.scale.set(0, 0, 0);
+
+export const outsideCoin = new THREE.Mesh(
+	new THREE.CircleGeometry(0.1, 20),
+	new THREE.MeshBasicMaterial({
+		color: "orange",
+	})
+);
+outsideCoin.rotation.y = Math.PI * 0.19;
+outsideCoin.position.set(-1.99, -0.39, -2.13);
+outsideCoin.scale.set(0, 0, 0);
