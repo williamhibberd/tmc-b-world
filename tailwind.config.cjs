@@ -1,6 +1,11 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
-	content: ["index.html", "./src/js/**/*.js"],
+	content: [
+		"index.html",
+		"./library/index.html",
+		"./outside/index.html",
+		"./src/js/**/*.js",
+	],
 	theme: {
 		fontSize: {
 			sm: "0.875rem", //14
@@ -20,6 +25,8 @@ module.exports = {
 			2: "0.125rem",
 			10: "0.625rem",
 			12: "0.75rem",
+			14: "0.875rem",
+			15: "0.9375rem",
 			18: "1.125rem",
 			24: "1.5rem",
 			28: "1.75rem",

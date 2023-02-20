@@ -5,10 +5,11 @@ import {
 	toggleSpin,
 } from "./functions";
 
-export default function popup(scene) {
+export default function popup(scene, hasVideo) {
 	return {
 		open: false,
 		scene: scene,
+		hasVideo: hasVideo,
 		openPopup() {
 			toggleSpin();
 			this.removePageEvents();
