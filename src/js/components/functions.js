@@ -474,7 +474,7 @@ const tick = () => {
 	// rotate currentScene
 	// PI * 2 is one revloution per second
 	if (spin === true) {
-		// group.rotation.y = elapsedTime * Math.PI * 0.01;
+		group.rotation.y = elapsedTime * Math.PI * 0.01;
 	}
 
 	// Cast a ray
