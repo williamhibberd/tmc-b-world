@@ -45,7 +45,7 @@
 			}
 		</style>
 		<script type="module" crossorigin src="/assets/modulepreload-polyfill.c7c6310f.js"></script>
-		<script type="module" crossorigin src="/assets/app.38494c47.js"></script>
+		<script type="module" crossorigin src="/assets/app.a18fab9c.js"></script>
 		<link rel="stylesheet" href="/assets/app.3518b409.css">
 	</head>
 	<body>
@@ -298,7 +298,7 @@
 				<!-- * lib shoe -->
 				<section
 					x-cloak
-					x-data="popup('library')"
+					x-data="popup('library', true)"
 					@keyup.window.escape="closePopup()"
 				>
 					<!-- * button -->
@@ -326,7 +326,6 @@
 								<video
 									loop
 									muted
-									autoplay
 									playsinline
 									src="/videos/library.mp4"
 									class="object-cover w-full h-full"
@@ -660,9 +659,9 @@
 								<video
 									loop
 									muted
-									autoplay
 									playsinline
 									src="/videos/coin2.mp4"
+									x-ref="successCoin"
 									class="object-cover w-full h-full"
 								></video>
 								<div class="text-center p-24">
@@ -701,9 +700,9 @@
 								<video
 									loop
 									muted
-									autoplay
 									playsinline
 									src="/videos/coin2.mp4"
+									x-ref="formCoin"
 									class="object-cover w-full h-full"
 								></video>
 							</figure>

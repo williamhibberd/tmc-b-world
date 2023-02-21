@@ -13,12 +13,22 @@ export default function form(scene) {
 		openPopup() {
 			toggleSpin();
 			this.removePageEvents();
+			if (this.success) {
+				this.$refs.successCoin.play();
+			} else {
+				this.$refs.formCoin.play();
+			}
 			this.open = true;
 		},
 		closePopup() {
 			if (this.open) {
 				toggleSpin();
 				this.addPageEvents();
+				if (this.success) {
+					this.$refs.successCoin.pause();
+				} else {
+					this.$refs.formCoin.pause();
+				}
 				this.open = false;
 			}
 			return;
@@ -69,9 +79,14 @@ export default function form(scene) {
 					body: new URLSearchParams(formData).toString(),
 				})
 					// .then(() => console.log("Form successfully submitted"))
-					.then(() => (this.success = true))
+					.then(() => this.formSuccess())
 					.catch((error) => alert(error));
 			}
+		},
+		formSuccess() {
+			this.$refs.formCoin.pause();
+			this.$refs.successCoin.play();
+			this.success = true;
 		},
 	};
 }

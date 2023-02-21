@@ -13,12 +13,14 @@ export default function popup(scene, hasVideo) {
 		openPopup() {
 			toggleSpin();
 			this.removePageEvents();
+			this.playVideo();
 			this.open = true;
 		},
 		closePopup() {
 			if (this.open) {
 				toggleSpin();
 				this.addPageEvents();
+				this.pauseVideo();
 				this.open = false;
 			}
 			return;
@@ -54,6 +56,18 @@ export default function popup(scene, hasVideo) {
 				this.closePopup();
 			} else {
 				this.openPopup();
+			}
+		},
+		playVideo() {
+			if (hasVideo) {
+				const video = this.$root.querySelector("video");
+				video.play();
+			}
+		},
+		pauseVideo() {
+			if (hasVideo) {
+				const video = this.$root.querySelector("video");
+				video.pause();
 			}
 		},
 	};
