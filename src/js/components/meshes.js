@@ -93,7 +93,7 @@ export const bauhausBuildingMesh = new THREE.Mesh(
 		map: asterixTexture,
 	})
 );
-bauhausBuildingMesh.position.set(-2.89, 0.4, -0.46);
+bauhausBuildingMesh.position.set(-2.89, 0.1, -0.38);
 bauhausBuildingMesh.rotation.y = Math.PI * 0.4;
 bauhausBuildingMesh.scale.set(0, 0, 0);
 
